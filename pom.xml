@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>br.com.objectos</groupId>
 		<artifactId>objectos-comuns-parent</artifactId>
-		<version>2.99.10</version>
+		<version>2.99.11</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>objectos-dojo</artifactId>
@@ -23,7 +23,7 @@
 		<jdbc.password>tatu</jdbc.password>
 		<jetty.home>/opt/jetty</jetty.home>
 		<jetty.version>7.5.4.v20111024</jetty.version>
-		<objectos.comuns.version>2.99.10</objectos.comuns.version>
+		<objectos.comuns.version>2.99.11</objectos.comuns.version>
 		<schema.dir.name>/var/lib/obj</schema.dir.name>
 		<schema.file.name>${project.artifactId}</schema.file.name>
 	</properties>
