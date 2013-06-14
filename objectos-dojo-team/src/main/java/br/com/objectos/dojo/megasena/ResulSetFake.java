@@ -18,10 +18,12 @@ package br.com.objectos.dojo.megasena;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class BuscarMegaSena {
+public class ResulSetFake {
 
-  public MegaSenaPojo primeiroRegistro() {
-    return new ResulSetFake().single();
+  private final LerTxt lerTxt = new LerTxt();
+
+  public MegaSenaPojo single() {
+    return null;
   }
 
 }
