@@ -13,23 +13,27 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.edenir;
+package br.com.objectos.dojo.megasena;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
+import org.joda.time.LocalDate;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class LerTxt {
+public interface MegaSena {
 
-  public List<String> lerDe(File file) throws IOException {
-    List<String> linhas = Files.readLines(file, Charsets.UTF_8);
-    return linhas;
+  interface Construtor extends br.com.objectos.comuns.base.Construtor<MegaSena> {
+    int getNumeroSorteio();
+
+    LocalDate getDataSorteio();
+
+    int[] getDezenas();
   }
+
+  int getNumeroSorteio();
+
+  LocalDate getDataSorteio();
+
+  int[] getDezenas();
 
 }

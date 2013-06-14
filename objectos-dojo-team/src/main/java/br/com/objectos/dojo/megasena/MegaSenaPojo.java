@@ -13,16 +13,35 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.edenir;
+package br.com.objectos.dojo.megasena;
+
+import org.joda.time.LocalDate;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class BuscarMegaSena {
+public class MegaSenaPojo {
 
-  public MegaSenaPojo primeiroRegistro() {
+  private final int numeroSorteio;
+  private final LocalDate dataSorteio;
+  private final int[] dezenas;
 
-    return null;
+  public MegaSenaPojo(int numeroSorteio, LocalDate dataSorteio, int[] dezenas) {
+    this.numeroSorteio = numeroSorteio;
+    this.dataSorteio = dataSorteio;
+    this.dezenas = dezenas;
+  }
+
+  public int getNumeroSorteio() {
+    return numeroSorteio;
+  }
+
+  public LocalDate getDataSorteio() {
+    return dataSorteio;
+  }
+
+  public int[] getDezenas() {
+    return dezenas;
   }
 
 }

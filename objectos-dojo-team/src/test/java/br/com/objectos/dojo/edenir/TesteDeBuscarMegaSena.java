@@ -20,6 +20,9 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.joda.time.LocalDate;
 
+import br.com.objectos.dojo.megasena.BuscarMegaSena;
+import br.com.objectos.dojo.megasena.MegaSenaPojo;
+
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */

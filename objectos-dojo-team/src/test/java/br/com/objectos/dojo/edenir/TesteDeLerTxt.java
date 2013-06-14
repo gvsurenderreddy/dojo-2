@@ -24,6 +24,8 @@ import java.util.List;
 
 import org.testng.annotations.Test;
 
+import br.com.objectos.dojo.megasena.LerTxt;
+
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
