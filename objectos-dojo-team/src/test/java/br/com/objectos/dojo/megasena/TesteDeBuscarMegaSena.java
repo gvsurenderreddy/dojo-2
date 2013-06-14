@@ -13,34 +13,33 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.edenir;
+package br.com.objectos.dojo.megasena;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
+import org.joda.time.LocalDate;
 
-import org.testng.annotations.Test;
-
-import br.com.objectos.dojo.megasena.LerTxt;
+import br.com.objectos.dojo.megasena.BuscarMegaSena;
+import br.com.objectos.dojo.megasena.MegaSenaPojo;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-@Test
-public class TesteDeLerTxt {
+public class TesteDeBuscarMegaSena {
 
-  private final LerTxt txt = new LerTxt();
+  private final BuscarMegaSena buscar = new BuscarMegaSena();
 
-  public void deve_ler_txt() throws IOException {
-    File file = new File(
-        "/home/eanschau/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/mega-sena.txt");
+  public void deve_retornar_primeiro_registro() {
+    LocalDate dataSorteio = new LocalDate("1996/03/11");
+    int[] dezenas = { 04, 05, 30, 33, 41, 52 };
+    MegaSenaPojo prova = new MegaSenaPojo(1, dataSorteio, dezenas);
 
-    List<String> res = txt.lerDe(file);
+    MegaSenaPojo res = buscar.primeiroRegistro();
 
-    assertThat(res.size(), equalTo(10));
+    assertThat(res.getNumeroSorteio(), equalTo(prova.getNumeroSorteio()));
+    assertThat(res.getDataSorteio(), equalTo(prova.getDataSorteio()));
+    assertThat(res.getDezenas(), equalTo(prova.getDezenas()));
   }
 
 }
