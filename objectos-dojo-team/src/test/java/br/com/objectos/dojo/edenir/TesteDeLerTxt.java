@@ -35,6 +35,7 @@ public class TesteDeLerTxt {
   private final LerTxt txt = new LerTxt();
 
   public void deve_ler_txt() throws IOException {
+    String[] linha = { "1", "11/03/1996", "04 05 30 33 41 52" };
     File file = new File(
         "/home/eanschau/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/mega-sena.txt");
 
