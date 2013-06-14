@@ -20,7 +20,6 @@ import static org.hamcrest.Matchers.equalTo;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import org.testng.annotations.Test;
 
@@ -33,15 +32,14 @@ public class TesteDeLerTxt {
   private final LerTxt txt = new LerTxt();
 
   public void deve_ler_txt() throws IOException {
-    String[] linha = { "1", "11/03/1996", "04 05 30 33 41 52" };
+    String linha = "1;11/03/1996;04 05 30 33 41 52";
+
     File file = new File(
-        "/home/eanschau/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/mega-sena.txt");
+        "/home/cbertoldi/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/mega-sena.txt");
 
-    String teste;
+    String res = txt.lerDe(file);
 
-    List<String> res = txt.lerDe(file);
-
-    assertThat(res.size(), equalTo(10));
+    assertThat(linha, equalTo(res));
   }
 
 }

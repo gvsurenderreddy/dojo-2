@@ -18,7 +18,6 @@ package br.com.objectos.dojo.megasena;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.List;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
@@ -28,9 +27,9 @@ import com.google.common.io.Files;
  */
 public class LerTxt {
 
-  public List<String> lerDe(File file) throws IOException {
-    List<String> linhas = Files.readLines(file, Charsets.UTF_8);
-    return linhas;
+  public String lerDe(File file) throws IOException {
+    String linha = Files.readFirstLine(file, Charsets.UTF_8);
+    return linha;
   }
 
   public Iterator<String[]> getArrayDeString() {
