@@ -18,28 +18,30 @@ package br.com.objectos.dojo.megasena;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import org.joda.time.LocalDate;
+import java.util.List;
 
-import br.com.objectos.dojo.megasena.BuscarMegaSena;
-import br.com.objectos.dojo.megasena.MegaSenaPojo;
+import org.joda.time.LocalDate;
+import org.testng.annotations.Test;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
+@Test
 public class TesteDeBuscarMegaSena {
 
   private final BuscarMegaSena buscar = new BuscarMegaSena();
 
   public void deve_retornar_primeiro_registro() {
-    LocalDate dataSorteio = new LocalDate("1996/03/11");
-    int[] dezenas = { 04, 05, 30, 33, 41, 52 };
-    MegaSenaPojo prova = new MegaSenaPojo(1, dataSorteio, dezenas);
+    LocalDate dataSorteio = new LocalDate("1996-03-11");
+    String resultado = "04 05 30 33 41 52";
+    MegaSenaPojo prova = new MegaSenaPojo(1, dataSorteio, resultado);
 
-    MegaSenaPojo res = buscar.primeiroRegistro();
+    List<MegaSena> res = buscar.primeiroRegistro();
 
-    assertThat(res.getNumeroSorteio(), equalTo(prova.getNumeroSorteio()));
-    assertThat(res.getDataSorteio(), equalTo(prova.getDataSorteio()));
-    assertThat(res.getResultado(), equalTo(prova.getResultado()));
+    MegaSena r01 = res.get(0);
+    assertThat(r01.getNumeroSorteio(), equalTo(prova.getNumeroSorteio()));
+    assertThat(r01.getDataSorteio(), equalTo(prova.getDataSorteio()));
+    assertThat(r01.getResultado(), equalTo(prova.getResultado()));
   }
 
 }

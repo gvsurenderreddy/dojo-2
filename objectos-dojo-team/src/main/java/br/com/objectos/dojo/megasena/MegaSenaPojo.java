@@ -31,14 +31,17 @@ public class MegaSenaPojo implements MegaSena {
     this.dataSorteio = dataSorteio;
     this.resultado = resultado;
   }
+
   @Override
   public int getNumeroSorteio() {
     return numeroSorteio;
   }
+
   @Override
   public LocalDate getDataSorteio() {
     return dataSorteio;
   }
+
   @Override
   public String getResultado() {
     return resultado;

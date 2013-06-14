@@ -15,13 +15,15 @@
  */
 package br.com.objectos.dojo.megasena;
 
+import java.util.List;
+
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
 public class BuscarMegaSena {
 
-  public MegaSenaPojo primeiroRegistro() {
-    return new ResulSetFake().single();
+  public List<MegaSena> primeiroRegistro() {
+    return new MegaSenaLoader().carregarTodos();
   }
 
 }
