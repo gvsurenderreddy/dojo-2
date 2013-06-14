@@ -24,8 +24,6 @@ import java.util.List;
 
 import org.testng.annotations.Test;
 
-import br.com.objectos.dojo.megasena.LerTxt;
-
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
@@ -38,6 +36,8 @@ public class TesteDeLerTxt {
     String[] linha = { "1", "11/03/1996", "04 05 30 33 41 52" };
     File file = new File(
         "/home/eanschau/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/mega-sena.txt");
+
+    String teste;
 
     List<String> res = txt.lerDe(file);
 

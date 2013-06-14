@@ -27,13 +27,13 @@ public interface MegaSena {
 
     LocalDate getDataSorteio();
 
-    int[] getDezenas();
+    String getResultado();
   }
 
   int getNumeroSorteio();
 
   LocalDate getDataSorteio();
 
-  int[] getDezenas();
+  String getResultado();
 
 }

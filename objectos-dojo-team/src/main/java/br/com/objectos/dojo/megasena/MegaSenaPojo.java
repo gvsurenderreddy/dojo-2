@@ -20,28 +20,28 @@ import org.joda.time.LocalDate;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class MegaSenaPojo {
+public class MegaSenaPojo implements MegaSena {
 
   private final int numeroSorteio;
   private final LocalDate dataSorteio;
-  private final int[] dezenas;
+  private final String resultado;
 
-  public MegaSenaPojo(int numeroSorteio, LocalDate dataSorteio, int[] dezenas) {
+  public MegaSenaPojo(int numeroSorteio, LocalDate dataSorteio, String resultado) {
     this.numeroSorteio = numeroSorteio;
     this.dataSorteio = dataSorteio;
-    this.dezenas = dezenas;
+    this.resultado = resultado;
   }
-
+  @Override
   public int getNumeroSorteio() {
     return numeroSorteio;
   }
-
+  @Override
   public LocalDate getDataSorteio() {
     return dataSorteio;
   }
-
-  public int[] getDezenas() {
-    return dezenas;
+  @Override
+  public String getResultado() {
+    return resultado;
   }
 
 }

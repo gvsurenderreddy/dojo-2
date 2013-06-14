@@ -39,7 +39,7 @@ public class TesteDeBuscarMegaSena {
 
     assertThat(res.getNumeroSorteio(), equalTo(prova.getNumeroSorteio()));
     assertThat(res.getDataSorteio(), equalTo(prova.getDataSorteio()));
-    assertThat(res.getDezenas(), equalTo(prova.getDezenas()));
+    assertThat(res.getResultado(), equalTo(prova.getResultado()));
   }
 
 }
