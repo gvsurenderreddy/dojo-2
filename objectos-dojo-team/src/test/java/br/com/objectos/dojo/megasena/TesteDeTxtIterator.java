@@ -15,12 +15,8 @@
  */
 package br.com.objectos.dojo.megasena;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Iterator;
+import static org.testng.Assert.assertEquals;
 
 import org.testng.annotations.Test;
 
@@ -28,27 +24,16 @@ import org.testng.annotations.Test;
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
 @Test
-public class TesteDeLerTxt {
+public class TesteDeTxtIterator {
 
-  private final LerTxt txt = new LerTxt();
+  public void deve_iterar_uma_linha() {
+    String esperado = "1;11/03/1996;04 05 30 33 41 52";
 
-  public void deve_ler_primeira_linha() throws IOException {
-    String linha = "1;11/03/1996;04 05 30 33 41 52";
+    TxtIterator txtIterator = new TxtIterator();
 
-    File file = new File(
-        "/objectos-dojo/objectos-dojo-team/src/test/resources/mega-sena.txt");
-
-    String res = txt.lerDe(file);
-
-    assertThat(linha, equalTo(res));
-  }
-
-  public void deve_ler_txt() throws IOException {
-    File file = new File(
-        "/objectos-dojo/objectos-dojo-team/src/test/resources/mega-sena.txt");
-
-    Iterator<String[]> res = txt.getArrayDeString(file);
-
+    assertEquals(txtIterator.hasNext(), true);
+    assertEquals(txtIterator.next(), esperado);
+    assertEquals(txtIterator.hasNext(), equalTo(false));
   }
 
 }
