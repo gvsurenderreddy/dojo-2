@@ -15,11 +15,11 @@
  */
 package br.com.objectos.dojo.megasena;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.testng.annotations.Test;
 
@@ -32,14 +32,17 @@ public class TesteDeLerTxt {
   private final LerTxt txt = new LerTxt();
 
   public void deve_ler_txt() throws IOException {
-    String linha = "1;11/03/1996;04 05 30 33 41 52";
+    InputStream is = new FileInputStream(
+        "/home/asilva/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/mega-sena.txt");
+    InputStreamReader isr = new InputStreamReader(is);
+    BufferedReader br = new BufferedReader(isr);
 
-    File file = new File(
-        "/home/cbertoldi/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/mega-sena.txt");
+    String s = br.readLine();
 
-    String res = txt.lerDe(file);
-
-    assertThat(linha, equalTo(res));
+    while (s != null) {
+      System.out.println(s);
+      s = br.readLine();
+    }
+    br.close();
   }
-
 }
