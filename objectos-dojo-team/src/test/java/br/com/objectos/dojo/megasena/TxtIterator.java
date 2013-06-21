@@ -22,31 +22,18 @@ import java.util.Iterator;
  */
 public class TxtIterator implements Iterator<String> {
 
-  private String proximaLinha;
-
-  public TxtIterator() {
-    this.proximaLinha = "1;11/03/1996;04 05 30 33 41 52";
-  }
-
   @Override
   public boolean hasNext() {
-    return proximaLinha != null;
+    return false;
   }
 
   @Override
   public String next() {
-    String resultado = proximaLinha;
-    avancar();
-    return resultado;
+    return null;
   }
 
   @Override
   public void remove() {
-    throw new UnsupportedOperationException();
-  }
-
-  private void avancar() {
-    proximaLinha = null;
   }
 
 }

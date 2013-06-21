@@ -15,15 +15,16 @@
  */
 package br.com.objectos.dojo.megasena;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
-=======
 import java.util.Iterator;
->>>>>>> origin/eanschau01_iterator
 
 import org.testng.annotations.Test;
 
@@ -34,7 +35,6 @@ import org.testng.annotations.Test;
 public class TesteDeLerTxt {
 
   private final LerTxt txt = new LerTxt();
-
 
   public void deve_ler_txt() throws IOException {
     InputStream is = new FileInputStream(
@@ -62,13 +62,12 @@ public class TesteDeLerTxt {
     assertThat(linha, equalTo(res));
   }
 
-  public void deve_ler_txt() throws IOException {
+  public void deve_ler_txt_2() throws IOException {
     File file = new File(
-        "/objectos-dojo/objectos-dojo-team/src/test/resources/mega-sena.txt");
+        "/home/eanschau/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/mega-sena.txt");
 
     Iterator<String[]> res = txt.getArrayDeString(file);
 
   }
-
 
 }

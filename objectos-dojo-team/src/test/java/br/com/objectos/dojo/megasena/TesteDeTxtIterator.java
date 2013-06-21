@@ -18,6 +18,8 @@ package br.com.objectos.dojo.megasena;
 import static org.hamcrest.Matchers.equalTo;
 import static org.testng.Assert.assertEquals;
 
+import java.io.FileNotFoundException;
+
 import org.testng.annotations.Test;
 
 /**
@@ -26,13 +28,13 @@ import org.testng.annotations.Test;
 @Test
 public class TesteDeTxtIterator {
 
-  public void deve_iterar_uma_linha() {
-    String esperado = "1;11/03/1996;04 05 30 33 41 52";
-
+  public void deve_iterar_uma_linha() throws FileNotFoundException {
     TxtIterator txtIterator = new TxtIterator();
 
     assertEquals(txtIterator.hasNext(), true);
-    assertEquals(txtIterator.next(), esperado);
+    assertEquals(txtIterator.next(), "teste");
+    assertEquals(txtIterator.hasNext(), equalTo(true));
+    assertEquals(txtIterator.next(), "teste 1");
     assertEquals(txtIterator.hasNext(), equalTo(false));
   }
 
