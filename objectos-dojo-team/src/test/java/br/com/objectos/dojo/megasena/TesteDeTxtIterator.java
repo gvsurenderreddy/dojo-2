@@ -15,26 +15,25 @@
  */
 package br.com.objectos.dojo.megasena;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Iterator;
+import static org.hamcrest.Matchers.equalTo;
+import static org.testng.Assert.assertEquals;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
+import org.testng.annotations.Test;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class LerTxt {
+@Test
+public class TesteDeTxtIterator {
 
-  public String lerDe(File file) throws IOException {
-    String linha = Files.readFirstLine(file, Charsets.UTF_8);
-    return linha;
-  }
+  public void deve_iterar_uma_linha() {
+    String esperado = "1;11/03/1996;04 05 30 33 41 52";
 
-  public Iterator<String[]> getArrayDeString(File file) {
-    Iterator<String> iterator;
-    return null;
+    TxtIterator txtIterator = new TxtIterator();
+
+    assertEquals(txtIterator.hasNext(), true);
+    assertEquals(txtIterator.next(), esperado);
+    assertEquals(txtIterator.hasNext(), equalTo(false));
   }
 
 }

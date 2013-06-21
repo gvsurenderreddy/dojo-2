@@ -15,26 +15,38 @@
  */
 package br.com.objectos.dojo.megasena;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Iterator;
-
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class LerTxt {
+public class TxtIterator implements Iterator<String> {
 
-  public String lerDe(File file) throws IOException {
-    String linha = Files.readFirstLine(file, Charsets.UTF_8);
-    return linha;
+  private String proximaLinha;
+
+  public TxtIterator() {
+    this.proximaLinha = "1;11/03/1996;04 05 30 33 41 52";
   }
 
-  public Iterator<String[]> getArrayDeString(File file) {
-    Iterator<String> iterator;
-    return null;
+  @Override
+  public boolean hasNext() {
+    return proximaLinha != null;
+  }
+
+  @Override
+  public String next() {
+    String resultado = proximaLinha;
+    avancar();
+    return resultado;
+  }
+
+  @Override
+  public void remove() {
+    throw new UnsupportedOperationException();
+  }
+
+  private void avancar() {
+    proximaLinha = null;
   }
 
 }

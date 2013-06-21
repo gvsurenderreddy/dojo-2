@@ -18,8 +18,12 @@ package br.com.objectos.dojo.megasena;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
+=======
+import java.util.Iterator;
+>>>>>>> origin/eanschau01_iterator
 
 import org.testng.annotations.Test;
 
@@ -30,6 +34,7 @@ import org.testng.annotations.Test;
 public class TesteDeLerTxt {
 
   private final LerTxt txt = new LerTxt();
+
 
   public void deve_ler_txt() throws IOException {
     InputStream is = new FileInputStream(
@@ -45,4 +50,25 @@ public class TesteDeLerTxt {
     }
     br.close();
   }
+
+  public void deve_ler_primeira_linha() throws IOException {
+    String linha = "1;11/03/1996;04 05 30 33 41 52";
+
+    File file = new File(
+        "/objectos-dojo/objectos-dojo-team/src/test/resources/mega-sena.txt");
+
+    String res = txt.lerDe(file);
+
+    assertThat(linha, equalTo(res));
+  }
+
+  public void deve_ler_txt() throws IOException {
+    File file = new File(
+        "/objectos-dojo/objectos-dojo-team/src/test/resources/mega-sena.txt");
+
+    Iterator<String[]> res = txt.getArrayDeString(file);
+
+  }
+
+
 }
