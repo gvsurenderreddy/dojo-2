@@ -32,7 +32,8 @@ public class LerTxt {
     return linha;
   }
 
-  public Iterator<String[]> getArrayDeString() {
+  public Iterator<String[]> getArrayDeString(File file) {
+    Iterator<String> iterator;
     return null;
   }
 
