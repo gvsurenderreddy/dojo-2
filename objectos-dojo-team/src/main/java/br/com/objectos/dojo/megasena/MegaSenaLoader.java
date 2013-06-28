@@ -17,7 +17,10 @@ package br.com.objectos.dojo.megasena;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-import java.util.Iterator;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.List;
 
 import org.joda.time.LocalDate;
@@ -29,16 +32,14 @@ import com.google.common.primitives.Ints;
  */
 class MegaSenaLoader {
 
-  private final LerTxt lerTxt = new LerTxt();
+  private final File file = new File("/home/eanschau/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/iterator_teste.txt");
 
-  public List<MegaSena> carregarTodos() {
+  public List<MegaSena> carregarTodos() throws FileNotFoundException {
+    BufferedReader br = new BufferedReader(new FileReader(file));
+    TxtIterator txtIterator = new TxtIterator(br);
+
     List<MegaSena> list = newArrayList();
 
-    Iterator<String[]> arrayDeString = lerTxt.getArrayDeString();
-    while (arrayDeString.hasNext()) {
-      MegaSena megaSena = new Loader(arrayDeString.next()).novaInstancia();
-      list.add(megaSena);
-    }
     return list;
   }
 

@@ -15,10 +15,12 @@
  */
 package br.com.objectos.dojo.megasena;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.testng.Assert.assertEquals;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 import org.testng.annotations.Test;
 
@@ -29,13 +31,21 @@ import org.testng.annotations.Test;
 public class TesteDeTxtIterator {
 
   public void deve_iterar_uma_linha() throws FileNotFoundException {
-    TxtIterator txtIterator = new TxtIterator();
+    File file = new File("/home/eanschau/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/iterator_teste.txt");
+    BufferedReader br = new BufferedReader(new FileReader(file));
+
+    TxtIterator txtIterator = new TxtIterator(br);
 
     assertEquals(txtIterator.hasNext(), true);
-    assertEquals(txtIterator.next(), "teste");
-    assertEquals(txtIterator.hasNext(), equalTo(true));
-    assertEquals(txtIterator.next(), "teste 1");
-    assertEquals(txtIterator.hasNext(), equalTo(false));
+    assertEquals(txtIterator.hasNext(), true);
+    assertEquals(txtIterator.hasNext(), true);
+    assertEquals(txtIterator.next(), "Linha 1");
+    assertEquals(txtIterator.hasNext(), true);
+    assertEquals(txtIterator.next(), "Linha 2");
+    assertEquals(txtIterator.hasNext(), true);
+    assertEquals(txtIterator.next(), "Linha 3");
+    assertEquals(txtIterator.hasNext(), false);
+    assertEquals(txtIterator.hasNext(), false);
   }
 
 }

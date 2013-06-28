@@ -15,6 +15,8 @@
  */
 package br.com.objectos.dojo.megasena;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.Iterator;
 
 /**
@@ -22,18 +24,38 @@ import java.util.Iterator;
  */
 public class TxtIterator implements Iterator<String> {
 
+  private final BufferedReader br;
+  private String line;
+
+  public TxtIterator(BufferedReader br) {
+    this.br = br;
+    line = tryReadLine();
+  }
+
   @Override
   public boolean hasNext() {
-    return false;
+    return line != null;
   }
 
   @Override
   public String next() {
-    return null;
+    String res = line;
+
+    line = tryReadLine();
+
+    return res;
   }
 
   @Override
   public void remove() {
+  }
+
+  private String tryReadLine() {
+    try {
+      return br.readLine();
+    } catch (IOException e) {
+      return "";
+    }
   }
 
 }
