@@ -31,7 +31,7 @@ import org.testng.annotations.Test;
 public class TesteDeTxtIterator {
 
   public void deve_iterar_uma_linha() throws FileNotFoundException {
-    File file = new File("/home/eanschau/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/iterator_teste.txt");
+    File file = new File("src/test/resources/iterator_teste.txt");
     BufferedReader br = new BufferedReader(new FileReader(file));
 
     TxtIterator txtIterator = new TxtIterator(br);
