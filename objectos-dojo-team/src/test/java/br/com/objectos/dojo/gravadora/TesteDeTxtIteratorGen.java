@@ -17,39 +17,47 @@ package br.com.objectos.dojo.gravadora;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
 import java.io.File;
 import java.net.URISyntaxException;
-import java.util.List;
 
 import org.testng.annotations.Test;
-
-import com.google.common.collect.ImmutableList;
 
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
 @Test
-public class TesteDeLerTxt {
+public class TesteDeTxtIteratorGen {
 
-  private final LerArquivoTexto ler = new LerArquivoTextoImpl();
+  private final TxtDeIteratorGen gen = new TxtDeIteratorGenImpl();
 
   private final AbrirTxt abrirTxt = new AbrirTxt();
 
-  public void deve_ler_txt() throws URISyntaxException {
+  public void deve_iterar_txt() throws URISyntaxException {
     String url = "/br/com/objectos/dojo/gravadora/albuns.txt";
-
     File file = abrirTxt.getFile(url);
-    String txt = ler.lerTxt(file);
 
-    String sep = System.getProperty("line.separator");
-    String[] array = txt.split(sep);
-    List<String> res = ImmutableList.copyOf(array);
+    TxtDeIteratorGen res = gen.gerarDe(file);
 
-    assertThat(res.size(), equalTo(3));
-    assertThat(res.get(0), equalTo("01;15/07/2011;Come to the well;Casting Crowns"));
-    assertThat(res.get(1), equalTo("02;12/05/1987;20 anos;Catedral"));
-    assertThat(res.get(2), equalTo("03;20/08/2002;O tempo;Oficina G3"));
+    assertThat(res.hasNext(), is(true));
+    assertThat(res.hasNext(), is(true));
+    assertThat(res.hasNext(), is(true));
+    assertThat(res.next(), equalTo("01;15/07/2011;Come to the well;Casting Crowns"));
+
+    assertThat(res.hasNext(), is(true));
+    assertThat(res.hasNext(), is(true));
+    assertThat(res.hasNext(), is(true));
+    assertThat(res.next(), equalTo("02;12/05/1987;20 anos;Catedral"));
+
+    assertThat(res.hasNext(), is(true));
+    assertThat(res.hasNext(), is(true));
+    assertThat(res.hasNext(), is(true));
+    assertThat(res.next(), equalTo("03;20/08/2002;O tempo;Oficina G3"));
+
+    assertThat(res.hasNext(), is(false));
+    assertThat(res.hasNext(), is(false));
+    assertThat(res.hasNext(), is(false));
   }
 
 }
