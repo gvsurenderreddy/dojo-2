@@ -19,11 +19,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
 
 import org.testng.annotations.Test;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.io.Resources;
 
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
@@ -33,9 +37,10 @@ public class TesteDeLerTxt {
 
   private final LerArquivoTexto ler = new LerArquivoTextoImpl();
 
-  public void deve_ler_txt() {
-    File file = new File(
-        "/home/cbertoldi/kdo/projetos/objectos-dojo/objectos-dojo-team/src/test/resources/br/com/objectos/dojo/gravadora/albuns.txt");
+  public void deve_ler_txt() throws URISyntaxException {
+    URL url = Resources.getResource(getClass(), "albuns.txt");
+    URI uri = url.toURI();
+    File file = new File(uri);
 
     String txt = ler.lerTxt(file);
     String sep = System.getProperty("line.separator");
