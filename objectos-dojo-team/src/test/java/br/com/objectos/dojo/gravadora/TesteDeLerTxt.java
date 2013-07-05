@@ -38,13 +38,12 @@ public class TesteDeLerTxt {
   private final LerArquivoTexto ler = new LerArquivoTextoImpl();
 
   public void deve_ler_txt() throws URISyntaxException {
-    URL url = Resources.getResource(getClass(), "albuns.txt");
+    URL url = Resources.getResource(getClass(), "/br/com/objectos/dojo/gravadora/albuns.txt");
     URI uri = url.toURI();
     File file = new File(uri);
-
     String txt = ler.lerTxt(file);
-    String sep = System.getProperty("line.separator");
 
+    String sep = System.getProperty("line.separator");
     String[] array = txt.split(sep);
     List<String> res = ImmutableList.copyOf(array);
 
