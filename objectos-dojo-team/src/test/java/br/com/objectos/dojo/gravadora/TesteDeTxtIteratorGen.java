@@ -30,7 +30,7 @@ import org.testng.annotations.Test;
 @Test
 public class TesteDeTxtIteratorGen {
 
-  private final TxtDeIteratorGen gen = new TxtDeIteratorGenImpl();
+  private final TxtIteratorGen gen = new TxtIteratorGenImpl();
 
   private final AbrirTxt abrirTxt = new AbrirTxt();
 
@@ -38,7 +38,7 @@ public class TesteDeTxtIteratorGen {
     String url = "/br/com/objectos/dojo/gravadora/albuns.txt";
     File file = abrirTxt.getFile(url);
 
-    TxtDeIteratorGen res = gen.gerarDe(file);
+    TextIterator res = gen.gerarDe(file);
 
     assertThat(res.hasNext(), is(true));
     assertThat(res.hasNext(), is(true));

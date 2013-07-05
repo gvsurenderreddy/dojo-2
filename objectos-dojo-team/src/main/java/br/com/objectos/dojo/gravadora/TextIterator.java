@@ -1,5 +1,5 @@
 /*
-* Copyright 2013 Objectos, Fábrica de Software LTDA.
+ * Copyright 2013 Objectos, Fábrica de Software LTDA.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,30 +15,9 @@
  */
 package br.com.objectos.dojo.gravadora;
 
-import java.io.File;
+import java.util.Iterator;
 
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
-public class TxtDeIteratorGenImpl implements TxtDeIteratorGen {
-
-  @Override
-  public boolean hasNext() {
-    return false;
-  }
-
-  @Override
-  public String next() {
-    return null;
-  }
-
-  @Override
-  public void remove() {
-  }
-
-  @Override
-  public TxtDeIteratorGen gerarDe(File file) {
-    return null;
-  }
-
-}
+public interface TextIterator extends Iterator<String> {}

@@ -16,13 +16,12 @@
 package br.com.objectos.dojo.gravadora;
 
 import java.io.File;
-import java.util.Iterator;
 
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
-public interface TxtDeIteratorGen extends Iterator<String> {
+public interface TxtIteratorGen {
 
-  TxtDeIteratorGen gerarDe(File file);
+  TextIterator gerarDe(File file);
 
 }
