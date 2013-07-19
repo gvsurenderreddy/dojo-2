@@ -15,32 +15,18 @@
  */
 package br.com.objectos.dojo.cpelissari;
 
-import java.util.Iterator;
-
-import com.google.common.base.Function;
-import com.google.common.collect.Iterators;
+import com.google.inject.AbstractModule;
 
 /**
  * @author cristiane.pelissari@objectos.com.br (Cristiane Iope Pelissari)
  */
-class ToArrayDeStringImpl implements ToArrayDeString {
+public class ModuloMegaSena extends AbstractModule {
 
   @Override
-  public String[] toArray(String linha) {
-    String[] res = linha.split(";");
-    return res;
-  }
-
-  @Override
-  public Iterator<String[]> transform(Iterator<String> linhas) {
-    return Iterators.transform(linhas, new ToImpl());
-  }
-
-  private class ToImpl implements Function<String, String[]> {
-    @Override
-    public String[] apply(String input) {
-      return toArray(input);
-    }
+  protected void configure() {
+    bind(TxtIteratorGen.class).to(TxtIteratorGenImpl.class);
+    bind(ToArrayDeString.class).to(ToArrayDeStringImpl.class);
+    bind(ToMegaSena.class).to(ToMegaSenaImpl.class);
   }
 
 }

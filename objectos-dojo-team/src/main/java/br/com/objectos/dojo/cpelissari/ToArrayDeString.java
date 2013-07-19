@@ -15,11 +15,15 @@
  */
 package br.com.objectos.dojo.cpelissari;
 
+import java.util.Iterator;
+
 /**
  * @author cristiane.pelissari@objectos.com.br (Cristiane Iope Pelissari)
  */
 public interface ToArrayDeString {
 
   String[] toArray(String linha);
+
+  Iterator<String[]> transform(Iterator<String> linhas);
 
 }

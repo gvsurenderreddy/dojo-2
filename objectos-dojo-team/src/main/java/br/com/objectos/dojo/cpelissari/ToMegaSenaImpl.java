@@ -15,7 +15,14 @@
  */
 package br.com.objectos.dojo.cpelissari;
 
+import java.util.Iterator;
+
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Iterators;
 
 /**
  * @author cristiane.pelissari@objectos.com.br (Cristiane Iope Pelissari)
@@ -25,6 +32,18 @@ public class ToMegaSenaImpl implements ToMegaSena {
   @Override
   public MegaSena of(String[] linha) {
     return new Construtor(linha).novaInstancia();
+  }
+
+  @Override
+  public Iterator<MegaSena> transforme(Iterator<String[]> colunas) {
+    return Iterators.transform(colunas, new ToImpl());
+  }
+
+  private class ToImpl implements Function<String[], MegaSena> {
+    @Override
+    public MegaSena apply(String[] input) {
+      return of(input);
+    }
   }
 
   private class Construtor implements MegaSena.Construtor {
@@ -48,12 +67,14 @@ public class ToMegaSenaImpl implements ToMegaSena {
 
     @Override
     public LocalDate getDataSorteio() {
-      return null;
+      String data = linha[1];
+      DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
+      return formatter.parseLocalDate(data);
     }
 
     @Override
     public String getResultado() {
-      return null;
+      return linha[2];
     }
 
   }

@@ -15,32 +15,26 @@
  */
 package br.com.objectos.dojo.cpelissari;
 
-import java.util.Iterator;
+import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Iterators;
+import com.google.common.io.Resources;
 
 /**
  * @author cristiane.pelissari@objectos.com.br (Cristiane Iope Pelissari)
  */
-class ToArrayDeStringImpl implements ToArrayDeString {
+public class TxtsFalso {
 
-  @Override
-  public String[] toArray(String linha) {
-    String[] res = linha.split(";");
-    return res;
-  }
+  public static File getFile(String string) throws URISyntaxException {
+    File file = null;
 
-  @Override
-  public Iterator<String[]> transform(Iterator<String> linhas) {
-    return Iterators.transform(linhas, new ToImpl());
-  }
+    URL url = Resources.getResource(LerTxt.class, string);
+    URI uri = url.toURI();
+    file = new File(uri);
 
-  private class ToImpl implements Function<String, String[]> {
-    @Override
-    public String[] apply(String input) {
-      return toArray(input);
-    }
+    return file;
   }
 
 }

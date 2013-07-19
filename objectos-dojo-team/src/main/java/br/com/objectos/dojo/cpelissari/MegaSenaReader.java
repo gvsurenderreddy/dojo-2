@@ -15,32 +15,17 @@
  */
 package br.com.objectos.dojo.cpelissari;
 
+import java.io.File;
 import java.util.Iterator;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Iterators;
+import com.google.inject.ImplementedBy;
 
 /**
  * @author cristiane.pelissari@objectos.com.br (Cristiane Iope Pelissari)
  */
-class ToArrayDeStringImpl implements ToArrayDeString {
+@ImplementedBy(MegaSenaReaderImpl.class)
+public interface MegaSenaReader {
 
-  @Override
-  public String[] toArray(String linha) {
-    String[] res = linha.split(";");
-    return res;
-  }
-
-  @Override
-  public Iterator<String[]> transform(Iterator<String> linhas) {
-    return Iterators.transform(linhas, new ToImpl());
-  }
-
-  private class ToImpl implements Function<String, String[]> {
-    @Override
-    public String[] apply(String input) {
-      return toArray(input);
-    }
-  }
+  Iterator<MegaSena> read(File arquivo);
 
 }

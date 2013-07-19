@@ -15,32 +15,38 @@
  */
 package br.com.objectos.dojo.cpelissari;
 
+import java.io.File;
 import java.util.Iterator;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Iterators;
+import com.google.inject.Inject;
 
 /**
  * @author cristiane.pelissari@objectos.com.br (Cristiane Iope Pelissari)
  */
-class ToArrayDeStringImpl implements ToArrayDeString {
+public class MegaSenaReaderImpl implements MegaSenaReader {
 
-  @Override
-  public String[] toArray(String linha) {
-    String[] res = linha.split(";");
-    return res;
+  private final TxtIteratorGen iteratorGen;
+
+  private final ToArrayDeString toArrayDeString;
+
+  private final ToMegaSena toMegaSena;
+
+  @Inject
+  public MegaSenaReaderImpl(TxtIteratorGen iteratorGen,
+                            ToArrayDeString toArrayDeString,
+                            ToMegaSena toMegaSena) {
+    this.iteratorGen = iteratorGen;
+    this.toArrayDeString = toArrayDeString;
+    this.toMegaSena = toMegaSena;
   }
 
   @Override
-  public Iterator<String[]> transform(Iterator<String> linhas) {
-    return Iterators.transform(linhas, new ToImpl());
-  }
+  public Iterator<MegaSena> read(File arquivo) {
+    Iterator<String> linhas = iteratorGen.gerarDe(arquivo);
 
-  private class ToImpl implements Function<String, String[]> {
-    @Override
-    public String[] apply(String input) {
-      return toArray(input);
-    }
+    Iterator<String[]> colunas = toArrayDeString.transform(linhas);
+
+    return toMegaSena.transforme(colunas);
   }
 
 }
