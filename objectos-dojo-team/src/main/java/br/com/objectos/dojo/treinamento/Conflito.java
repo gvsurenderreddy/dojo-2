@@ -16,10 +16,18 @@
 package br.com.objectos.dojo.treinamento;
 
 /**
+<<<<<<< HEAD
  * @author cristiane.pelissari@objectos.com.br (Cristiane Iope Pelissari)
  */
 public interface Conflito {
 
   String gerar(int a);
+=======
+ * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
+ */
+public interface Conflito {
+
+  String gerarDe(String numeroConflito);
+>>>>>>> origin/cpelissari_02_conflito
 
 }

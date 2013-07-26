@@ -15,17 +15,30 @@
  */
 package br.com.objectos.dojo.treinamento;
 
+<<<<<<< HEAD
 /**
  * @author cristiane.pelissari@objectos.com.br (Cristiane Iope Pelissari)
+=======
+
+/**
+ * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
+>>>>>>> origin/cpelissari_02_conflito
  */
 public class TesteDeGerarConflito {
 
   private Conflito conflito;
 
+<<<<<<< HEAD
   public void deve_gerar_conflito_tambem() {
     int a = 0;
 
     String _conflito = conflito.gerar(a);
   }
 
+=======
+  public void deve_gerar_conflito() {
+    String numeroConflito = "123";
+    String _conflito = conflito.gerarDe(numeroConflito);
+  }
+>>>>>>> origin/cpelissari_02_conflito
 }

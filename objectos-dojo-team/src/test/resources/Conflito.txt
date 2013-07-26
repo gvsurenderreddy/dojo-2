@@ -2,3 +2,6 @@ simular conflitos entre:
 branch de cpelissario_02_conflito e cbertoldi_02_conflito
 conflitos -- conflitos
 gerando conflitos
+Estamos simulando 
+conflitos
+simmmm....
