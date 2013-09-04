@@ -49,8 +49,8 @@ desde guias completos e detalhados a textos mais simples do tipo 'perguntas e re
 
 Implementados da seguinte maneira:.
 
-1. Os _artigos e documentos_ ficam hospedados na branch [master](https://github.com/objectos/objectos-dojo)
-1. Já os _códigos fonte_ ficam hospedados na branch [gh-pages](https://github.com/objectos/objectos-dojo/tree/gh-pages)
+1. Os _artigos e documentos_ ficam hospedados na branch [gh-pages](https://github.com/objectos/objectos-dojo/tree/gh-pages)
+1. Já os _códigos fonte_ ficam hospedados na branch [master] (https://github.com/objectos/objectos-dojo)
 
 ## Importando o projeto 
 
