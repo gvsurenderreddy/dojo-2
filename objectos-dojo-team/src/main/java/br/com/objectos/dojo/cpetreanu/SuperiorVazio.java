@@ -18,6 +18,8 @@ package br.com.objectos.dojo.cpetreanu;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+import br.com.objectos.comuns.relational.jdbc.Insert;
+
 /**
  * @author caio.petreanu@objectos.com.br (Caio C. Petreanu)
  */
@@ -54,6 +56,11 @@ public class SuperiorVazio implements Superior {
 
   @Override
   public Diretor getDiretor() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public Insert getInsert() {
     throw new UnsupportedOperationException();
   }
 

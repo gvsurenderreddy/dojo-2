@@ -15,6 +15,8 @@
 */
 package br.com.objectos.dojo.cpetreanu;
 
+import br.com.objectos.comuns.relational.jdbc.Insert;
+
 /**
  * @author caio.petreanu@objectos.com.br (Caio C. Petreanu)
  */
@@ -27,6 +29,11 @@ public class DiretorVazio implements Diretor {
 
   @Override
   public String getNome() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public Insert getInsert() {
     throw new UnsupportedOperationException();
   }
 

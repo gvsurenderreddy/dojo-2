@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import br.com.objectos.comuns.relational.jdbc.NativeSql;
+import br.com.objectos.dojo.asilva.SuperiorKey;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -84,6 +85,11 @@ class BuscarFuncionarioGuice implements BuscarFuncionario {
         .add("where FUNCIONARIO.DIRETOR_ID = ? ").param(_diretor)
 
         .single();
+  }
+
+  @Override
+  public List<Funcionario> porSuperiorKey(SuperiorKey key) {
+    return null;
   }
 
   private NativeSql newSelect() {
