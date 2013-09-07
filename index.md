@@ -34,7 +34,7 @@ styleClass: landing
     <div class="span5">
       <div class="text">
         <h3>
-          <a href="{{ site.baseurl }}/caixa">Caixa de ferramentas</a>
+          <a href="{{ site.url }}/caixa">Caixa de ferramentas</a>
         </h3>
         <p>
         as ferramentas básicas (e mínimas) que todo programador <strong>deve</strong> 
@@ -51,7 +51,7 @@ styleClass: landing
         </ul>
         </p>
         <h3>
-          <a href="{{ site.baseurl }}/procedimento">Procedimentos</a>
+          <a href="{{ site.url }}/procedimento">Procedimentos</a>
         </h3>
         <p>
         Até que certos conceitos fundamentais fiquem sedimentados, procedimentos trazem produtividade.

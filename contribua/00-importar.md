@@ -42,4 +42,4 @@ O projeto estará no diretório:
 
 ## 4. Escreva artigos!
 
-Tendo o projeto localmente em sua máquina, o próximo passo é escrever artigos <a href="{{ site.baseurl }}/contribua/01-artigos.html" class="btn btn-success">Continuar!</a>
+Tendo o projeto localmente em sua máquina, o próximo passo é escrever artigos <a href="{{ site.url }}/contribua/01-artigos.html" class="btn btn-success">Continuar!</a>

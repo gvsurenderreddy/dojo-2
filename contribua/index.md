@@ -54,4 +54,4 @@ Implementados da seguinte maneira:.
 
 ## Importando o projeto 
 
-O próximo passo é importar o projeto para a sua máquina <a href="{{ site.baseurl }}/contribua/00-importar.html" class="btn btn-success">Continuar!</a>
+O próximo passo é importar o projeto para a sua máquina <a href="{{ site.url }}/contribua/00-importar.html" class="btn btn-success">Continuar!</a>

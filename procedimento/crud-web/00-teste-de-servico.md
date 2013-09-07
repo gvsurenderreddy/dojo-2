@@ -149,5 +149,5 @@ através da __ConsultaDeAluno__ estão de acordo com as informações do mini-ar
 
 <p>Leia mais uma vez! <a href="#topo" class="btn btn-warning">Revisar!</a></p>
 
-<p> Seguir em frente ? <a href="{{ site.baseurl }}/procedimento/crud-web/01-implementando-servico.html" 
+<p> Seguir em frente ? <a href="{{ site.url }}/procedimento/crud-web/01-implementando-servico.html" 
 class="btn btn-success">Implementando Serviços</a></p> 

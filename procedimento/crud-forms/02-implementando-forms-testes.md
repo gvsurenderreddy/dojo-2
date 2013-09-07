@@ -216,5 +216,5 @@ Para mais informações acesse os códigos nos links abaixo:
 [TesteDeFormDeAlunoUpdate.java](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/test/java/br/com/objectos/dojo/taguiar/TesteDeFormDeAlunoUpdate.java)<br>
 [ModuloFaculdadeUI.java](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/main/java/br/com/objectos/dojo/taguiar/ModuloFaculdadeUI.java)<br>
 
-Siga para o próximo passo. O Form! <a href="{{ site.baseurl }}/procedimento/crud-forms/" class="btn btn-success">Continuar!</a><br>
+Siga para o próximo passo. O Form! <a href="{{ site.url }}/procedimento/crud-forms/" class="btn btn-success">Continuar!</a><br>
 Leia mais uma vez! <a href="#TOPO" class="btn btn-warning">Revisar!</a>

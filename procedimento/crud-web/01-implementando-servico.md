@@ -161,5 +161,5 @@ Para mais informações acesse os códigos nos links abaixo:
 [TabelaDeAluno.java](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/main/java/br/com/objectos/dojo/taguiar/TabelaDeAluno.java)<br>
 [TabelaDeAluno.html](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/main/java/br/com/objectos/dojo/taguiar/TabelaDeAluno.html)<br>
 
-Retornar aos Procedimentos! <a href="{{ site.baseurl }}/procedimento/" class="btn btn-success">Voltar!</a><br>
+Retornar aos Procedimentos! <a href="{{ site.url }}/procedimento/" class="btn btn-success">Voltar!</a><br>
 Leia mais uma vez! <a href="#TOPO" class="btn btn-warning">Revisar!</a>    	
