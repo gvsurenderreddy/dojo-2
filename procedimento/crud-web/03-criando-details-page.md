@@ -14,7 +14,7 @@ num: 3
 Ao trabalhar com aplicações web é muito comum a implementação de views, componentes gráficos que
 são responsáveis em dar um feedback ao usuário, as views são páginas html que contém listagens ou
 algum tipo de informação que vem do banco de dados tome como exemplo de view as páginas de detalhes 
-no artigo: <a href="{{ site.baseurl }}/procedimento/crud-web/02-page.html">Implementando pages</a>.
+no artigo: <a href="{{ site.url }}/procedimento/crud-web/02-page.html">Implementando pages</a>.
 
 ## Acesso rápido
 

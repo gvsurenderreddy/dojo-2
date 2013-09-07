@@ -12,7 +12,7 @@ num: 3
 ##Introdução
 
 Sempre que um teste é implementado é de suma importância a verificação de todas as propriedades que
-vem do banco de dados, existem alguns <a href="{{ site.baseurl }}/procedimento/crud-entidade/01.0-implementando_buscador_testes.html#0_0">casos</a>
+vem do banco de dados, existem alguns <a href="{{ site.url }}/procedimento/crud-entidade/01.0-implementando_buscador_testes.html#0_0">casos</a>
 onde o inevitável acontece e logo estamos em uma situação onde não é possível realizar um assert
 para uma propriedade em particular pois a interface desta entidade não possui um getter para esta
 propriedade, o exemplo abaixo retrata esta situação com o método __getNomeCompleto()__.

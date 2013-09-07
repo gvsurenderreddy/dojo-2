@@ -9,7 +9,7 @@ num: 4
 ---
 
 ## <a id="TOPO"> </a> Introdução
-Conforme comentamos na especificação do artigo [Page]({{ site.baseurl }}/procedimento/crud-web/02-page.html), 
+Conforme comentamos na especificação do artigo [Page]({{ site.url }}/procedimento/crud-web/02-page.html), 
 em determinados casos, você precisará adicionar funcionalidades como _Criar_, _Excluir_ e  _Editar_. 
 Utilizaremos um exemplo para demonstrar o procedimento de Criação, onde precisamos 
 criar um novo curso para a faculdade dos artigos anteriores.

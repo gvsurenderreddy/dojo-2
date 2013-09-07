@@ -51,7 +51,7 @@ Siga o checklist abaixo:
 </table>
 
 ### <a id="0_0"> </a>Quais dados devem ser cadastrados?
-Semelhante ao artigo [Implementando Consultas: Testes]({{ site.baseurl }}/procedimento/crud-entidade/02.0-implementando-consultas-testes.html) ,
+Semelhante ao artigo [Implementando Consultas: Testes]({{ site.url }}/procedimento/crud-entidade/02.0-implementando-consultas-testes.html) ,
 isto dependerá de cada situação. Podemos ter diversas situações como cadastrar um novo aluno 
 em uma faculdade, cadastrar um usuário em um _e-commerce_, cadastrar um número de celular para 
 concorrer aos prêmios daquele site, entre outras mais. Lembrando que um cadastro talvez exiga 
@@ -293,5 +293,5 @@ Para mais informações acesse os códigos nos links abaixo:
 [TesteDeFormDeAlunoCreate.java](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/test/java/br/com/objectos/dojo/taguiar/TesteDeFormDeAlunoCreate.java)<br>
 [ModuloFaculdadeUI.java](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/main/java/br/com/objectos/dojo/taguiar/ModuloFaculdadeUI.java)<br>
 
-Siga para o próximo passo. O Form! <a href="{{ site.baseurl }}/procedimento/crud-forms/00-form-implementando-form.html" class="btn btn-success">Continuar!</a><br>
+Siga para o próximo passo. O Form! <a href="{{ site.url }}/procedimento/crud-forms/00-form-implementando-form.html" class="btn btn-success">Continuar!</a><br>
 Leia mais uma vez! <a href="#TOPO" class="btn btn-warning">Revisar!</a>

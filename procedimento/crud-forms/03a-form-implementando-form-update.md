@@ -239,5 +239,5 @@ foi gerado pela inner class criada anteriormente.
 Em seguida serão criadas outras duas inner classes responsáveis em efetuar a alteração da entidade 
 no banco de dados e o redirecionamento para a página de detalhes da entidade após o update da mesma.
 
-<p><b> Continuar com os Actions ? </b><a href="{{ site.baseurl }}/procedimento/crud-forms/03b-form-implementando-form-update.html" 
+<p><b> Continuar com os Actions ? </b><a href="{{ site.url }}/procedimento/crud-forms/03b-form-implementando-form-update.html" 
 class="btn btn-success">Parte 2</a></p>
