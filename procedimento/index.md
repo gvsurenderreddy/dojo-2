@@ -50,3 +50,19 @@ title: "Procedimentos"
     {% include obj/section_list %}
   </div>
 </div>
+
+<h2>Gen</h2>
+<div class="row">
+  <div class="span6">
+    <h3>FAQ</h3>
+
+    {% assign section_list = "faq-gen" %}
+    {% include obj/section_list %}
+  </div>
+  <div class="span6">
+    <h3>Artigos</h3>
+    
+    {% assign section_list = "procedimento-gen" %}
+    {% include obj/section_list %}
+  </div>
+</div>
