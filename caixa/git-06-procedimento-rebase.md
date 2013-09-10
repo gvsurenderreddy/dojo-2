@@ -5,10 +5,9 @@ author: "Ricardo Murad"
 published: true
 partof: git
 num: 6
-outof: 6
 ---
 
-###Introdução
+##Introdução
  
 No git temos basicamente duas formas de integrar dois ou mais commits ao projeto principal: o 
 rebase e o merge.
@@ -63,7 +62,7 @@ estejam diferentes do master serão integradas em um novo commit, neste caso o H
                D---E---F---G---H master
                
 
-###Estado do branch atual
+##Estado do branch atual
 
 Antes de iniciar o processo vamos verificar o estado do branch com o comando `git status`:
 
@@ -184,7 +183,7 @@ Agora utilizando a tecla `esc` e saimos do modo de inserção.
 Para salvar e sair simultaneamente utilizamos o comando `:wq` do VI. Caso acidentalmente tenhamos 
 feito alguma alteração não desejada utilizamos o comando `:undo` para voltar para o estado anterior.
 
-####Conflitos do Rebase
+###Conflitos do Rebase
 Neste momento poderão ocorrer conflitos para fazer o rebase, embora esta situação seja pouco comum é 
 necessário realizar alguns procedimentos para resolvê-la.
 Uma mensagem semelhante ao exemplo abaixo será exibida para indicar o conflito: 
@@ -242,7 +241,7 @@ Neste caso não será necessário realizar o commit deste arquivo.
 Agora devemos continuar o rebase através do comando `git rebase --continue` e passar para a próxima
 etapa que é a finalização do rebase.
 
-###Finalizar o rebase
+##Finalizar o rebase
 O VI será reaberto para que possamos editar as mensagens de todos os commits que constam no rebase 
 e criar uma mensagem única para o commit do rebase. 
 Neste momento devemos apagar os comentários existentes, sendo que para apagar uma linha usamos o 
@@ -305,7 +304,7 @@ opção delete branch e agora clicamos em _Merge Pull Request_, a seguinte mensa
     
 Se tudo estiver correto basta clicar no botão _Confirm Merge_.
 
-###Resumo
+##Resumo
 Neste procedimento iremos integrar dois ou mais commits ao projeto principal utilizando os comandos
 rebase e merge.
 Antes de fazer o merge do projeto com o master é necessário verificar no repositório master se há 
@@ -351,7 +350,7 @@ Rodamos novamente os testes no jenkins e constatamos que não houve falhas. Em s
 realizar o merge: 
 
 Para realizar o merge iremos utilizar o github ou stash, vamos até o repositório de nosso projeto e 
-clicamos na aba _Pull Requests_, em seguida localizamos nosso branch e clicamos em pull request, 
-ativamos a opção delete branch e agora clicamos em Merge Pull Request, uma mensagem indicando que o
-merge foi realizado será exibida.
-Para finalizar basta apenas clicarmos no botão _Confirm Merge_ .
+clicamos na aba _Pull Requests_, em seguida localizamos nosso branch e clicamos em `pull request`, 
+ativamos a opção `delete branch` e agora clicamos em `Merge Pull Request`, uma mensagem indicando que
+o merge foi realizado será exibida.
+Para finalizar basta apenas clicarmos no botão `Confirm Merge`.

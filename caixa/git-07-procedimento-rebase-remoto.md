@@ -8,7 +8,7 @@ num: 7
 outof: 7
 ---
 
-###Introdução
+##Introdução
 
 Neste procedimento falaremos apenas sobre o rebase realizado com repositórios remotos distintos. 
 Para obter maiores informações sobre o processo geral de rebase consulte o artigo [Procedimento de rebase](http://dojo.objectos.com.br/caixa/git-06-procedimento-rebase.html/).
@@ -17,7 +17,9 @@ Quando utilizamos o git para realizar o controle de versões de nosso projeto v�
 colaborar através de repositórios remotos. Os repositórios remotos funcionam como versões do projeto 
 que ficam hospedadas em redes ou na internet. Para integrar as várias versões devemos saber realizar 
 o gerenciamento destes repositórios.
-  
+
+##Adicionando um repositório remoto
+ 
 Vamos considerar que fizemos um `fork` do projeto em que estamos trabalhando e que nosso branch 
 `branch_teste` foi criado a partir do branch chamado `gh-pages`.
   
@@ -33,7 +35,7 @@ remotos:
 
       $ git remote show
       	origin
-      
+    
 Quando realizamos o `fork` do projeto, automaticamente um repositório remoto chamado origin foi criado, 
 agora iremos adicionar outro repositório remoto ao projeto. Para fazer isso clicamos no projeto no 
 github e copiamos sua URL, que é exibida no campo `SSH clone URL`. Em nosso exemplo a URL será:
@@ -59,6 +61,10 @@ show nomeremoto`, uma tela semelhante ao nosso exemplo será exibida:
   	Remote branches:
     gh-pages                  tracked
     master                    tracked
+	  
+
+
+##Atualizando e integrando atualizações
 	  
 Agora vamos mudar para o branch gh-pages:
 
@@ -87,10 +93,12 @@ Em seguida realizar `merge` entre obj e gh-pages;
 	$ git merge obj/gh-pages
 
 
+##Processo do Rebase
+
 Agora vamos voltar para nosso branch:
 
 	$ git checkout branch_teste
-	
+
 
 Vamos executar o rebase com gh-pages conforme o comando abaixo: 
 		
@@ -104,3 +112,9 @@ conforme o exemplo abaixo:
 	
 
 Ao abrir o projeto no github podemos notar que agora o commit do rebase consta em `branch_teste`.
+
+Por fim, realizaremos o `merge` de nosso branch com gh-pages:
+Voltamos para o github, vamos até o repositório de nosso projeto e clicamos na aba _Pull Requests_, 
+em seguida localizamos nosso branch e clicamos em `pull request`, ativamos a opção `delete branch` e 
+agora clicamos em `Merge Pull Request`, uma mensagem indicando que o merge foi realizado será exibida.
+Para finalizar basta apenas clicarmos no botão `Confirm Merge`.
