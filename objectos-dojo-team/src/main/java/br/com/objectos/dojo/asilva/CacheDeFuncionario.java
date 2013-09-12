@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Objectos, Fábrica de Software LTDA.
+ * Copyright 2013 Objectos, Fábrica de Software LTDA.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,31 +13,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.cpetreanu;
+package br.com.objectos.dojo.asilva;
 
-import java.util.Iterator;
 import java.util.List;
 
-import br.com.objectos.dojo.asilva.SuperiorKey;
+import br.com.objectos.dojo.cpetreanu.Funcionario;
 
+import com.google.common.base.Optional;
 import com.google.inject.ImplementedBy;
 
 /**
- * @author caio.petreanu@objectos.com.br (Caio Petreanu)
+ * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
  */
-@ImplementedBy(BuscarFuncionarioGuice.class)
-public interface BuscarFuncionario {
+@ImplementedBy(CacheDeFuncionarioGuice.class)
+public interface CacheDeFuncionario {
 
-  Funcionario porId(int id);
+  Optional<Funcionario> porId(int id);
 
-  Funcionario porMatricula(String matricula);
-
-  List<Funcionario> porSuperior(Superior superior);
-
-  Iterator<Funcionario> iterarPorFuncionario(Superior superior);
-
-  Funcionario porDiretor(Diretor diretor);
-
-  List<Funcionario> porSuperiorKey(SuperiorKey key);
+  List<Funcionario> porSuperiorKey(SuperiorKey superiorKey);
 
 }

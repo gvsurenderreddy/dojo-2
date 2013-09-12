@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Objectos, Fábrica de Software LTDA.
+ * Copyright 2013 Objectos, Fábrica de Software LTDA.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,23 +13,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.cpetreanu;
-
-import br.com.objectos.comuns.relational.jdbc.Insertable;
+package br.com.objectos.dojo.asilva;
 
 /**
- * @author caio.petreanu@objectos.com.br (Caio Petreanu)
+ * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
  */
-public interface Diretor extends Insertable {
-
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<Diretor> {
-
-    String getNome();
-
-  }
-
-  int getId();
-
-  String getNome();
+public interface StackTraces {
 
 }
