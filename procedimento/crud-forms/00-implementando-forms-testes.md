@@ -10,17 +10,10 @@ num: 0
 ---
 
 ## <a id="TOPO"> </a> Introdução
-Quase todos os sites possuem páginas que podem ser exibidas somente a usuários cadastrados. Estes
-cadastros são realizados através de formulários preenchidos pelo usuário no próprio site que
-lhe concederá algumas permissões não disponíveis antes do cadastro como por exemplo, 
-consultar a _Nota Fiscal Paulista_ no site da _Secretaria da Fazenda_, realizar compras em um site 
-de vendas e até mesmo um _upload_ de seus videos à um site como o _YouTube_.
+Quase todos os sites possuem páginas que podem ser exibidas somente a usuários cadastrados. Estes cadastros são realizados através de formulários preenchidos pelo usuário no próprio site que lhe concederá algumas permissões não disponíveis antes do cadastro como por exemplo, consultar a _Nota Fiscal Paulista_ no site da _Secretaria da Fazenda_, realizar compras em um site de vendas e até mesmo um _upload_ de seus videos à um site como o _YouTube_.
+Os responsáveis por realizar os cadastros no "site", isto é, no banco de dados, são conhecidos aqui como __Forms__. São os _forms_ que gerenciam estes cadastros no banco de dados do sistema.
 
-Os responsáveis por realizarem os cadastros no "site", isto é, no banco de dados, são conhecidos 
-aqui como __Forms__. São os _forms_ que gerenciam estes cadastros no banco de dados do sistema.
-
-É importante entender que os _forms_ não se limitam a cadastros de usuários, eles podem ser utilizados
-para gravar dados de um livro, de um aluno, de uma organização e etc.
+É importante entender que os _forms_ não se limitam a cadastros de usuários, eles podem ser utilizados para gravar dados de um livro, de um aluno, de uma organização e etc.
 
 ## Antes de iniciar 
 Este item exige conhecimentos sobre:
@@ -37,7 +30,7 @@ Siga o checklist abaixo:
     <a id="topo_0_0"><input type="checkbox" /></a>
    </td>
    <td>
-	<a href="#0_0">Quais dados devem ser cadastrados?</a>  
+    <a href="#0_0">Quais dados devem ser cadastrados?</a>  
    </td>
  </tr>
  <tr>
@@ -45,20 +38,14 @@ Siga o checklist abaixo:
     <a id="topo_0_1"><input type="checkbox" /></a>
    </td>
    <td>
-	<a href="#0_1">Como seria a URL?</a>  
+    <a href="#0_1">Como seria a URL?</a>  
    </td>
  </tr>
 </table>
 
 ### <a id="0_0"> </a>Quais dados devem ser cadastrados?
-Semelhante ao artigo [Implementando Consultas: Testes]({{ site.url }}/procedimento/crud-entidade/02.0-implementando-consultas-testes.html) ,
-isto dependerá de cada situação. Podemos ter diversas situações como cadastrar um novo aluno 
-em uma faculdade, cadastrar um usuário em um _e-commerce_, cadastrar um número de celular para 
-concorrer aos prêmios daquele site, entre outras mais. Lembrando que um cadastro talvez exiga 
-campos obrigatórios ou não como um nome e CEP respectivamente.
-
-Contudo, o _form_ dependerá muito PARA QUE aqueles dados gravados servirão no futuro. Por
-exemplo:
+Semelhante ao artigo [Implementando Consultas: Testes]({{ site.url }}/procedimento/crud-entidade/02.0-implementando-consultas-testes.html) , isto dependerá de cada situação. Podemos ter diversas situações como cadastrar um novo aluno em uma faculdade, cadastrar um usuário em um _e-commerce_, cadastrar um número de celular para 
+concorrer aos prêmios daquele site, entre outras mais. Lembrando que um cadastro talvez exiga campos obrigatórios ou não como um nome e CEP respectivamente.
 
 Precisamos do endereço no _form_ se quisermos comprar um eletrodoméstico pela internet?<br>
 R: Sim! Precisamos para realizar a entrega do produto.
@@ -135,6 +122,14 @@ Siga o checklist abaixo:
    <td>
     <a href="#0_6">Preparar o método de teste: gravar dados no banco de dados</a>
    </td>
+ </tr>  
+ <tr>
+   <td class="tac col2em">
+    <a id="topo_0_7"><input type="checkbox" /></a>
+   </td>
+   <td>
+    <a href="#0_7">Form com Parâmetro</a>
+   </td>
  </tr>
 </table>
 
@@ -165,51 +160,21 @@ Defina a URL atual a partir de `faculdade`.
 
 Esta será a URL onde "estaremos preenchendo" o formulário. 	
 
-### <a id="0_4"> </a>Preparar o método de teste: acesso a um usuário não autenticado
-Nosso primeiro método irá garantir que um usuário não autenticado seje incapaz de acessar este
-formulário (tratando de um usuário/funcionário da faculdade, diferente de um cadastro a um site
-comum).
-
-Crie o seguinte método.
-
-    public void acesso_a_usuario_nao_autenticado_deve_ser_negado() {
-      WebResponse response = webClientOf(URL).post("");
-
-      assertThat(response.status(), equalTo(HttpServletResponse.SC_UNAUTHORIZED));
-    }
-    
-Como não há uma autenticação ( _login_ ) o usuário fica impossibilitado de realizar qualquer operação
-aqui.    
-
-### <a id="0_5"> </a>Preparar o método de teste: acesso a um usuário não autorizado
-Semelhante ao método anterior com usuário não autenticado, criaremos o método para usuário não
-autorizado a efetuar aquela operação (mesmo tendo um _login_ )
-
-    public void acesso_a_usuario_nao_autorizado_deve_ser_negado() {
-      Map<String, String> cookies = login("user");
-      WebResponse response = webClientOf(URL, cookies).post("");
-
-      assertThat(response.status(), equalTo(HttpServletResponse.SC_UNAUTHORIZED));
-    }
-    
 ### <a id="0_6"> </a>Preparar o método de teste: gravar dados no banco de dados
-Após os métodos acima que se referem as permissões do sistema, iremos criar um método para testar
+Iremos criar um método para testar
 se os dados inseridos no formulário serão gravados no banco de dados.
 
 Iniciaremos com uma busca que retorna todos os alunos do curso de Direito conforme definido na
 URL, para tal, utilizaremos o _buscador de aluno_ e _buscador de curso_. Para mais informações sobre 
 buscadores, veja [aqui](http://dojo.objectos.com.br/procedimento/crud-entidade/01.0-implementando_buscador_testes.html).
 
-Defina a variável `BuscarAluno` e `BuscarCurso` no inicio da classe.
+Defina a variável `BuscarCurso` no inicio da classe.
 
-	@Test
-	public class TesteDeFormDeAlunoCreate extends TesteDeIntegracaoWeb {
-	
-	  @Inject
-	  private BuscarAluno buscarAluno;
-	  
-	  @Inject
-      private BuscarCurso buscarCurso;
+    @Test
+    public class TesteDeFormDeAlunoCreate extends TesteDeIntegracaoWeb {
+    	  
+    @Inject
+    private BuscarCurso buscarCurso;
 	
 Os códigos a seguir inserem os dados definidos nas variáveis da tabela `ALUNO` no banco de dados.
 
@@ -219,60 +184,73 @@ possuem pelo menos um aluno).<br>
 Nota 2: Faça a extração da variável para que futuramente possamos alterar algum valor em um único ponto (a
 variável). Evite adicionar valores diretamente nos argumentos dos métodos.
 
-    public void form_deve_gravar_aluno_no_bd() {
-	  String nome = "Robson de Souza";
-	  String matricula = "20120001";
-	  String codigo = "direito";
+Antes de fazer a declaração do método é necessário carregar os falsos que serão utilizados no teste, os falsos utilizados serão os mesmos do _teste de buscar_ e _cache_, as únicas alterações serão a inserção de `UsuarioFalso`, o método ao invés de `public` será `protected` com a anotação `@Override` ao invés `@BeforeClass`, e o construtor do prepararSqlUnit terá de parâmetro `SqlUnit`, ao invés de ser injetado a parte.
 
-	  Curso curso = buscarCurso.porCodigo(codigo);
-      List<Aluno> antes = buscarAluno.porCurso(curso);
-      assertThat(antes.size(), equalTo(900));
+    @Override
+    protected void prepararSqlUnit(SqlUnit sqlUnit) {
+        sqlUnit.loadEntitySet(UsuariosFalso.class);
+        
+        sqlUnit.loadEntitySet(AlunosFalso.class);
+    }
 
-      String url = new QueryString(URL)
-        .param("nome", nome)
-        .param("matricula", matricula)
-        .get();
+Criação do método de inserção de dados no formulário.
 
-      Map<String, String> cookies = login("admin");
-      WebResponse response = webClientOf(url, cookies).post("");
+    public void post() {
+    Usuario usuario = UsuariosFalso.USUARIO_A;
+    Curso curso = CursosFalso.CURSO_B;
 
-      FormResponseJson json = response.to(FormResponseJson.class).using(Json.class);
-      assertThat(json.isValid(), is(true));
+    String nome = "Robson de Souza";
+    String matricula = "20120001";
+
+    List<Aluno> alunos = buscarAluno.porCurso(curso);
+    assertThat(alunos.size(), equalTo(0));
     
-A responsabilidade de gravar o código do curso e a data de criação é da classe do _Form_.
+No teste o resultado para busca é _0_, isso se deve ao fato do curso buscado não ser utilizado em nenhum outro teste e como resultado não estar persistido no banco de dados. Geralmente em testes que possuem 3 falsos, uma não é usado justamente para ser utilizado no falso, isso possibilita não truncar a tabela. 
+    
+    Map<String, Object> form = newHashMap();
+    form.put("nome", nome);
+    form.put("matricula", matricula);
+    form.put("curso", curso.getId());
+    
+Este bloco simula o usuário inserindo dados no formulário.
+
+    Map<String, String> cookies = login(usuario);
+    WebResponse response = jsonClientOf(URL, cookies).post(form);
+    FormResponseJson json = response.to(FormResponseJson.class).using(Json.class);
+    assertThat(json.toString(), json.isValid(), is(true));
+    
+Este bloco simula o envio dos dados. Todo `TesteDeFormCreate` deverá ter este `post(form)`, se por acaso não tiver o teste não irá funcionar.
+    
+A responsabilidade de gravar a data de criação é da classe do _Form_.
      
 Após o teste da gravação dos dados, iremos comparar se estes dados foram realmente gravados no item
-seguinte, isto é, se há 901 alunos neste momento e se seus dados são equivalentes aos definidos nas
+seguinte, isto é, se há a inserção de 1 aluno neste momento e se seus dados são equivalentes aos definidos nas
 variáveis. Vejamos:
 
-      List<Aluno> res = buscarAluno.porCurso(curso);
-        assertThat(res.size(), equalTo(901));
+    alunos = buscarAluno.porCurso(curso);
+    assertThat(alunos.size(), equalTo(1));
+O resultado da busca agora é _1_, este _1_ garante que o teste está funcionando, pelo fato de antes não haver nenhum registro. As assertivas abaixo são apenas para garantir que este registro corresponde aos dados inseridos através deste form, onde são comparados os atributos passados no form com os buscados no banco de dados.
 
-      Aluno r900 = res.get(900);
-      assertThat(r900.getNome(), equalTo(nome));
-      assertThat(r900.getMatricula(), equalTo(matricula));
-      
-Nota 3: NÃO utilize o `assertThat` para o ID. Isto porque os ids, geralmente possuem um _auto increment_,
-o que causará uma falha na segunda execução do teste em diante. Por exemplo, um aluno gravado com `id = 901`
-na primeira execução do teste e o aluno gravado com `id = 902` na segunda execução teste, porém a 
-variável possui o valor 901:      
-
-	  int id = 901;	
-
-      Aluno r900 = res.get(900);
-      assertThar(r900.getId(), equalTo(id));
-
-Por fim, testaremos o `redirectUrl`.
-
-      String redirectUrl = json.getRedirectUrl();
-      assertThat(redirectUrl, containsString("faculdade/curso/direito/aluno"));
-    }
+    Aluno res = alunos.get(0);
+    assertThat(res.getNome(), equalTo(nome));
+    assertThat(res.getMatricula(), equalTo(matricula));
+    assertThat(res.getCurso().getId(), equalTo(curso.getId()));
     
+Nota 3: NÃO utilize o `assertThat` para o ID. Isto porque os ids, geralmente possuem um _auto increment_,
+o que causará uma falha na segunda execução do teste em diante. Por exemplo, um aluno gravado com `id = 1`
+na primeira execução do teste e o aluno gravado com `id = 2` na segunda execução teste, porém a 
+variável possui o valor 1:      
+
+	  int id = 1;	
+
+    Aluno res = alunos.get(0);
+    assertThar(res.getId(), equalTo(id));
+
 No `ModuloFaculdadeUI` defina a url no método `bindApiCrud()`:
 
     @Override
     protected void bindApiCrud() {
-      at("api/crud/faculdade/curso/:curso/aluno").serve(FormDeAlunoCreate.class);
+    at("/api/crud/faculdade/curso/:curso/aluno").serve(FormDeAlunoCreate.class);
     }
     
 Você entenderá esta URL quando implementar o _Form_.    
@@ -281,16 +259,33 @@ Note que haverá erros de compilação pois a classe `FormDeAlunoCreate` ainda n
 atalho `Ctrl + 1` e crie esta classe no pacote `ui.api.crud` do diretório principal do projeto 
 `/src/main/java`.
 
-Implementaremos o _Form_ a seguir.	
+### <a id="0_7"> </a>Form com Parâmetro
 
-__Importante: Retomando a idéia da especificação, poderiamos ter uma situação onde quisessemos separar
-os alunos por curso e período desta forma:__ `faculdade/curso/direito/periodo/noturno/aluno`. __Assim toda
-a URL e o teste mudaria, itens como buscadores seriam alterados por exemplo. Lembre-se, tenha em 
-mente a especificação bem definida para tomar decisões quanto a situações deste tipo.__ 
+Haverá situações em que se precisará passar parâmetros para os forms, mas como se deve fazer isso? 
+Em aproximadamente 80% dos casos os parâmetros são passados via form, dentro do método Map, como no exemplo abaixo:
+
+    Map<String, Object> form = newHashMap();
+    form.put("nome", nome);
+    form.put("descricao", descricao);
+    form.put(“usuario”, usuario.getId());
+
+As informações passadas aqui não necessariamente precisam ser armazenadas no banco de dados, podem ser utilizadas para invalidar um cache por exemplo. O que vale ressaltar é que esta estrutura é a mais utilizada pelo fato ser mais fácil de alterar se por ventura o teste e/ou a implementação estiverem errados.
+
+Uma outra forma de se passar parâmetros é através da `url`, geralmente são utilizados forms mais específicos. Abaixo um exemplo:
+
+    public static final String URL = "api/crud/faculdade/curso/direito/aluno/%d";
+
+Esta opção obriga modificar vários lugares, como o módulo, se por ventura o teste não passar, achar o problema poderá ser mais demorado.<br>
+__Importante:__ Sempre que for necessário passar parâmetros, utilize a primeira opção uma vez que se pode resolver 80% dos casos, além de ser mais simples.
+
+Retomando a idéia da especificação, poderiamos ter uma situação onde quisessemos separar
+os alunos por curso e período desta forma: <br>`faculdade/curso/direito/periodo/noturno/aluno`.<br> __Assim toda a URL e o teste mudaria, itens como buscadores seriam alterados por exemplo. Lembre-se, tenha em mente a especificação bem definida para tomar decisões quanto a situações deste tipo.__ 
+
+Implementaremos o _Form_ a seguir.	
 
 Para mais informações acesse os códigos nos links abaixo:
 
-[TesteDeFormDeAlunoCreate.java](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/test/java/br/com/objectos/dojo/taguiar/TesteDeFormDeAlunoCreate.java)<br>
+[TesteDeFormDeAlunoCreate.java](https://github.com/objectos/objectos-dojo/blob/334dbd82ac72f2683001b242ff13905f8267c69f/objectos-dojo-team/src/test/java/br/com/objectos/dojo/taguiar/TesteDeFormDeAlunoCreate.java)<br>
 [ModuloFaculdadeUI.java](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/main/java/br/com/objectos/dojo/taguiar/ModuloFaculdadeUI.java)<br>
 
 Siga para o próximo passo. O Form! <a href="{{ site.url }}/procedimento/crud-forms/00-form-implementando-form.html" class="btn btn-success">Continuar!</a><br>
