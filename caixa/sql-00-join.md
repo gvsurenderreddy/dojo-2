@@ -44,7 +44,7 @@ de cada pessoa e a sua respectiva _task_.
 
 Criaremos a tabela `PESSOA`
 
-    mysql> create table PESSOA (
+		mysql> create table PESSOA (
     -> ID int not null,
     -> NOME varchar (50) not null,
     -> primary key(ID)
@@ -72,7 +72,7 @@ Nosso próximo passo é inserir os registros nas tabelas como os exemplos abaixo
 
 Insira alguns registros nas duas tabelas para que elas fiquem com esta estrutura: 
 
-    +----+--------+
+		+----+--------+
     | ID | NOME   |
     +----+--------+
     |  1 | Arthur |
