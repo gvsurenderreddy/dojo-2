@@ -67,7 +67,7 @@ public class FormDeAlunoCreate {
 
           .col("NOME", nome)
           .col("MATRICULA", matricula)
-          .col("CURSO_ID", curso);
+          .col("CURSO", curso);
     }
 
   }

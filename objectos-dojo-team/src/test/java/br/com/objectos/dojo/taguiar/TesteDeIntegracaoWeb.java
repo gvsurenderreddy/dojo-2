@@ -33,6 +33,7 @@ import org.testng.annotations.BeforeSuite;
 import br.com.objectos.comuns.sitebricks.AbstractWebIntegrationTest;
 import br.com.objectos.comuns.sitebricks.Jetty;
 import br.com.objectos.comuns.testing.dbunit.DBUnit;
+import br.com.objectos.comuns.testing.jdbc.SqlUnit;
 
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
@@ -146,6 +147,9 @@ public abstract class TesteDeIntegracaoWeb extends AbstractWebIntegrationTest {
     public String apply(Element input) {
       return input.text();
     }
+  }
+
+  protected void prepararSqlUnit(SqlUnit sqlUnit) {
   }
 
 }

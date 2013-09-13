@@ -22,8 +22,8 @@ public class ModuloFaculdadeUI extends SubModuloFaculdadeUI {
 
   @Override
   protected void bindApiCrud() {
-    at("api/crud/faculdade/curso/:curso/aluno").serve(FormDeAlunoCreate.class);
-    at("api/crus/faculdade/curso/:curso/aluno/:aluno").serve(FormDeAlunoUpdate.class);
+    at("/api/faculdade/crud/curso/direito/aluno").serve(ControllerDeAluno.class);
+    at("/api/crud/faculdade/curso/direito/aluno/%d").serve(ControllerDeAluno.class);
   }
 
   @Override
