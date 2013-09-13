@@ -30,6 +30,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
+import br.com.objectos.comuns.sitebricks.AbstractWebIntegrationTest;
 import br.com.objectos.comuns.sitebricks.Jetty;
 import br.com.objectos.comuns.testing.dbunit.DBUnit;
 
@@ -47,7 +48,7 @@ import com.google.sitebricks.client.transport.Text;
 /**
  * @author tiago.aguiar@objectos.com.br (Tiago Aguiar)
  */
-public abstract class TesteDeIntegracaoWeb {
+public abstract class TesteDeIntegracaoWeb extends AbstractWebIntegrationTest {
 
   private static final String STD_RESOURCE_DIR = "src/test/resources";
 
@@ -65,6 +66,7 @@ public abstract class TesteDeIntegracaoWeb {
     server = new Jetty(STD_RESOURCE_DIR);
   }
 
+  @Override
   @BeforeSuite
   public void start() throws Exception {
     server.start();
@@ -78,11 +80,13 @@ public abstract class TesteDeIntegracaoWeb {
     dbUnit.load(null);
   }
 
+  @Override
   @AfterSuite
   public void stop() throws Exception {
     server.stop();
   }
 
+  @Override
   @AfterClass(alwaysRun = true)
   public void closeWebClients() {
     for (WebClient<?> client : webClientCache) {
@@ -90,15 +94,18 @@ public abstract class TesteDeIntegracaoWeb {
     }
   }
 
+  @Override
   protected String getBaseUrl() {
     return server.getBaseUrl();
   }
 
-  protected Map<String, String> login(String login) {
+  protected Map<String, String> login(Usuario usuario) {
+    String login = usuario.getLogin();
     String senha = login;
     return login(login, senha);
   }
 
+  @Override
   protected Map<String, String> login(String login, String senha) {
     String url = String.format("api/login?login=%s&senha=%s", login, senha);
 
@@ -112,11 +119,13 @@ public abstract class TesteDeIntegracaoWeb {
     return cookies;
   }
 
+  @Override
   protected WebClient<String> webClientOf(String url) {
     Map<String, String> headers = ImmutableMap.of();
     return webClientOf(url, headers);
   }
 
+  @Override
   protected WebClient<String> webClientOf(String url, Map<String, String> headers) {
     WebClient<String> client = clientOf(url, headers).transports(String.class).over(Text.class);
     webClientCache.add(client);

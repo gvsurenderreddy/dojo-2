@@ -15,20 +15,18 @@
 */
 package br.com.objectos.dojo.taguiar;
 
+import static com.google.common.collect.Maps.newHashMap;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.testng.annotations.Test;
 
 import br.com.objectos.comuns.sitebricks.form.FormResponseJson;
-import br.com.objectos.comuns.sitebricks.form.QueryString;
+import br.com.objectos.comuns.testing.jdbc.SqlUnit;
 
 import com.google.inject.Inject;
 import com.google.sitebricks.client.WebResponse;
@@ -45,51 +43,39 @@ public class TesteDeFormDeAlunoCreate extends TesteDeIntegracaoWeb {
   @Inject
   private BuscarAluno buscarAluno;
 
-  @Inject
-  private BuscarCurso buscarCurso;
+  protected void prepararSqlUnit(SqlUnit sqlUnit) {
+    sqlUnit.loadEntitySet(UsuariosFalso.class);
 
-  public void acesso_a_usuario_nao_autenticado_deve_ser_negado() {
-    WebResponse response = webClientOf(URL).post("");
-
-    assertThat(response.status(), equalTo(HttpServletResponse.SC_UNAUTHORIZED));
+    sqlUnit.loadEntitySet(AlunosFalso.class);
   }
 
-  public void acesso_a_usuario_nao_autorizado_deve_ser_negado() {
-    Map<String, String> cookies = login("user");
-    WebResponse response = webClientOf(URL, cookies).post("");
+  public void post() {
+    Usuario usuario = UsuariosFalso.USUARIO_A;
+    Curso curso = CursosFalso.CURSO_B;
 
-    assertThat(response.status(), equalTo(HttpServletResponse.SC_UNAUTHORIZED));
-  }
-
-  public void form_deve_gravar_aluno_no_bd() {
     String nome = "Robson de Souza";
     String matricula = "20120001";
-    String codigo = "direito";
 
-    Curso curso = buscarCurso.porCodigo(codigo);
-    List<Aluno> antes = buscarAluno.porCurso(curso);
-    assertThat(antes.size(), equalTo(900));
+    List<Aluno> alunos = buscarAluno.porCurso(curso);
+    assertThat(alunos.size(), equalTo(0));
 
-    String url = new QueryString(URL)
-        .param("nome", nome)
-        .param("matricula", matricula)
-        .get();
+    Map<String, Object> form = newHashMap();
+    form.put("nome", nome);
+    form.put("matricula", matricula);
+    form.put("curso", curso.getId());
 
-    Map<String, String> cookies = login("admin");
-    WebResponse response = webClientOf(url, cookies).post("");
-
+    Map<String, String> cookies = login(usuario);
+    WebResponse response = jsonClientOf(URL, cookies).post(form);
     FormResponseJson json = response.to(FormResponseJson.class).using(Json.class);
-    assertThat(json.isValid(), is(true));
+    assertThat(json.toString(), json.isValid(), is(true));
 
-    List<Aluno> res = buscarAluno.porCurso(curso);
-    assertThat(res.size(), equalTo(901));
+    alunos = buscarAluno.porCurso(curso);
+    assertThat(alunos.size(), equalTo(1));
 
-    Aluno r900 = res.get(900);
-    assertThat(r900.getNome(), equalTo(nome));
-    assertThat(r900.getMatricula(), equalTo(matricula));
-
-    String redirectUrl = json.getRedirectUrl();
-    assertThat(redirectUrl, containsString("faculdade/curso/direito/aluno"));
+    Aluno res = alunos.get(0);
+    assertThat(res.getNome(), equalTo(nome));
+    assertThat(res.getMatricula(), equalTo(matricula));
+    assertThat(res.getCurso().getId(), equalTo(curso.getId()));
   }
 
 }

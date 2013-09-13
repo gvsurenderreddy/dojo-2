@@ -17,13 +17,16 @@ package br.com.objectos.dojo.taguiar;
 
 import java.util.List;
 
-import br.com.objectos.comuns.relational.Buscador;
+import com.google.inject.ImplementedBy;
 
 /**
  * @author tiago.aguiar@objectos.com.br (Tiago Aguiar)
  */
-public interface BuscarAluno extends Buscador<Aluno> {
+@ImplementedBy(BuscarAlunoGuice.class)
+public interface BuscarAluno {
 
   List<Aluno> porCurso(Curso curso);
+
+  Aluno porId(int id);
 
 }
