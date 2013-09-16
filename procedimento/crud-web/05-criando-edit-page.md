@@ -7,7 +7,6 @@ date: "2012-04-27"
 published: true 
 partof: procedimento-crud-web
 num: 5
-outof: 5
 ---
 
 ##<a id="topo"> </a> Introdução
