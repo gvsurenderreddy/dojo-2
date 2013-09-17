@@ -14,7 +14,7 @@ Geralmente quando temos algum cadastro em um site, temos a necessidade de realiz
 em nossos dados como por exemplo, atualização de endereço, telefone, e-mail e etc.<br> 
 Em alguns casos, esta atualização é feita no intuito de corrigir um erro no momento da inserção 
 daquele dado.
-
+  
 Esta atualização é feita através de um _form_ semelhante ao de criação. Porém, um pré-requisito para
 que este _form_ funcione é ter os dados armazenados em um banco de dados.
 
@@ -33,7 +33,7 @@ Siga o checklist abaixo:
     <a id="topo_0_0"><input type="checkbox" /></a>
    </td>
    <td>
-	<a href="#0_0">Quais dados devem ser cadastrados?</a>  
+    <a href="#0_0">Quais dados devem ser atualizados?</a>  
    </td>
  </tr>
  <tr>
@@ -41,7 +41,7 @@ Siga o checklist abaixo:
     <a id="topo_0_1"><input type="checkbox" /></a>
    </td>
    <td>
-	<a href="#0_1">Como seria a URL?</a>  
+    <a href="#0_1">Como seria a URL?</a>  
    </td>
  </tr>
 </table>
@@ -53,7 +53,7 @@ cadastrados.
 
 Para esta aplicação, atualizaremos apenas o nome do aluno pensando no erro de digitação que possa
 ocorrer no momento da criação/adição do mesmo no sistema (isto é pode ocorrer com nomes semelhantes
-como "Souza" e Sousa", "Luiz" e "Luis" e etc.
+como "Souza" e "Sousa", "Luiz" e "Luis" e etc.
 
 A atualização também deve estar bem clara na especificação, ou seja, os dados que devem ser alterados
 devem, de fato, resolver o problema. Por exemplo, imagine que alguns alunos possuam
@@ -76,31 +76,23 @@ Siga o checklist abaixo:
     <a id="topo_0_3"><input type="checkbox" /></a>
    </td>
    <td>
-	<a href="#0_3">Preparar o teste e definir a URL</a>  
+    <a href="#0_3">Preparar o teste e definir a URL</a>  
    </td>
- </tr>
-  <tr>
-   <td class="tac col2em">
-    <a id="topo_0_4"><input type="checkbox" /></a>
-   </td>
-   <td>
-    <a href="#0_4">Preparar o método de teste: acesso a um usuário não autenticado</a>
-   </td>
- </tr>
-   <tr>
-   <td class="tac col2em">
-    <a id="topo_0_5"><input type="checkbox" /></a>
-   </td>
-   <td>
-    <a href="#0_5">Preparar o método de teste: acesso a um usuário não autorizado</a>
-   </td>
- </tr>
-    <tr>
+ </tr>    
+ <tr>
    <td class="tac col2em">
     <a id="topo_0_6"><input type="checkbox" /></a>
    </td>
    <td>
-    <a href="#0_6">Preparar o método de teste: gravar dados no banco de dados</a>
+    <a href="#0_6">Preparar o método de teste: put</a>
+   </td>
+ </tr>
+  <tr>
+   <td class="tac col2em">
+    <a id="topo_0_7"><input type="checkbox" /></a>
+   </td>
+   <td>
+    <a href="#0_7">Atenção!!!!</a>
    </td>
  </tr>
 </table>
@@ -109,112 +101,150 @@ Siga o checklist abaixo:
 Da mesma forma do _Form Create_, criaremos a classe `TesteDeFormDeAlunoUpdate` no pacote 
 `ui.api.crud` do diretório de teste do projeto `/src/test/java` e adicione o `@Test`
 
-	@Test
+    @Test
 	public class TesteDeFormDeAlunoUpdate {
 	}
-	
+  
 Torne-a uma subclasse de `TesteDeIntegracaoWeb`
 
 	@Test
 	public class TesteDeFormDeAlunoUpdate extends TesteDeIntegracaoWeb {
 	}
 	
-Defina a URL a partir de faculdade. Desta vez, iremos indicar o `ID` do aluno que receberá as 
-atualizações.
+Utilize a mesma URL definica no `TesteDeFormDeAlunoCreate`:
 
-	private static final String URL = "api/crud/faculdade/curso/direito/aluno/11";
+    private static final String URL = "api/crud/faculdade/curso/direito/aluno";
 	
-### <a id="0_4"> </a>Preparar o método de teste: acesso a um usuário não autenticado
-Idêntico ao método do _Form Create_ e com o mesmo objetivo.
 
-    public void acesso_a_usuario_nao_autenticado_deve_ser_negado() {
-      WebResponse response = webClientOf(URL).put("");
-
-      assertThat(response.status(), equalTo(HttpServletResponse.SC_UNAUTHORIZED));
-    }
-
-### <a id="0_5"> </a>Preparar o método de teste: acesso a um usuário não autorizado
-Mais um método idêntico ao _Form Create_.
-
-	public void acesso_a_usuario_nao_autorizado_deve_ser_negado() {
-	  Map<String, String> cookies = login("user");
-	  WebResponse response = webClientOf(URL, cookies).put("");
-	
-	  assertThat(response.status(), equalTo(HttpServletResponse.SC_UNAUTHORIZED));
-	}
-    
-### <a id="0_6"> </a>Preparar o método de teste: gravar dados no banco de dados
-O processo de criação deste método que tem por objetivo atualizar uma entidade no banco de dados é
-um pouco mais simples. Geralmente, busca-se a entidade pelo id e a partir desta informação,
-podemos alterar qualquer valor contido nela, mas lembre-se, isto não é uma regra que se atribui a
-todas as situações.<br>
-Defina um _buscador de aluno_ no início da classe.
+### <a id="0_6"> </a> Defina o buscador
+Defina um _buscador de aluno_ após declarar a `URL`.
 
 	@Test
 	public class TesteDeFormDeAlunoUpdate extends TesteDeIntegracaoWeb {
-	
-	  @Inject
-	  private BuscarAluno buscarAluno;
-	
+
+	 private static final String URL = "api/faculdade/crud/curso/direito/aluno";
+
+	 @Inject
+	 private BuscarAluno buscarAluno;
+
 	}
 	
-Crie o método `form_deve_gravar_aluno_no_bd()`, busque um aluno por um id, neste caso será 11 e faça
-um _assert_ para verificar se este aluno existe.
+Será necessário carregar os falsos como no `TesteDeFormDeAlunoCreate`, para isso pode-se copiar o bloco do teste.<br> 
+__Obs.:__ Em um teste de form de update <big>JAMAIS</big> se deve truncar a tabela, pois para realizar a atualização de algum registro o mesmo deve existir no banco de dados.
 
-	public void form_deve_gravar_aluno_no_bd() {
-	  int id = 11;
-	  
-	  Aluno antes = buscarAluno.porId(id);
-	  assertThat(antes, is(notNullValue()));
+	@Override
+	protected void prepararSqlUnit(SqlUnit sqlUnit) {
+	 sqlUnit.loadEntitySet(UsuariosFalso.class);
+
+	 sqlUnit.loadEntitySet(AlunosFalso.class);
 	}
 
-Agora podemos atualizar os dados que, por sinal, os códigos são parecidos ao _Form Create_.
+Crie o método `put()` e defina um aluno falso no qual deseja atualizar o registro. Extraia o `id` deste aluno, e atribua novos valores para ser atualizado.  
 
-    public void form_deve_gravar_aluno_no_bd() {
-      int id = 11;
-      String nome = "Luiz de Souza";
 
-      Aluno antes = buscarAluno.porId(id);
-      assertThat(antes, is(notNullValue()));
+	public void put() {
+	 Usuario usuario = UsuariosFalso.USUARIO_A;
 
-      String url = new QueryString(URL)
-          .param("nome", nome)
-          .get();
+	 Aluno aluno = AlunosFalso.ALUNO_1;
+	 int id = aluno.getId();
+	 String nome = "Luiz de Souza";
+	}
 
-      Map<String, String> cookies = login("admin");
-      WebResponse response = webClientOf(url, cookies).put("");
+O próximo passo é certificar que o novo valor atribuido é diferente do atual, para isso faça uma assertiva para o nome aluno como mostrado baixo:
 
-      FormResponseJson json = response.to(FormResponseJson.class).using(Json.class);
-      assertThat(json.isValid(), is(true));
+	public void put() {
+	 Usuario usuario = UsuariosFalso.USUARIO_A;
 
-      Aluno res = buscarAluno.porId(id);
-      assertThat(res.getNome(), equalTo(nome));
+	 Aluno aluno = AlunosFalso.ALUNO_1;
+	 int id = aluno.getId();
+	 String nome = "Luiz de Souza";
 
-      String redirectUrl = json.getRedirectUrl();
-      assertThat(redirectUrl, containsString("faculdade/curso/direito/aluno/11"));
-    }
+	 Aluno antes = buscarAluno.porId(id);
+	 assertThat(aluno.getNome(), not(equalTo(nome)));
+	}
+
+
+No `TesteDeFormDeAlunoUpdate` são passados apenas as informações que se deseja alterar mais o `id`, que serve para garantir que a informação a ser alterada pertence a um registro específico.  
+Um dos erros mais comuns é esquecer de passar o `id` no _form_, então certifique-se que o `id` esta sendo inserido no _form_.
+
+
+	public void put() {
+	 Usuario usuario = UsuariosFalso.USUARIO_A;
+
+	 Aluno aluno = AlunosFalso.ALUNO_1;
+	 int id = aluno.getId();
+	 String nome = "Luiz de Souza";
+
+	 Aluno antes = buscarAluno.porId(id);
+	 assertThat(aluno.getNome(), not(equalTo(nome)));
+
+	 Map<String, Object> form = newHashMap();
+	 form.put("id", id);
+	 form.put("nome", nome);
+	}
+
+Na sequência  é definido o bloco de código que simula o usuário inserindo dados no formulário, o mesmo código utilizado no `TesteDeFormDeAlunoCreate`, porém onde é declarado
+um `WebResponse`, devemos chamar o método `put` ao invés de `post`, esta mudança faz toda a diferença, pois isso vai garantir que informação seja alterada ao invés de inserida. 
+Certique-se também que realmente foi alterado de `post` para `put`, já que é muito comum deixar como `post`.
+
+Veja abaixo a diferença.
+
+No _TesteDeFormDeAlunoUpdate_
+
+	public void put() {
+	 Usuario usuario = UsuariosFalso.USUARIO_A;
+
+	 Aluno aluno = AlunosFalso.ALUNO_1;
+	 int id = aluno.getId();
+	 String nome = "Luiz de Souza";
+
+	 Aluno antes = buscarAluno.porId(id);
+	 assertThat(aluno.getNome(), not(equalTo(nome)));
+
+	 Map<String, Object> form = newHashMap();
+	 form.put("id", id);
+	 form.put("nome", nome);
+
+	 Map<String, String> cookies = login(usuario);
+	 WebResponse response = jsonClientOf(URL, cookies).put(form);
+ 	 FormResponseJson json = response.to(FormResponseJson.class).using(Json.class);
+	 assertThat(response.toString(), json.isValid(), is(true));
+	}
+
+No _TesteDeFormDeAlunoCreate_
+
+	Map<String, String> cookies = login(usuario);
+	WebResponse response = jsonClientOf(URL, cookies).post(form);
+	FormResponseJson json = response.to(FormResponseJson.class).using(Json.class);
+	assertThat(json.toString(), json.isValid(), is(true));
 
 Conforme comentamos, atualizaremos apenas o campo _nome_, mas você poderá atualizar outros valores
-para testá-los se necessário.
+para testá-los se necessário.  
 
-Defina a URL no método `bindApiCrud()` da classe `ModuloFaculdadeUI`
+### Definirar no módulo
+Defina a URL no método `bindApiCrud()` da classe `ModuloFaculdadeUI`.  
 
 	@Override
 	protected void bindApiCrud() {
-	  at("api/crud/faculdade/curso/:curso/aluno").serve(FormDeAlunoCreate.class);
-	  at("api/crud/faculdade/curso/:curso/aluno:aluno").serve(FormDeAlunoUpdate.class);
+		at("api/crud/faculdade/curso/aluno").serve(FormDeAlunoCreate.class);
+		at("api/crud/faculdade/curso/aluno").serve(FormDeAlunoUpdate.class);
 	}
 	
 Note que haverá erros de compilação pois a classe `FormDeAlunoUpdate` ainda não existe. Utilize o
 atalho `Ctrl + 1` e crie esta classe no pacote `ui.api.crud` do diretório principal do projeto 
 `/src/main/java`.
 
-Implementaremos o _Form_ a seguir.	
+###<a id="0_7"> </a> Atenção !!!!
+
+Haverá situações em que na mesma classe de teste será testado o `FormCreate` e `FormUpadate`. Uma dessas, senão a principal é quando se tem poucos dados no formulário a serem passados.<br>
+Quando se há muitas informações para serem passadas no form, se for incluir o bloco de teste do update, será mais complicado passar montar o _mustache_ posteriormente, uma vez que será necessário passar muitos parâmetros, a separação facilita esta parte da implementação. Esta separação ocorre tanto no teste quanto na implementação, note que alguns análogos terá uma implementação com o sufixo _update_ e outras somente com o nome do form sem sufixo _update_. A implementação sem sufixo contém o _Create_ + _Update_.
+
+Implementaremos o _Form_ a seguir, com as duas formas.	
 
 Para mais informações acesse os códigos nos links abaixo:
 
-[TesteDeFormDeAlunoUpdate.java](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/test/java/br/com/objectos/dojo/taguiar/TesteDeFormDeAlunoUpdate.java)<br>
-[ModuloFaculdadeUI.java](https://github.com/objectos/objectos-dojo/tree/master/objectos-dojo-team/src/main/java/br/com/objectos/dojo/taguiar/ModuloFaculdadeUI.java)<br>
-
+[ModuloFaculdadeUI.java](https://github.com/objectos/objectos-dojo/blob/995199ab73f60d47602e99bf717a80ca321b6b17/objectos-dojo-team/src/main/java/br/com/objectos/dojo/taguiar/ModuloFaculdadeUI.java)  
+[TesteDeFormDeAlunoUpdate.java](https://github.com/objectos/objectos-dojo/blob/403aac69b1d4c79dd10577ebef58bef8d3aad193/objectos-dojo-team/src/test/java/br/com/objectos/dojo/taguiar/TesteDeFormDeAlunoUpdate.java)  
+[TesteDeFormDeAluno.java](https://github.com/objectos/objectos-dojo/blob/403aac69b1d4c79dd10577ebef58bef8d3aad193/objectos-dojo-team/src/test/java/br/com/objectos/dojo/taguiar/TesteDeFormDeAluno.java)  
 Siga para o próximo passo. O Form! <a href="{{ site.url }}/procedimento/crud-forms/" class="btn btn-success">Continuar!</a><br>
 Leia mais uma vez! <a href="#TOPO" class="btn btn-warning">Revisar!</a>
