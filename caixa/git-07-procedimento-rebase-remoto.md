@@ -65,7 +65,13 @@ show nomeremoto`, uma tela semelhante ao nosso exemplo será exibida:
 
 
 ##Atualizando e integrando atualizações
-	  
+
+Antes de iniciar este processo iremos anotar o número do último _commit_ para que caso ocorra algum
+problema durante o processo do rebase seja possível retornar ao estado deste _commit_. Para fazer
+isso vamos utilizar o seguinte comando para visualizar o número do _commit_ e em seguida anotar:
+
+	$ git log 
+
 Agora vamos mudar para o branch gh-pages:
 
 	$ git checkout gh-pages
@@ -82,7 +88,6 @@ gh-pages:
 
  	$ git merge origin/gh-pages
  
-
 Através do comando `git fetch` vamos trazer as atualizações do repositório remoto obj: 
 
 	$ git fetch obj
@@ -92,6 +97,21 @@ Em seguida realizar `merge` entre obj e gh-pages;
 
 	$ git merge obj/gh-pages
 
+Nosso repositório não segue necessariamente a mesma organização que o repositório remoto que adicionamos.
+Podemos visualizar essas diferenças através do _github_, se compararmos o `gh-pages` de ambos veremos 
+que a ordem de _commits_ e _merges_ não é mesma.
+
+Para evitar conflitos, precisamos "apontar" nosso repositório para o mesmo _commit_ que está no repositório
+remoto que adicionamos anteriormente.
+
+Para isso, verificamos no _github_ o número do último _commit_ do repositório remoto e guardamos esta
+informação.  
+
+Agora utilizamos o comando `git reset --hard` e em seguida colamos o número do _commit_, para que desta
+forma nosso repositório aponte para o mesmo _commit_ que o repositório remoto:
+
+	$ git reset --hard numerodocommit
+	
 
 ##Processo do Rebase
 
