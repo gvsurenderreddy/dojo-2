@@ -6,7 +6,6 @@ user: "afilgueiras"
 published: true
 partof: sql
 num: 1
-outof: 1 
 ---
 ## Intodução
 Quando trabalhamos com dados, a probabilidade de alterarmos um dado e/ou deletarmos algum dado incorreto
