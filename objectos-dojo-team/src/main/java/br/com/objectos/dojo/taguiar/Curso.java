@@ -15,10 +15,12 @@
 */
 package br.com.objectos.dojo.taguiar;
 
+import br.com.objectos.comuns.relational.jdbc.Insertable;
+
 /**
  * @author tiago.aguiar@objectos.com.br (Tiago Aguiar)
  */
-public interface Curso {
+public interface Curso extends Insertable {
 
   interface Construtor extends br.com.objectos.comuns.base.Construtor<Curso> {
 
