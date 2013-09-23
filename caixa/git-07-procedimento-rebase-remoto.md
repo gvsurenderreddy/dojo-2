@@ -26,7 +26,7 @@ Vamos considerar que fizemos um `fork` do projeto em que estamos trabalhando e q
 Antes de realizar o rebase é necessário fazer alguns procedimentos, o primeiro deles consiste em 
 aplicar o comando `git status` para verificar se há alguma pendência em nosso branch atual:
 
-	$ git status
+    $ git status
 	  On branch branch_teste
 	  nothing to commit (working directory clean)
 
@@ -40,6 +40,7 @@ Quando realizamos o `fork` do projeto, automaticamente um repositório remoto ch
 agora iremos adicionar outro repositório remoto ao projeto. Para fazer isso clicamos no projeto no 
 github e copiamos sua URL, que é exibida no campo `SSH clone URL`. Em nosso exemplo a URL será:
 git@github.com:objectos/objectos-dojo.git.
+
 Agora vamos adicionar esse repositório, para isso voltamos ao terminal e executamos o comando `git 
 remote add` seguido de um nome que será associado a URL e colamos a URL:  
           
@@ -97,21 +98,6 @@ Em seguida realizar `merge` entre obj e gh-pages;
 
 	$ git merge obj/gh-pages
 
-Nosso repositório não segue necessariamente a mesma organização que o repositório remoto que adicionamos.
-Podemos visualizar essas diferenças através do _github_, se compararmos o `gh-pages` de ambos veremos 
-que a ordem de _commits_ e _merges_ não é mesma.
-
-Para evitar conflitos, precisamos "apontar" nosso repositório para o mesmo _commit_ que está no repositório
-remoto que adicionamos anteriormente.
-
-Para isso, verificamos no _github_ o número do último _commit_ do repositório remoto e guardamos esta
-informação.  
-
-Agora utilizamos o comando `git reset --hard` e em seguida colamos o número do _commit_, para que desta
-forma nosso repositório aponte para o mesmo _commit_ que o repositório remoto:
-
-	$ git reset --hard numerodocommit
-	
 
 ##Processo do Rebase
 
@@ -138,3 +124,11 @@ Voltamos para o github, vamos até o repositório de nosso projeto e clicamos na
 em seguida localizamos nosso branch e clicamos em `pull request`, ativamos a opção `delete branch` e 
 agora clicamos em `Merge Pull Request`, uma mensagem indicando que o merge foi realizado será exibida.
 Para finalizar basta apenas clicarmos no botão `Confirm Merge`.
+
+##Problemas ao efetuar o Rebase com remotos distintos 
+
+Vamos considerar que vários usuários estejam trabalhando em nosso projeto e em algum momento um _merge_
+foi realizado erroneamente antes do processo de _rebase_. Embora essa situação seja pouco comum, isso
+causará conflitos quando formos realizar um novo _rebase_, neste caso recomendamos a leitura do artigo
+[Resolvendo merge incorreto](http://dojo.objectos.com.br/caixa/git-04-resolver_merge_incorreto.html)
+no parágrafo que trata a questão de __merge incorreto com remotos distintos__.

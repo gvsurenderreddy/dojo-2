@@ -66,7 +66,7 @@ estejam diferentes do master serão integradas em um novo commit, neste caso o H
 
 Antes de iniciar o processo vamos verificar o estado do branch com o comando `git status`:
 
-	$ git status
+    $ git status
 
     On branch 
     nothing to commit (working directory clean)
@@ -85,14 +85,14 @@ no branch:
 
 Neste caso não há erros, então vamos para o branch master para atualizar o repositório local:
 
-	$ git checkout master
+    $ git checkout master
 
     Switched to branch `master`
 
 É recomendável verificar o estado do master com o comando `git status` para verificar se há alguma 
 pendência:
 
-	$ git status
+    $ git status
 
 Para que tenhamos acesso as alterações que outros usuários realizaram na master remota  é 
 necessário executar os seguintes comandos: 
@@ -108,7 +108,7 @@ Resultado:
 
 O próximo passo é voltar para nosso branch
 
-	$ git checkout meubranch_rebase
+    $ git checkout meubranch_rebase
 	 
 	Switched to branch `meubranch_rebase`
 
@@ -235,11 +235,21 @@ Em seguida devemos incluir o arquivo com conflito no commit, para isso pressiona
 para cima e será exibido o último comando executado que será vi e o caminho do arquivo, utilizando
 a tecla home para ir para o início da linha substituimos o comando `vi` por `add .`.   
 
-	$ git add Commit I.txt
+    $ git add Commit I.txt
 
-Neste caso não será necessário realizar o commit deste arquivo.
+Neste caso não será necessário realizar o _commit_ deste arquivo porque ele será incluso no _commit_
+do rebase.
+
 Agora devemos continuar o rebase através do comando `git rebase --continue` e passar para a próxima
 etapa que é a finalização do rebase.
+
+    $ git rebase --continue
+
+<div class="alert alert-warning">
+  Se após a resolução do conflito esquecermos de executar o comando `git rebase --continue`, o processo
+  do rebase não terá sido concluído.  
+
+</div>
 
 ##Finalizar o rebase
 O VI será reaberto para que possamos editar as mensagens de todos os commits que constam no rebase 
@@ -279,7 +289,7 @@ Podemos constatar isso pela mensagem no prompt:
 
 Feito isso vamos forçar a sincronização do branch local com o remoto por meio do comando abaixo: 
 
-	$ git push origin +meubranch_rebase
+    $ git push origin +meubranch_rebase
 
 Atenção: Não podemos esquecer de colocar `+` antes do nome do branch, pois desta forma estamos 
 forçando este comando.  
@@ -314,12 +324,12 @@ Desta forma o repositório master terá sempre um commit de rebase seguido de se
 facilitando o controle de versões e a iteração de nosso projeto.  
 Antes de iniciar o procedimento de rebase vamos verificar o estado do branch com o comando `git status`:
 	
-	$ git status
+    $ git status
     
 Após verificarmos que não há nada pendente vamos utilizar o jenkins para verificar se há erros 
 no branch. Se não houver pendências vamos para o branch master para atualizar o repositório local:
 
-	$ git checkout master
+    $ git checkout master
 
 Agora vamos executar o seguinte comando para atualizar o master: 
 
@@ -327,11 +337,11 @@ Agora vamos executar o seguinte comando para atualizar o master:
 
 O próximo passo é voltar para nosso branch
 
-	$ git checkout meubranch_rebase
+    $ git checkout meubranch_rebase
 
 Em seguida aplicamos o comando rebase:
 	
-	$ git rebase master -i
+    $ git rebase master -i
 	
 O editor vi será utilizado para que possamos selecionar os commits que desejamos utilizar no rebase.
 Vamos unir todos os commits em um único utilizando o comando `squash` e deixar somente a primeira 
@@ -344,7 +354,7 @@ O VI será reaberto para que possamos editar as mensagens de todos os commits qu
 e criar uma mensagem única. Feito isso, utilizamos a tecla `esc` para sair do VI e vamos forçar a 
 sincronização do branch local com o remoto através do comando: 
 
-	$ git push origin +meubranch_rebase
+    $ git push origin +meubranch_rebase
 
 Rodamos novamente os testes no jenkins e constatamos que não houve falhas. Em seguida iremos 
 realizar o merge: 
@@ -353,4 +363,5 @@ Para realizar o merge iremos utilizar o github ou stash, vamos até o repositór
 clicamos na aba _Pull Requests_, em seguida localizamos nosso branch e clicamos em `pull request`, 
 ativamos a opção `delete branch` e agora clicamos em `Merge Pull Request`, uma mensagem indicando que
 o merge foi realizado será exibida.
+
 Para finalizar basta apenas clicarmos no botão `Confirm Merge`.

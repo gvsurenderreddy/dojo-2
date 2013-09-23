@@ -49,6 +49,48 @@ Por fim, esses procedimentos representam tarefas simples, mas devem ser usadas c
 
 <div id="revert"> </div>
 
+## Merge incorreto com remotos distintos
+
+Se estivermos trabalhando com repositórios remotos distintos conforme tratado no artigo [Procedimento de rebase com repositórios remotos distintos](http://dojo.objectos.com.br/caixa/git-07-procedimento-rebase-remoto.html)
+e considerarmos que vários usuários estejam trabalhando em nosso projeto ao mesmo tempo, em algum 
+momento poderemos nos deparar com o seguinte problema: um _merge_ pode ter sido realizado erroneamente
+antes do processo de _rebase_.
+  
+Embora este tipo de erro seja pouco comum teremos problemas na próxima vez que fizermos o _rebase_ do projeto.
+Isso ocorre porque ao deixarmos de fazer o _rebase_, as alterações de nosso branch não foram reaplicadas
+e o nosso branch passou a apontar para um _commit_ diferente do _commit_ apontado pelo _master_. Desta forma,
+nosso repositório passará a não possuir a mesma organização que o repositório remoto que adicionamos.
+
+Podemos visualizar essas diferenças através do _github_, se compararmos o `gh-pages` de ambos repositórios
+veremos que a ordem de _commits_ e _merges_ não é mesma.
+
+Para resolver este problema, precisamos "apontar" nosso repositório para o mesmo _commit_ que está no
+_master_ do repositório remoto que adicionamos anteriormente.
+
+Para isso, verificamos no _github_ o número do último _commit_ do repositório remoto e guardamos esta
+informação.  
+
+Voltamos para o terminal e agora mudaremos para o master através do comando abaixo:
+
+    $ git checkout master
+  
+Agora utilizamos o comando `git reset --hard` e em seguida colamos o número do _commit_, para que desta
+forma nosso repositório aponte para o mesmo _commit_ que o repositório remoto:
+
+    $ git reset --hard numerodocommit
+	
+Em seguida voltamos para nosso branch:
+
+    $ git checkout meubranch_01
+	
+Agora executaremos o comando `git push origin` para enviar as alterações para nosso repositório remoto.
+Colocaremos o sinal de adição "+" antes do nome do branch para forçar o comando:  
+	 
+    $ git push origin +meubranch_01 	
+	
+Se verificarmos no _github_, veremos que agora o último _commit_ de nosso repositório é o mesmo que o
+do repositório remoto.
+	
 ## Praticando: O primeiro cenário
 
 1. Faça um novo repositório chamado __repo__ no Github;
