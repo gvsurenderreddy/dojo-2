@@ -15,24 +15,14 @@
  */
 package br.com.objectos.dojo.enanschau.gen;
 
-import br.com.objectos.comuns.testing.jdbc.EntitySet;
-import br.com.objectos.comuns.testing.jdbc.SqlUnit;
-import br.com.objectos.comuns.testing.jdbc.Truncate;
+import com.google.common.base.Function;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class DisciplinasFalso implements EntitySet {
-
-  public static final Disciplina DISCIPLINA_1_ALUNO_1 = null;
-  public static final Disciplina DISCIPLINA_2_ALUNO_1 = null;
-
+class DisciplinaToString implements Function<Disciplina, String> {
   @Override
-  public void truncate(Truncate truncate) {
+  public String apply(Disciplina input) {
+    return null;
   }
-
-  @Override
-  public void load(SqlUnit sqlUnit) {
-  }
-
 }
