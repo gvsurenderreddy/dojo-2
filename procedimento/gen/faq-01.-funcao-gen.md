@@ -67,4 +67,4 @@ o método `copyOf()` da classe [`ImmutableList`](http://docs.guava-libraries.goo
 Com isso garantimos que quando o método `gerarDe()` for chamado a função será aplicada no mesmo instante.
 
 ##Códigos-fonte
-[RelatorioDeAlunoGenGuice.java](https://github.com/EdenirAnschau/objectos-dojo/blob/5aaaecfb17f163830584e503118473ced1c3f23c/objectos-dojo-team/src/main/java/br/com/objectos/dojo/enanschau/gen/RelatorioDeAlunoGenGuice.java)
+[RelatorioDeAlunoGenGuice.java](https://github.com/objectos/objectos-dojo/blob/f090c77cdbfc606b57675f7b6a9c04b830208905/objectos-dojo-team/src/main/java/br/com/objectos/dojo/enanschau/gen/RelatorioDeAlunoGenGuice.java)
