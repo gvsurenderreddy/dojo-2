@@ -15,24 +15,16 @@
  */
 package br.com.objectos.dojo.enanschau.gen;
 
-import br.com.objectos.comuns.testing.jdbc.EntitySet;
-import br.com.objectos.comuns.testing.jdbc.SqlUnit;
-import br.com.objectos.comuns.testing.jdbc.Truncate;
-
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class DisciplinasFalso implements EntitySet {
+public class AlunoKey {
 
-  public static final Disciplina DISCIPLINA_1_ALUNO_1 = null;
-  public static final Disciplina DISCIPLINA_2_ALUNO_1 = null;
-
-  @Override
-  public void truncate(Truncate truncate) {
+  public AlunoKey(Aluno aluno) {
   }
 
-  @Override
-  public void load(SqlUnit sqlUnit) {
+  public int getId() {
+    return 0;
   }
 
 }

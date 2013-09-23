@@ -15,24 +15,19 @@
  */
 package br.com.objectos.dojo.enanschau.gen;
 
-import br.com.objectos.comuns.testing.jdbc.EntitySet;
-import br.com.objectos.comuns.testing.jdbc.SqlUnit;
-import br.com.objectos.comuns.testing.jdbc.Truncate;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import br.com.objectos.comuns.relational.search.ResultSetLoader;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class DisciplinasFalso implements EntitySet {
-
-  public static final Disciplina DISCIPLINA_1_ALUNO_1 = null;
-  public static final Disciplina DISCIPLINA_2_ALUNO_1 = null;
+class DisciplinaLoader implements ResultSetLoader<Disciplina> {
 
   @Override
-  public void truncate(Truncate truncate) {
-  }
-
-  @Override
-  public void load(SqlUnit sqlUnit) {
+  public Disciplina load(ResultSet resultSet) throws SQLException {
+    return null;
   }
 
 }

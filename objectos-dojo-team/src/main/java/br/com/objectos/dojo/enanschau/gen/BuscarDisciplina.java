@@ -17,11 +17,19 @@ package br.com.objectos.dojo.enanschau.gen;
 
 import java.util.List;
 
+import br.com.objectos.comuns.sitebricks.RequestWrapper;
+import br.com.objectos.comuns.sitebricks.relational.PageList;
+
+import com.google.inject.ImplementedBy;
+
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
+@ImplementedBy(BuscarDisciplinaGuice.class)
 public interface BuscarDisciplina {
 
   List<Disciplina> porAluno(Aluno aluno);
+
+  PageList<Disciplina> pagerPorAlunoKeyKey(AlunoKey alunoKey, RequestWrapper wrapper);
 
 }
