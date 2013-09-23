@@ -15,6 +15,8 @@
  */
 package br.com.objectos.dojo.enanschau.gen;
 
+import java.util.List;
+
 import com.google.inject.ImplementedBy;
 
 /**
@@ -24,5 +26,7 @@ import com.google.inject.ImplementedBy;
 public interface RelatorioDeAlunoGen {
 
   RelatorioDeAluno gerarDe(Aluno aluno);
+
+  List<RelatorioDeAluno> gerarDe(List<Aluno> alunos);
 
 }

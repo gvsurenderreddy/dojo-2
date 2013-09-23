@@ -17,6 +17,9 @@ package br.com.objectos.dojo.enanschau.gen;
 
 import java.util.List;
 
+import com.google.common.base.Function;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 /**
@@ -37,6 +40,19 @@ class RelatorioDeAlunoGenGuice implements RelatorioDeAlunoGen {
   @Override
   public RelatorioDeAluno gerarDe(Aluno aluno) {
     return new Construtor(aluno).novaInstancia();
+  }
+
+  @Override
+  public List<RelatorioDeAluno> gerarDe(List<Aluno> alunos) {
+    List<RelatorioDeAluno> res = Lists.transform(alunos, new ToRelatorioDeAluno());
+    return ImmutableList.copyOf(res);
+  }
+
+  private class ToRelatorioDeAluno implements Function<Aluno, RelatorioDeAluno> {
+    @Override
+    public RelatorioDeAluno apply(Aluno input) {
+      return gerarDe(input);
+    }
   }
 
   private class Construtor implements RelatorioDeAluno.Construtor {
