@@ -15,24 +15,22 @@
 */
 package br.com.objectos.dojo.taguiar;
 
-import java.util.Map;
+import static com.google.common.collect.Maps.newHashMap;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 import org.testng.annotations.Test;
 
 import br.com.objectos.comuns.sitebricks.form.FormResponseJson;
-import br.com.objectos.comuns.sitebricks.form.QueryString;
+import br.com.objectos.comuns.testing.jdbc.SqlUnit;
 
 import com.google.inject.Inject;
 import com.google.sitebricks.client.WebResponse;
 import com.google.sitebricks.client.transport.Json;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
 
 /**
  * @author tiago.aguiar@objectos.com.br (Tiago Aguiar)
@@ -40,46 +38,39 @@ import static org.hamcrest.Matchers.notNullValue;
 @Test
 public class TesteDeFormDeAlunoUpdate extends TesteDeIntegracaoWeb {
 
-  private static final String URL = "api/crud/faculdade/curso/direito/aluno/11";
+  private static final String URL = "api/faculdade/crud/curso/direito/aluno";
 
   @Inject
   private BuscarAluno buscarAluno;
 
-  public void usuario_nao_autenticado_deve_ser_negado() {
-    WebResponse response = webClientOf(URL).put("");
+  @Override
+  protected void prepararSqlUnit(SqlUnit sqlUnit) {
+    sqlUnit.loadEntitySet(UsuariosFalso.class);
 
-    assertThat(response.status(), equalTo(HttpServletResponse.SC_UNAUTHORIZED));
+    sqlUnit.loadEntitySet(AlunosFalso.class);
   }
 
-  public void usuario_nao_autorizado_deve_ser_negado() {
-    Map<String, String> cookies = login("user");
-    WebResponse response = webClientOf(URL, cookies).put("");
+  public void put() {
+    Usuario usuario = UsuariosFalso.USUARIO_A;
 
-    assertThat(response.status(), equalTo(HttpServletResponse.SC_UNAUTHORIZED));
-  }
-
-  public void form_deve_gravar_aluno_no_bd() {
-    int id = 11;
+    Aluno aluno = AlunosFalso.ALUNO_1;
+    int id = aluno.getId();
     String nome = "Luiz de Souza";
 
     Aluno antes = buscarAluno.porId(id);
-    assertThat(antes, is(notNullValue()));
+    assertThat(antes.getNome(), not(equalTo(nome)));
 
-    String url = new QueryString(URL)
-        .param("nome", nome)
-        .get();
+    Map<String, Object> form = newHashMap();
+    form.put("id", id);
+    form.put("nome", nome);
 
-    Map<String, String> cookies = login("admin");
-    WebResponse response = webClientOf(url, cookies).put("");
-
+    Map<String, String> cookies = login(usuario);
+    WebResponse response = jsonClientOf(URL, cookies).put(form);
     FormResponseJson json = response.to(FormResponseJson.class).using(Json.class);
-    assertThat(json.isValid(), is(true));
+    assertThat(response.toString(), json.isValid(), is(true));
 
     Aluno res = buscarAluno.porId(id);
     assertThat(res.getNome(), equalTo(nome));
-
-    String redirectUrl = json.getRedirectUrl();
-    assertThat(redirectUrl, containsString("faculdade/curso/direito/aluno/11"));
   }
 
 }

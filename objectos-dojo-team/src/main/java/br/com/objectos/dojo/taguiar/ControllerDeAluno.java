@@ -15,45 +15,34 @@
  */
 package br.com.objectos.dojo.taguiar;
 
-import java.util.List;
-
-import br.com.objectos.comuns.relational.jdbc.NativeSql;
-
 import com.google.inject.Inject;
-import com.google.inject.Provider;
+import com.google.sitebricks.headless.Reply;
+import com.google.sitebricks.http.Post;
+import com.google.sitebricks.http.Put;
 
 /**
  * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
  */
-class BuscarAlunoGuice implements BuscarAluno {
+public class ControllerDeAluno {
 
-  private final Provider<NativeSql> sqlProvider;
+  private final FormDeAlunoCreate form;
+
+  private final FormDeAlunoUpdate forms;
 
   @Inject
-  BuscarAlunoGuice(Provider<NativeSql> sqlProvider) {
-    this.sqlProvider = sqlProvider;
-  }
-  @Override
-  public Aluno porId(int id) {
-    return newSelect()
-
-        .add("where ALUNO.ID = ?").param(id)
-
-        .single();
-  }
-  @Override
- public List<Aluno> porCurso(String curso) {
-    return null;
+  public ControllerDeAluno(FormDeAlunoCreate form, FormDeAlunoUpdate forms) {
+    this.form = form;
+    this.forms = forms;
   }
 
-  private NativeSql newSelect() {
-    return sqlProvider.get()
+  @Post
+  public Reply<?> post() {
+    return form.post();
+  }
 
-        .add("select *")
-        .add("")
-        .add("")
-        .add("");
-
+  @Put
+  public Reply<?> put() {
+    return forms.put();
   }
 
 }
