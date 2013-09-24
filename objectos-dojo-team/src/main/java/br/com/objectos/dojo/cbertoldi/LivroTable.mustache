@@ -1,0 +1,29 @@
+{{#livros}}
+  {{#empty}}
+  <p>Nenhum livro encontrado.</p>
+  {{/empty}}
+  
+  {{^empty}}
+  {{> pager.mustache}}
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th class="col5em tac">Título</th>
+        <th class="col15em tac">Autor</th>
+        <th class="col12em tac">Gênero</th>
+        <th>Preço</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#rows}}
+      <tr>
+        <td class="col5em tac">{{titulo}}</td>
+        <td class="col5em tac">{{autor}}</td>
+        <td class="col12em tac">{{genero}}</td>
+        <td>{{preco}}</td>
+      </tr>
+      {{/rows}}
+    </tbody>
+  </table>
+  {{/empty}}
+{{/livros}}

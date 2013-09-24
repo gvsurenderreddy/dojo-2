@@ -1,0 +1,61 @@
+ <div class="vcard mt20px">
+   <div class="row">
+     <div class="span2 tac">
+       <ul class="thumbnails">
+         <li class="span2">
+           <div class="thumbnail">
+             <img src="{{bricks.imgUrl}}/iamgens/livro-vcard-01.png" />
+           </div>
+         </li>
+       </ul>
+     </div>
+     <div class="span3 sidebar">
+       <h2>Livros </h2>
+
+       <p>Consulta e manutenção dos livros cadastrados no sistema. </p>
+     </div>
+     <div class="offset1 span6 form-row">
+    
+       <form method="get"
+            data-way-form-search="bootstrap-inline-block"
+            data-way-form-search-options="{
+              'bindTo' : 'livro-list',
+              'bindType' : 'id',
+              'reRender' : ['livro-list']
+            }">
+        
+         <div class="row">
+           <div class="span6">
+             <input type="text"
+                   name="titulo"
+                   data-way-field="{
+                    'label' : 'Título'
+                   }" />
+           </div>
+         </div>      
+
+        <div class="row">
+         <div class="span6">
+           <input type="text"
+                 name="autor"
+                 data-way-field="{
+                  'label' : 'Autor'
+                 }" />
+          </div>
+        </div>
+           
+        <div class="row">
+         <div class="span6">
+           <input type="text"
+                 name="genero"
+                 data-way-field="{
+                  'label' : 'Gênero literário'
+                 }" />
+          </div>
+        </div>
+
+       </form>
+      
+     </div>
+   </div>
+ </div>
