@@ -64,9 +64,15 @@ class BuscarDisciplinaGuice implements BuscarDisciplina {
   private NativeSql newPager(String what, AlunoKey alunoKey, RequestWrapper wrapper) {
     String nome = wrapper.param("nome");
 
+    DisciplinaStatus status = wrapper.enumParam(DisciplinaStatus.class, "status");
+    status = status != null ? status : DisciplinaStatus.TODAS;
+
     return newSelect(what)
 
         .add("where DISCIPLINA.ALUNO_ID = ?").param(alunoKey.getId())
+
+        .addIf("and DISCIPLINA.MATRICULADO = ?").paramNotNull(status.matriculadoValue())
+        .addIf("and DISCIPLINA.DEPENDENCIA = ?").paramNotNull(status.depedenciaValue())
 
         .addIf("and ALUNO.NOME like concat('%', ?, '%')").paramNotNull(nome)
 
