@@ -41,8 +41,9 @@ class BuscarAlunoGuice implements BuscarAluno {
 
         .single();
   }
+
   @Override
- public List<Aluno> porCurso(String curso) {
+  public List<Aluno> porCurso(Curso curso) {
     return null;
   }
 

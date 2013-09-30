@@ -1,3 +1,17 @@
+package br.com.objectos.dojo.cbertoldi.autocomplete;
+
+import java.util.List;
+
+import br.com.objectos.comuns.relational.jdbc.NativeSql;
+import br.com.objectos.comuns.relational.search.Page;
+import br.com.objectos.comuns.sitebricks.RequestWrapper;
+import br.com.objectos.comuns.sitebricks.relational.PageList;
+import br.com.objectos.comuns.sitebricks.relational.Pager;
+import br.com.objectos.comuns.sitebricks.relational.PagerLoader;
+
+import com.google.inject.Inject;
+import com.google.inject.Provider;
+
 class BuscarLocalidadeGuice implements BuscarLocalidade {
 
   private final Provider<NativeSql> sqlProvider;
@@ -38,7 +52,7 @@ class BuscarLocalidadeGuice implements BuscarLocalidade {
         .add("select %s", what)
         .add("from PASSARO_BRANCO.LOCALIDADE")
 
-        .andLoadWith(new ProdutoLoader());
+        .andLoadWith(new LocalidadeLoader());
   }
 
 }
