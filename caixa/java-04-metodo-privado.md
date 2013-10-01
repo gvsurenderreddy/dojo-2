@@ -6,7 +6,6 @@ date: 2013-09-30
 published: true
 partof: java
 num: 4
-outof: 4
 ---
 
 ## Introdução
