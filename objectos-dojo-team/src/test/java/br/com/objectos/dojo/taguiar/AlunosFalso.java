@@ -15,6 +15,8 @@
  */
 package br.com.objectos.dojo.taguiar;
 
+import static br.com.objectos.dojo.taguiar.CursosFalso.CURSO_A;
+
 import java.util.List;
 
 import org.joda.time.DateTime;
