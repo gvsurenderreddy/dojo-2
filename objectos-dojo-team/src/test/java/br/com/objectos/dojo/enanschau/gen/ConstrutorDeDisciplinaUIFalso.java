@@ -15,44 +15,31 @@
  */
 package br.com.objectos.dojo.enanschau.gen;
 
-import br.com.objectos.comuns.relational.jdbc.Insert;
-
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class DisciplinaJdbc implements Disciplina {
+public class ConstrutorDeDisciplinaUIFalso implements DisciplinaUI {
 
-  private int id;
-  private final Professor professor;
-  private final String nome;
+  private final Disciplina disciplina;
 
-  public DisciplinaJdbc(Construtor construtor) {
-    professor = construtor.getProfessor();
-    nome = construtor.getNome();
-  }
-
-  @Override
-  public Insert getInsert() {
-    return null;
+  public ConstrutorDeDisciplinaUIFalso(Disciplina disciplina) {
+    this.disciplina = disciplina;
   }
 
   @Override
   public int getId() {
-    return id;
-  }
-
-  void setId(int id) {
-    this.id = id;
+    return disciplina.getId();
   }
 
   @Override
-  public Professor getProfessor() {
-    return professor;
+  public String getProfessor() {
+    Professor professor = disciplina.getProfessor();
+    return professor.getNome();
   }
 
   @Override
   public String getNome() {
-    return nome;
+    return disciplina.getNome();
   }
 
 }

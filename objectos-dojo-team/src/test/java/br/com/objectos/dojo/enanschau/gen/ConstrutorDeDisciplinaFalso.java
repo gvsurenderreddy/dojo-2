@@ -22,7 +22,7 @@ import br.com.objectos.dojo.enanschau.gen.Disciplina.Construtor;
  */
 public class ConstrutorDeDisciplinaFalso implements Construtor {
 
-  private Aluno aluno;
+  private Professor professor;
   private String nome;
 
   @Override
@@ -30,8 +30,8 @@ public class ConstrutorDeDisciplinaFalso implements Construtor {
     return new DisciplinaJdbc(this);
   }
 
-  public ConstrutorDeDisciplinaFalso aluno(Aluno aluno) {
-    this.aluno = aluno;
+  public ConstrutorDeDisciplinaFalso professor(Professor professor) {
+    this.professor = professor;
     return this;
   }
 
@@ -41,8 +41,8 @@ public class ConstrutorDeDisciplinaFalso implements Construtor {
   }
 
   @Override
-  public Aluno getAluno() {
-    return aluno;
+  public Professor getProfessor() {
+    return professor;
   }
 
   @Override
