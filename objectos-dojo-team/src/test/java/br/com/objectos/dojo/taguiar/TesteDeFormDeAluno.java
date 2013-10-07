@@ -28,6 +28,7 @@ import org.testng.annotations.Test;
 
 import br.com.objectos.comuns.sitebricks.form.FormResponseJson;
 import br.com.objectos.comuns.testing.jdbc.SqlUnit;
+import br.com.objectos.dojo.faculdade.Aluno;
 
 import com.google.inject.Inject;
 import com.google.sitebricks.client.WebResponse;

@@ -24,6 +24,7 @@ import org.joda.time.DateTime;
 import br.com.objectos.comuns.testing.jdbc.EntitySet;
 import br.com.objectos.comuns.testing.jdbc.SqlUnit;
 import br.com.objectos.comuns.testing.jdbc.Truncate;
+import br.com.objectos.dojo.faculdade.Aluno;
 
 import com.google.common.collect.ImmutableList;
 

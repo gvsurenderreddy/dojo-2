@@ -22,6 +22,7 @@ import org.joda.time.DateTime;
 
 import br.com.objectos.comuns.relational.jdbc.GeneratedKeyCallback;
 import br.com.objectos.comuns.relational.jdbc.Insert;
+import br.com.objectos.dojo.faculdade.Aluno;
 
 /**
  * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)

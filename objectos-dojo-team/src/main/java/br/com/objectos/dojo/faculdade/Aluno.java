@@ -13,11 +13,12 @@
 * License for the specific language governing permissions and limitations under
 * the License.
 */
-package br.com.objectos.dojo.taguiar;
+package br.com.objectos.dojo.faculdade;
 
 import org.joda.time.DateTime;
 
 import br.com.objectos.comuns.relational.jdbc.Insertable;
+import br.com.objectos.dojo.taguiar.Curso;
 
 /**
  * @author tiago.aguiar@objectos.com.br (Tiago Aguiar)

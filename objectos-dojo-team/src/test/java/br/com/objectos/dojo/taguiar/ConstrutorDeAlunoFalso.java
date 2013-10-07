@@ -17,6 +17,8 @@ package br.com.objectos.dojo.taguiar;
 
 import org.joda.time.DateTime;
 
+import br.com.objectos.dojo.faculdade.Aluno;
+
 /**
  * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
  */

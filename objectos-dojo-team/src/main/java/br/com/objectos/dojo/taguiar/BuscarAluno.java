@@ -17,6 +17,8 @@ package br.com.objectos.dojo.taguiar;
 
 import java.util.List;
 
+import br.com.objectos.dojo.faculdade.Aluno;
+
 import com.google.inject.ImplementedBy;
 
 /**
