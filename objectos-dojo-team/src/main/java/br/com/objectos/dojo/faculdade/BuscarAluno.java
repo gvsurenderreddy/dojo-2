@@ -17,10 +17,6 @@ package br.com.objectos.dojo.faculdade;
 
 import java.util.List;
 
-import org.joda.time.DateTime;
-
-import br.com.objectos.comuns.sitebricks.RequestWrapper;
-import br.com.objectos.comuns.sitebricks.relational.PageList;
 import br.com.objectos.dojo.taguiar.Curso;
 
 import com.google.inject.ImplementedBy;
@@ -35,6 +31,6 @@ public interface BuscarAluno {
 
   Aluno porId(int id);
 
-  PageList<Aluno> pagePorProuni(DateTime data, RequestWrapper wrapper);
+  List<Aluno> prouniPorSemestre(Semestre semestre);
 
 }

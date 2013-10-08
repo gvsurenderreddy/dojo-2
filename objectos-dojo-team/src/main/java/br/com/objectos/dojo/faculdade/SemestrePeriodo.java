@@ -15,18 +15,13 @@
  */
 package br.com.objectos.dojo.faculdade;
 
-import java.util.List;
-
-import com.google.inject.ImplementedBy;
-
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
-@ImplementedBy(RelatorioDeAlunoProuniGen.class)
-public interface RelatorioDeAlunoProuniGen {
+public enum SemestrePeriodo {
 
-  RelatorioDeAlunoProuni gerarDe(Pedido pedido);
+  PRIMEIRO,
 
-  List<RelatorioDeAlunoProuni> gerarDe(List<Pedido> pedidos);
+  SEGUNDO;
 
 }

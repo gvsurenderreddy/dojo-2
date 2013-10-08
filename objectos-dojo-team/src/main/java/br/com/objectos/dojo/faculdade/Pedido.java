@@ -15,9 +15,29 @@
  */
 package br.com.objectos.dojo.faculdade;
 
+import org.joda.time.DateTime;
+
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
 public interface Pedido {
+
+  interface Construtor extends br.com.objectos.comuns.base.Construtor<Pedido> {
+
+    DateTime getData();
+    Semestre getPeriodo();
+
+    Departamento getRemenete();
+    Departamento getDestinatario();
+
+  }
+
+  int get();
+
+  DateTime getData();
+  Semestre getPeriodo();
+
+  Departamento getRemenete();
+  Departamento getDestinatario();
 
 }

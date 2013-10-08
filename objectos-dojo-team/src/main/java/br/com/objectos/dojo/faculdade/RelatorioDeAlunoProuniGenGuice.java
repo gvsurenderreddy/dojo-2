@@ -19,6 +19,9 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
+import com.google.common.base.Function;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 /**
@@ -34,18 +37,29 @@ class RelatorioDeAlunoProuniGenGuice implements RelatorioDeAlunoProuniGen {
   }
 
   @Override
-  public RelatorioDeAlunoProuniGen gerarDe(Pedido pedido, Semestre semestre) {
-    return (RelatorioDeAlunoProuniGen) new Construtor(pedido, semestre).novaInstancia();
+  public RelatorioDeAlunoProuni gerarDe(Pedido pedido) {
+    return new Construtor(pedido).novaInstancia();
+  }
+
+  @Override
+  public List<RelatorioDeAlunoProuni> gerarDe(List<Pedido> pedidos) {
+    List<RelatorioDeAlunoProuni> res = Lists.transform(pedidos, new ToRelatorioDeAlunoProuni());
+    return ImmutableList.copyOf(res);
+  }
+
+  private class ToRelatorioDeAlunoProuni implements Function<Pedido, RelatorioDeAlunoProuni> {
+    @Override
+    public RelatorioDeAlunoProuni apply(Pedido input) {
+      return gerarDe(input);
+    }
   }
 
   private class Construtor implements RelatorioDeAlunoProuni.Construtor {
 
     private final Pedido pedido;
-    private final Semestre semestre;
 
-    public Construtor(Pedido pedido, Semestre semestre) {
+    public Construtor(Pedido pedido) {
       this.pedido = pedido;
-      this.semestre = semestre;
     }
 
     @Override
@@ -55,17 +69,17 @@ class RelatorioDeAlunoProuniGenGuice implements RelatorioDeAlunoProuniGen {
 
     @Override
     public DateTime getPedido() {
-      return null;
+      return pedido.getData();
     }
 
     @Override
     public DateTime getBaixa() {
-      return null;
+      return new DateTime();
     }
 
     @Override
     public List<Aluno> getAlunos() {
-      return null;
+      return buscarAluno.prouniPorSemestre(pedido.getPeriodo());
     }
 
   }

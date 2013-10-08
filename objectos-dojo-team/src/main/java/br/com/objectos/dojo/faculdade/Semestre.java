@@ -20,4 +20,8 @@ package br.com.objectos.dojo.faculdade;
  */
 public interface Semestre {
 
+  int getAno();
+
+  SemestrePeriodo getPerido();
+
 }

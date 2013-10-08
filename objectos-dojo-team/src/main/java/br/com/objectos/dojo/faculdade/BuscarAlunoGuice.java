@@ -17,10 +17,6 @@ package br.com.objectos.dojo.faculdade;
 
 import java.util.List;
 
-import org.joda.time.DateTime;
-
-import br.com.objectos.comuns.sitebricks.RequestWrapper;
-import br.com.objectos.comuns.sitebricks.relational.PageList;
 import br.com.objectos.dojo.taguiar.Curso;
 
 /**
@@ -39,7 +35,7 @@ public class BuscarAlunoGuice implements BuscarAluno {
   }
 
   @Override
-  public PageList<Aluno> pagePorProuni(DateTime data, RequestWrapper wrapper) {
+  public List<Aluno> prouniPorSemestre(Semestre semestre) {
     return null;
   }
 

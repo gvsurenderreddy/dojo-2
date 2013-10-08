@@ -24,27 +24,35 @@ import org.joda.time.DateTime;
  */
 public class RelatorioDeAlunoProuniPojo implements RelatorioDeAlunoProuni {
 
+  private int id;
+  private final List<Aluno> alunos;
+  private final DateTime pedido;
+  private final DateTime baixa;
+
   public RelatorioDeAlunoProuniPojo(Construtor construtor) {
+    alunos = construtor.getAlunos();
+    pedido = construtor.getPedido();
+    baixa = construtor.getBaixa();
   }
 
   @Override
   public int getId() {
-    return 0;
+    return id;
   }
 
   @Override
   public DateTime getPedido() {
-    return null;
+    return pedido;
   }
 
   @Override
   public DateTime getBaixa() {
-    return null;
+    return baixa;
   }
 
   @Override
   public List<Aluno> getAlunos() {
-    return null;
+    return alunos;
   }
 
 }
