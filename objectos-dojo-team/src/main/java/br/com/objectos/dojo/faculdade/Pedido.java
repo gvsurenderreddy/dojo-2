@@ -18,20 +18,6 @@ package br.com.objectos.dojo.faculdade;
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
-public interface PessoaFisica {
-
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<RelatorioDeAlunoProuni> {
-
-    String getNome();
-
-    String getSobrenome();
-
-  }
-
-  int getId();
-
-  String getNome();
-
-  String getSobrenome();
+public interface Pedido {
 
 }

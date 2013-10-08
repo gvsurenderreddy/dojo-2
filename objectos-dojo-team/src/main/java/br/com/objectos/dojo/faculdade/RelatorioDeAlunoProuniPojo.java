@@ -15,23 +15,36 @@
  */
 package br.com.objectos.dojo.faculdade;
 
+import java.util.List;
+
+import org.joda.time.DateTime;
+
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
-public interface PessoaFisica {
+public class RelatorioDeAlunoProuniPojo implements RelatorioDeAlunoProuni {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<RelatorioDeAlunoProuni> {
-
-    String getNome();
-
-    String getSobrenome();
-
+  public RelatorioDeAlunoProuniPojo(Construtor construtor) {
   }
 
-  int getId();
+  @Override
+  public int getId() {
+    return 0;
+  }
 
-  String getNome();
+  @Override
+  public DateTime getPedido() {
+    return null;
+  }
 
-  String getSobrenome();
+  @Override
+  public DateTime getBaixa() {
+    return null;
+  }
+
+  @Override
+  public List<Aluno> getAlunos() {
+    return null;
+  }
 
 }

@@ -15,23 +15,32 @@
  */
 package br.com.objectos.dojo.faculdade;
 
+import java.util.List;
+
+import org.joda.time.DateTime;
+
+import br.com.objectos.comuns.sitebricks.RequestWrapper;
+import br.com.objectos.comuns.sitebricks.relational.PageList;
+import br.com.objectos.dojo.taguiar.Curso;
+
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
-public interface PessoaFisica {
+public class BuscarAlunoGuice implements BuscarAluno {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<RelatorioDeAlunoProuni> {
-
-    String getNome();
-
-    String getSobrenome();
-
+  @Override
+  public List<Aluno> porCurso(Curso curso) {
+    return null;
   }
 
-  int getId();
+  @Override
+  public Aluno porId(int id) {
+    return null;
+  }
 
-  String getNome();
-
-  String getSobrenome();
+  @Override
+  public PageList<Aluno> pagePorProuni(DateTime data, RequestWrapper wrapper) {
+    return null;
+  }
 
 }

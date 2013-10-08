@@ -15,23 +15,28 @@
  */
 package br.com.objectos.dojo.faculdade;
 
+import org.testng.annotations.BeforeClass;
+
+import br.com.objectos.comuns.testing.jdbc.SqlUnit;
+import br.com.objectos.dojo.faculdade.BuscarAluno;
+import br.com.objectos.dojo.taguiar.AlunosFalso;
+
+import com.google.inject.Inject;
+
 /**
- * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
+ * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
  */
-public interface PessoaFisica {
+public class TesteDeBuscarAluno {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<RelatorioDeAlunoProuni> {
+  @Inject
+  private BuscarAluno buscarAluno;
 
-    String getNome();
+  @Inject
+  private SqlUnit sqlUnit;
 
-    String getSobrenome();
-
+  @BeforeClass
+  public void prepararSqlUnit() {
+    sqlUnit.loadEntitySet(AlunosFalso.class);
   }
-
-  int getId();
-
-  String getNome();
-
-  String getSobrenome();
 
 }

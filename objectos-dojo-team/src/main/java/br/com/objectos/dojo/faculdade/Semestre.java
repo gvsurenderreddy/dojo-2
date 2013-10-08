@@ -13,28 +13,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.taguiar;
-
-import org.testng.annotations.BeforeClass;
-
-import br.com.objectos.comuns.testing.jdbc.SqlUnit;
-
-import com.google.inject.Inject;
+package br.com.objectos.dojo.faculdade;
 
 /**
- * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
+ * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
-public class TesteDeBuscarAluno {
-
-  @Inject
-  private BuscarAluno buscarAluno;
-
-  @Inject
-  private SqlUnit sqlUnit;
-
-  @BeforeClass
-  public void prepararSqlUnit() {
-    sqlUnit.loadEntitySet(AlunosFalso.class);
-  }
+public interface Semestre {
 
 }

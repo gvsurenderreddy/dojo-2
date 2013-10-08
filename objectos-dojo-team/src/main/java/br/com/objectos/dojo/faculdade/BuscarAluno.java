@@ -13,11 +13,15 @@
 * License for the specific language governing permissions and limitations under
 * the License.
 */
-package br.com.objectos.dojo.taguiar;
+package br.com.objectos.dojo.faculdade;
 
 import java.util.List;
 
-import br.com.objectos.dojo.faculdade.Aluno;
+import org.joda.time.DateTime;
+
+import br.com.objectos.comuns.sitebricks.RequestWrapper;
+import br.com.objectos.comuns.sitebricks.relational.PageList;
+import br.com.objectos.dojo.taguiar.Curso;
 
 import com.google.inject.ImplementedBy;
 
@@ -30,5 +34,7 @@ public interface BuscarAluno {
   List<Aluno> porCurso(Curso curso);
 
   Aluno porId(int id);
+
+  PageList<Aluno> pagePorProuni(DateTime data, RequestWrapper wrapper);
 
 }
