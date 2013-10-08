@@ -23,15 +23,15 @@ import org.joda.time.DateTime;
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
-public interface RelatorioDeAlunoProuni {
+public interface RelatorioDeMateriaisLaboratorio {
 
   interface Construtor extends
-      br.com.objectos.comuns.base.Construtor<RelatorioDeAlunoProuni> {
+      br.com.objectos.comuns.base.Construtor<RelatorioDeMateriaisLaboratorio> {
 
     Pedido getPedido();
     DateTime getBaixa();
 
-    List<Aluno> getAlunos();
+    List<MaterialLaboratorio> getMateriais();
 
   }
 
@@ -40,6 +40,6 @@ public interface RelatorioDeAlunoProuni {
   Pedido getPedido();
   DateTime getBaixa();
 
-  List<Aluno> getAlunos();
+  List<MaterialLaboratorio> getMateriais();
 
 }

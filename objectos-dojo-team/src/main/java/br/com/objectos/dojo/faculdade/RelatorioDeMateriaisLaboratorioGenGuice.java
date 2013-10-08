@@ -27,34 +27,36 @@ import com.google.inject.Inject;
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
-class RelatorioDeAlunoProuniGenGuice implements RelatorioDeAlunoProuniGen {
+class RelatorioDeMateriaisLaboratorioGenGuice implements RelatorioDeMateriaisLaboratorioGen {
 
-  private final BuscarAluno buscarAluno;
+  private final BuscarProduto buscarProduto;
 
   @Inject
-  public RelatorioDeAlunoProuniGenGuice(BuscarAluno buscarAluno) {
-    this.buscarAluno = buscarAluno;
+  public RelatorioDeMateriaisLaboratorioGenGuice(BuscarProduto buscarProduto) {
+    this.buscarProduto = buscarProduto;
   }
 
   @Override
-  public RelatorioDeAlunoProuni gerarDe(Pedido pedido) {
+  public RelatorioDeMateriaisLaboratorio gerarDe(Pedido pedido) {
     return new Construtor(pedido).novaInstancia();
   }
 
   @Override
-  public List<RelatorioDeAlunoProuni> gerarDe(List<Pedido> pedidos) {
-    List<RelatorioDeAlunoProuni> res = Lists.transform(pedidos, new ToRelatorioDeAlunoProuni());
+  public List<RelatorioDeMateriaisLaboratorio> gerarDe(List<Pedido> pedidos) {
+    List<RelatorioDeMateriaisLaboratorio> res = Lists.transform(pedidos,
+        new ToRelatorioDeMateriaisLaboratorio());
     return ImmutableList.copyOf(res);
   }
 
-  private class ToRelatorioDeAlunoProuni implements Function<Pedido, RelatorioDeAlunoProuni> {
+  private class ToRelatorioDeMateriaisLaboratorio implements
+      Function<Pedido, RelatorioDeMateriaisLaboratorio> {
     @Override
-    public RelatorioDeAlunoProuni apply(Pedido input) {
+    public RelatorioDeMateriaisLaboratorio apply(Pedido input) {
       return gerarDe(input);
     }
   }
 
-  private class Construtor implements RelatorioDeAlunoProuni.Construtor {
+  private class Construtor implements RelatorioDeMateriaisLaboratorio.Construtor {
 
     private final Pedido pedido;
 
@@ -63,8 +65,8 @@ class RelatorioDeAlunoProuniGenGuice implements RelatorioDeAlunoProuniGen {
     }
 
     @Override
-    public RelatorioDeAlunoProuni novaInstancia() {
-      return new RelatorioDeAlunoProuniPojo(this);
+    public RelatorioDeMateriaisLaboratorio novaInstancia() {
+      return new RelatorioDeMateriaisLaboratorioPojo(this);
     }
 
     @Override
@@ -78,8 +80,8 @@ class RelatorioDeAlunoProuniGenGuice implements RelatorioDeAlunoProuniGen {
     }
 
     @Override
-    public List<Aluno> getAlunos() {
-      return buscarAluno.prouniPorSemestre(pedido.getPeriodo());
+    public List<MaterialLaboratorio> getMateriais() {
+      return buscarProduto.emFaltaPorLaboratorio();
     }
 
   }

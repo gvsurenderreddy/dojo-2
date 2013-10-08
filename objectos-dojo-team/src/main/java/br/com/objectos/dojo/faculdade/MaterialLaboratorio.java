@@ -1,9 +1,3 @@
-package br.com.objectos.dojo.faculdade;
-
-import java.util.List;
-
-import org.joda.time.DateTime;
-
 /*
  * Copyright 2013 Objectos, Fábrica de Software LTDA.
  *
@@ -19,27 +13,25 @@ import org.joda.time.DateTime;
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+package br.com.objectos.dojo.faculdade;
 
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
-public interface RelatorioDeAlunoProuni {
+public interface MaterialLaboratorio {
 
-  interface Construtor extends
-      br.com.objectos.comuns.base.Construtor<RelatorioDeAlunoProuni> {
+  interface Construtor extends br.com.objectos.comuns.base.Construtor<MaterialLaboratorio> {
 
-    Pedido getPedido();
-    DateTime getBaixa();
+    String getNome();
 
-    List<Aluno> getAlunos();
+    int getQuantidade();
 
   }
 
   int getId();
 
-  Pedido getPedido();
-  DateTime getBaixa();
+  String getNome();
 
-  List<Aluno> getAlunos();
+  int getQuantidade();
 
 }

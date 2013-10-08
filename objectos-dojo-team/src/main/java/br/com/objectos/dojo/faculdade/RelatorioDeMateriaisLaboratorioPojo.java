@@ -17,16 +17,42 @@ package br.com.objectos.dojo.faculdade;
 
 import java.util.List;
 
-import com.google.inject.ImplementedBy;
+import org.joda.time.DateTime;
 
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
-@ImplementedBy(RelatorioDeAlunoProuniGenGuice.class)
-public interface RelatorioDeAlunoProuniGen {
+public class RelatorioDeMateriaisLaboratorioPojo implements RelatorioDeMateriaisLaboratorio {
 
-  RelatorioDeAlunoProuni gerarDe(Pedido pedido);
+  private int id;
+  private final List<MaterialLaboratorio> materiais;
+  private final Pedido pedido;
+  private final DateTime baixa;
 
-  List<RelatorioDeAlunoProuni> gerarDe(List<Pedido> pedidos);
+  public RelatorioDeMateriaisLaboratorioPojo(Construtor construtor) {
+    materiais = construtor.getMateriais();
+    pedido = construtor.getPedido();
+    baixa = construtor.getBaixa();
+  }
+
+  @Override
+  public int getId() {
+    return id;
+  }
+
+  @Override
+  public Pedido getPedido() {
+    return pedido;
+  }
+
+  @Override
+  public DateTime getBaixa() {
+    return baixa;
+  }
+
+  @Override
+  public List<MaterialLaboratorio> getMateriais() {
+    return materiais;
+  }
 
 }

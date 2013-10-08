@@ -26,7 +26,7 @@ public class RelatorioDeAlunoProuniPojo implements RelatorioDeAlunoProuni {
 
   private int id;
   private final List<Aluno> alunos;
-  private final DateTime pedido;
+  private final Pedido pedido;
   private final DateTime baixa;
 
   public RelatorioDeAlunoProuniPojo(Construtor construtor) {
@@ -41,7 +41,7 @@ public class RelatorioDeAlunoProuniPojo implements RelatorioDeAlunoProuni {
   }
 
   @Override
-  public DateTime getPedido() {
+  public Pedido getPedido() {
     return pedido;
   }
 
