@@ -85,11 +85,11 @@ public class TesteDeRelatorioDeAlunoGen {
 
   private void novaDisciplina(Aluno aluno) {
     Disciplina disciplina = new ConstrutorDeDisciplinaFalso()
-        .aluno(aluno)
         .nome("Disciplina XPTO")
         .novaInstancia();
     sqlUnit.add(disciplina).insert();
   }
+
   private void novaFatura(Aluno aluno, LocalDate vencimento) {
     Fatura fatura = new ConstrutorDeFaturaFalso()
         .aluno(aluno)

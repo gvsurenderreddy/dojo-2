@@ -24,7 +24,7 @@ public interface Disciplina extends Insertable {
 
   interface Construtor extends br.com.objectos.comuns.base.Construtor<Disciplina> {
 
-    Aluno getAluno();
+    Professor getProfessor();
 
     String getNome();
 
@@ -32,7 +32,7 @@ public interface Disciplina extends Insertable {
 
   int getId();
 
-  Aluno getAluno();
+  Professor getProfessor();
 
   String getNome();
 
