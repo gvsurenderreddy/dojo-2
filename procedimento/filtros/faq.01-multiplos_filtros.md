@@ -16,7 +16,7 @@ disciplinas que o aluno esteja matriculado ou disciplinas que o aluno tenha depe
 Exemplo de uma `dropdown-list` utilizado para filtros:
 
 <form action="">
-	<select name="status">
+    <select name="status">
 		<option value="TODAS">Todas</option>
 		<option value="MATRICULADO">Matriculado/Cursando</option>
 		<option value="DEPENDENCIA">Com dependência	</option>
@@ -30,25 +30,25 @@ Antes tudo, é necessário implementar no teste referente a esse buscador, os te
 Na implementação do filtro dentro do método `newPager()`, teríamos a seguinte implementação:
 
 	private NativeSql newPager(String what, AlunoKey key, RequestWrapper wrapper) {
-		String nome = wrapper.param("nome");
-		                                                                                 
-		DisciplinaStatus status = wrapper.enumParam(DisciplinaStatus.class, "status");
+	  String nome = wrapper.param("nome");
+	                                                                                 
+	  DisciplinaStatus status = wrapper.enumParam(DisciplinaStatus.class, "status");
 
-		DisciplinaStatus statusMatriculado = status != null ? DisciplinaStatus.MATRICULADO : null;
+	  DisciplinaStatus statusMatriculado = status != null ? DisciplinaStatus.MATRICULADO : null;
 
-		DisciplinaStatus statusDependencia = status != null ? DisciplinaStatus.DEPENDENCIA : null;
+	  DisciplinaStatus statusDependencia = status != null ? DisciplinaStatus.DEPENDENCIA : null;
 
-		return newSelect(what)
+	  return newSelect(what)
 
-		.add("where DISCIPLINA.ALUNO_ID = ?").param(key.getId())
+	      .add("where DISCIPLINA.ALUNO_ID = ?").param(key.getId())
 
-		.addIf("and DISCIPLINA.MATRICULADO = ?").paramNotNull(statusMatriculado.booleanValue())
-		.addIf("and DISCIPLINA.DEPENDENCIA = ?").paramNotNull(statusDependencia.booleanValue())
+	      .addIf("and DISCIPLINA.MATRICULADO = ?").paramNotNull(statusMatriculado.booleanValue())
+	      .addIf("and DISCIPLINA.DEPENDENCIA = ?").paramNotNull(statusDependencia.booleanValue())
 
-		.addIf("and ALUNO.NOME like concat('%', ?, '%')").paramNotNull(nome)
+	      .addIf("and ALUNO.NOME like concat('%', ?, '%')").paramNotNull(nome)
 
-		.add("order by")
-		.add("ALUNO.NOME");
+	      .add("order by")
+	      .add("ALUNO.NOME");
 	}
 
 Para entender como será construída a consulta desse filtro, em tempo de execução será considerado: <br />
@@ -63,9 +63,9 @@ filtro não tenha sido incodado é atribuido `null`para o status, assim ao const
 O código		`DisciplinaStatus statusMatriculado = status != null ? DisciplinaStatus.MATRICULADO : null;` seria o mesmo que:
 
 	if(status != null) {
-	 status = DisciplinaStatus.MATRICULADO;
+	  status = DisciplinaStatus.MATRICULADO;
 	}else{
-	 status = null;
+	  status = null;
 	}
 
 Note então que o primeiro meio para resolver qual filtro será selecionado é utilizando o operador ternário para todas as combinações de filtros possíveis para esse filto.
@@ -131,22 +131,22 @@ Conseguimos definir um estado distindo para cada tipo do enum `DisciplinaStatus`
 Nesse momento sabemos quais estados de `DisciplinaStatus` terá o comportamento que esperamos em nosso filtro, para isso o método `newPager()` terá a estrutura abaixo:
 
 	private NativeSql newPager(String what, AlunoKey alunoKey, RequestWrapper wrapper) {
-		String nome = wrapper.param("nome");
+	  String nome = wrapper.param("nome");
 
-		DisciplinaStatus status = wrapper.enumParam(DisciplinaStatus.class, "status");
-		status = status != null ? status : DisciplinaStatus.TODAS;
+	  DisciplinaStatus status = wrapper.enumParam(DisciplinaStatus.class, "status");
+	  status = status != null ? status : DisciplinaStatus.TODAS;
 
-		return newSelect(what)
+	  return newSelect(what)
 
-		.add("where DISCIPLINA.ALUNO_ID = ?").param(alunoKey.getId())
+	      .add("where DISCIPLINA.ALUNO_ID = ?").param(alunoKey.getId())
 
-		.addIf("and DISCIPLINA.MATRICULADO = ?").paramNotNull(status.matriculadoValue())
-		.addIf("and DISCIPLINA.DEPENDENCIA = ?").paramNotNull(status.depedenciaValue())
+	      .addIf("and DISCIPLINA.MATRICULADO = ?").paramNotNull(status.matriculadoValue())
+	      .addIf("and DISCIPLINA.DEPENDENCIA = ?").paramNotNull(status.depedenciaValue())
 
-		.addIf("and ALUNO.NOME like concat('%', ?, '%')").paramNotNull(nome)
+	      .addIf("and ALUNO.NOME like concat('%', ?, '%')").paramNotNull(nome)
 
-		.add("order by")
-		.add("ALUNO.NOME");
+	      .add("order by")
+	      .add("ALUNO.NOME");
 	}
 
 Feito isso, temos apenas um operador ternário chegando se a variável `status` não é `null`, caso seja, o valor padrão é `DisciplinaStatus.TODAS`, caso contrário

@@ -18,9 +18,9 @@ de dados SQL.
 ## Sintaxe:
 
 
-		select COLUNAS, FUNÇÃO_DE_GUPO
-		from NOME_TABELA
-		group by NOME_COLUNA;
+	select COLUNAS, FUNÇÃO_DE_GUPO
+	from NOME_TABELA
+	group by NOME_COLUNA;
 
 Onde: 
 Colunas: é lista das colunas que vai ser agrupadas. 
@@ -35,38 +35,38 @@ Para o nosso exemplo, usaremos as tabelas ALUNO e FATURA:
 
 ALUNO
 
-		+--------+-------------+
-		| Coluna | Tipo        |
-		+--------+-------------+
-		| ID     | int         |
-		| nome   | varchar     |
-		+--------+-------------+
+	+--------+-------------+
+	| Coluna | Tipo        |
+	+--------+-------------+
+	| ID     | int         |
+	| nome   | varchar     |
+	+--------+-------------+
 
 
 FATURA:
 
-		+------------+---------+
-		| Coluna     | Tipo    |
-		+------------+---------+
-		| ID         | int     |
-		| ALUNO_ID   | int     |
-		| VALOR      | double  |
-		| VENCIMENTO | date    |
-		+------------+---------+
+	+------------+---------+
+	| Coluna     | Tipo    |
+	+------------+---------+
+	| ID         | int     |
+	| ALUNO_ID   | int     |
+	| VALOR      | double  |
+	| VENCIMENTO | date    |
+	+------------+---------+
 
 
 Temos os seguintes nomes cadastrados na tabela `ALUNO`: AlunoA, AlunoB e AlunoC.
 Nesse momento queremos saber quantas faturas(vencidas ou não) esses alunos tem cadastradas. Para isso usaremos a consulta abaixo:
 
 
-		select ALUNO.NOME , COUNT(*) as FATURAS
-		from  FACULDADE.FATURA
+	select ALUNO.NOME , COUNT(*) as FATURAS
+	from  FACULDADE.FATURA
 
-		join ALUNO
-		on FATURA.ALUNO_ID  = ALUNO.ID
+	join ALUNO
+	on FATURA.ALUNO_ID  = ALUNO.ID
 
-		group by 
-		ALUNO.ID
+	group by 
+	ALUNO.ID
 
 __Nota__: quando for manipular consultas SQL, use sempre o caminho absoluto para se referir a uma tabela ou coluna. No comando `select`
 quando for especificar a tabela em `from` insira também o nome do banco de dados antes do nome da tabela, por exemplo:
@@ -77,85 +77,85 @@ tabelas distindas usadas na mesma consulta terem nome de colunas iguais.
 
 Nosso resultado:
 
-		+---------+---------+
-		| NOME    | FATURAS |
-		+---------+---------+
-		| AlunoA  |       4 |
-		| AlunoB  |       3 |
-		| AlunoC  |       3 |
-		+---------+---------+
+	+---------+---------+
+	| NOME    | FATURAS |
+	+---------+---------+
+	| AlunoA  |       4 |
+	| AlunoB  |       3 |
+	| AlunoC  |       3 |
+	+---------+---------+
 
 
 Agora precisamos saber do número de faturas pertencentes a cada aluno e a soma total das faturas de cada aluno:
 
-		select ALUNO.NOME ,  COUNT(*) as FATURAS,  SUM(FATURA.VALOR) as VALOR_TOTAL
-		from  FACULDADE.
+	select ALUNO.NOME ,  COUNT(*) as FATURAS,  SUM(FATURA.VALOR) as VALOR_TOTAL
+	from  FACULDADE.
 
-		join ALUNO
-		on FATURA.ALUNO_ID  = ALUNO.ID
+	join ALUNO
+	on FATURA.ALUNO_ID  = ALUNO.ID
 
-		group by 
-		ALUNO.ID
+	group by 
+	ALUNO.ID
 
 
 Resultado: 
 
-		+---------+---------+-------------+
-		| NOME    | FATURAS | VALOR_TOTAL |
-		+---------+---------+-------------+
-		| AlunoA  |       4 |      2082.1 |
-		| AlunoB  |       3 |      1681.6 |
-		| AlunoC  |       3 |      1581.6 |
-		+---------+---------+-------------+
+	+---------+---------+-------------+
+	| NOME    | FATURAS | VALOR_TOTAL |
+	+---------+---------+-------------+
+	| AlunoA  |       4 |      2082.1 |
+	| AlunoB  |       3 |      1681.6 |
+	| AlunoC  |       3 |      1581.6 |
+	+---------+---------+-------------+
 
 
 ## GROUP BY com a cláusula WHERE
 Caso quisermos apenas o resultado de um determinado aluno, utilizamos a cláusula `where` antes
 do `group by`:
 
-		select ALUNO.* ,  COUNT(*) as FATURAS,  SUM(FATURA.VALOR) as VALOR_TOTAL
-		from  FACULDADE.FATURA
+	select ALUNO.* ,  COUNT(*) as FATURAS,  SUM(FATURA.VALOR) as VALOR_TOTAL
+	from  FACULDADE.FATURA
 
-		join ALUNO
-		on FATURA.ALUNO_ID  = ALUNO.ID
+	join ALUNO
+	on FATURA.ALUNO_ID  = ALUNO.ID
 
-		where ALUNO.ID = 1
-		and  FATURA.VENCIMENTO < '2013-09-13'
+	where ALUNO.ID = 1
+	and  FATURA.VENCIMENTO < '2013-09-13'
 
-		group by 
-		ALUNO.ID
+	group by 
+	ALUNO.ID
 
 
 Resultado:
 
-		+----+---------+---------+-------------+
-		| ID | NOME    | FATURAS | VALOR_TOTAL |
-		+----+---------+---------+-------------+
-		|  1 | AlunoA  |       2 |      1081.1 |
-		+----+---------+---------+-------------+ 
+	+----+---------+---------+-------------+
+	| ID | NOME    | FATURAS | VALOR_TOTAL |
+	+----+---------+---------+-------------+
+	|  1 | AlunoA  |       2 |      1081.1 |
+	+----+---------+---------+-------------+ 
 
 
 ##GROUP BY com a cláusula ORDER BY
 Podemos também ordernar o resultado agrupado de uma consulta, para isso usamos a cláusula `order by` depois de `group by`.
 
-		select ALUNO.NOME ,  COUNT(*) as FATURAS,  SUM(VALOR) as VALOR_TOTAL
-		from  FACULDADE.FATURA
+	select ALUNO.NOME ,  COUNT(*) as FATURAS,  SUM(VALOR) as VALOR_TOTAL
+	from  FACULDADE.FATURA
 
-		join ALUNO
-		on FATURA.ALUNO_ID  = ALUNO.ID
+	join ALUNO
+	on FATURA.ALUNO_ID  = ALUNO.ID
 
-		group by 
-		ALUNO.ID
+	group by 
+	ALUNO.ID
 
-		order by
-		FATURA.VENCIMENTO
+	order by
+	FATURA.VENCIMENTO
 
 Resultado:
 
-		+---------+---------+-------------+
-		| NOME    | FATURAS | VALOR_TOTAL |
-		+---------+---------+-------------+
-		| AlunoB  |       3 |      1681.6 |
-		| AlunoC  |       3 |      1581.6 |
-		| AlunoA  |       4 |      2082.1 |
-		+---------+---------+-------------+
+	+---------+---------+-------------+
+	| NOME    | FATURAS | VALOR_TOTAL |
+	+---------+---------+-------------+
+	| AlunoB  |       3 |      1681.6 |
+	| AlunoC  |       3 |      1581.6 |
+	| AlunoA  |       4 |      2082.1 |
+	+---------+---------+-------------+

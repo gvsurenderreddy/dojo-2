@@ -14,15 +14,15 @@ outof: 4
 
 Tomanos como exemplo a entidade `Logradouro` abaixo:
 
-	public interface Logradouro {
-
-	 int getId();
-
-	 CEP getCEP();
-
-	 String getLogradouro();
-
-	}
+    public interface Logradouro {
+    
+      int getId();
+    
+      CEP getCEP();
+    
+      String getLogradouro();
+    
+    }
 
 Nesse caso o CEP não pode se repetir, pois um CEP não pode pertencer a mais de um logradouro.  
 _Obs: Um logradouro pode ter mais de um CEP mas com sufixos diferentes, em nosso exemplo estamos trantando o CEP como um código único._
@@ -30,16 +30,16 @@ _Obs: Um logradouro pode ter mais de um CEP mas com sufixos diferentes, em nosso
 ## Erros comuns
 Ao definirmos um campo como `UNIQUE` de uma tabela é comum cometermos alguns erros, especificamente ao definir duplas de colunas como `UNIQUE`, por exemplo:
 
-	create table LOGRADOURO (
-
-	 ID int not null auto_increment,
-	 CEP char(8) not null,
-	 NOME varchar(100) not null,
-
- 	 primary key (ID),
-	 unique(CEP, NOME)
-
-	) engine=InnoDB default charset=utf8
+    create table LOGRADOURO (
+    
+     ID int not null auto_increment,
+     CEP char(8) not null,
+     NOME varchar(100) not null,
+    
+     primary key (ID),
+     unique(CEP, NOME)
+    
+    ) engine=InnoDB default charset=utf8
 
 A idea foi querer definir a unicidade entre em um CEP e o nome do logradouro. Só que com essa condição será permitido inserirmos registros na tabela tais como:
 
