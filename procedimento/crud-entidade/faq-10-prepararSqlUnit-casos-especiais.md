@@ -6,8 +6,7 @@ user: "cpelissari"
 date: 2013-10-01
 published: true 
 partof: faq-crud-entidade
-num: 8
-outof: 8
+num: 9
 ---
 
 ##Introdução

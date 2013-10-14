@@ -7,7 +7,6 @@ date: 2013-09-30
 published: true 
 partof: faq-crud-entidade
 num: 8
-outof: 8
 ---
 
 ## PRINCIPAIS ERROS DO FLYWAY E SUAS POSSÍVEIS SOLUÇÕES
