@@ -27,8 +27,8 @@ import org.testng.annotations.Test;
 
 import br.com.objectos.comuns.testing.jdbc.SqlUnit;
 import br.com.objectos.dojo.ModuloDeTesteObjectosDojo;
-import br.com.objectos.dojo.cpetreanu.Funcionario;
-import br.com.objectos.dojo.cpetreanu.Superior;
+import br.com.objectos.dojo.empresa.Funcionario;
+import br.com.objectos.dojo.empresa.Superior;
 
 import com.google.common.base.Optional;
 import com.google.inject.Inject;

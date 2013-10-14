@@ -13,7 +13,7 @@
 * License for the specific language governing permissions and limitations under
 * the License.
 */
-package br.com.objectos.dojo.cpetreanu;
+package br.com.objectos.dojo.empresa;
 
 import java.sql.ResultSet;
 
@@ -24,15 +24,15 @@ import br.com.objectos.comuns.relational.search.ResultSetLoader;
 /**
  * @author caio.petreanu@objectos.com.br (Caio C. Petreanu)
  */
-public class FuncionarioLoaderSupervisor implements ResultSetLoader<Superior> {
+public class FuncionarioLoaderDiretor implements ResultSetLoader<Diretor> {
 
   @Override
-  public Superior load(ResultSet resultSet) {
+  public Diretor load(ResultSet resultSet) {
     ResultSetWrapper rs = new ResultSetWrapper(resultSet);
     return new Loader(rs).novaInstancia();
   }
 
-  private static interface IConstrutor extends Construtor<Superior> {
+  private static interface IConstrutor extends Construtor<Diretor> {
     int getId();
   }
 
@@ -45,26 +45,27 @@ public class FuncionarioLoaderSupervisor implements ResultSetLoader<Superior> {
     }
 
     @Override
-    public Superior novaInstancia() {
-      return new SuperiorImpl(this);
+    public Diretor novaInstancia() {
+      return new DiretorImpl(this);
     }
 
     @Override
     public int getId() {
-      return rs.getInt("FUNCIONARIO.SUPERIOR_ID");
+      return rs.getInt("FUNCIONARIO.DIRETOR_ID");
     }
 
   }
 
-  private class SuperiorImpl extends SuperiorVazio {
+  private class DiretorImpl extends DiretorVazio {
 
     private final int id;
 
-    public SuperiorImpl(IConstrutor construtor) {
+    public DiretorImpl(IConstrutor construtor) {
       this.id = construtor.getId();
     }
+
     @Override
-    public Integer getId() {
+    public int getId() {
       return id;
     }
 

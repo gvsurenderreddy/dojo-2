@@ -23,6 +23,8 @@ import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
 import br.com.objectos.comuns.testing.dbunit.DBUnit;
+import br.com.objectos.dojo.empresa.BuscarDiretor;
+import br.com.objectos.dojo.empresa.Diretor;
 
 import com.google.inject.Inject;
 

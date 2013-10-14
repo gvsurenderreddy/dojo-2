@@ -13,38 +13,21 @@
 * License for the specific language governing permissions and limitations under
 * the License.
 */
-package br.com.objectos.dojo.cpetreanu;
+package br.com.objectos.dojo.empresa;
 
-import br.com.objectos.comuns.relational.jdbc.NativeSql;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import com.google.inject.Provider;
+import br.com.objectos.comuns.relational.search.ResultSetLoader;
 
 /**
  * @author caio.petreanu@objectos.com.br (Caio C. Petreanu)
  */
-class BuscarDiretorGuice implements BuscarDiretor {
-
-  private final Provider<NativeSql> sqlProvider;
-
-  public BuscarDiretorGuice(Provider<NativeSql> sqlProvider) {
-    this.sqlProvider = sqlProvider;
-  }
+public class SuperiorLoader implements ResultSetLoader<Superior> {
 
   @Override
-  public Diretor porId(int id) {
-    return newSelect()
-
-        .add("where DIRETOR.ID = ?").param(id)
-
-        .single();
+  public Superior load(ResultSet resultSet) throws SQLException {
+    return null;
   }
 
-  private NativeSql newSelect() {
-    return sqlProvider.get()
-
-        .add("select *")
-        .add("from DATABASE.DIRETOR as DIRETOR")
-
-        .andLoadWith(new DiretorLoader());
-  }
 }

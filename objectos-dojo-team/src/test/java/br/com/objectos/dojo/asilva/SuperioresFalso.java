@@ -27,7 +27,7 @@ import org.joda.time.LocalDate;
 import br.com.objectos.comuns.testing.jdbc.EntitySet;
 import br.com.objectos.comuns.testing.jdbc.SqlUnit;
 import br.com.objectos.comuns.testing.jdbc.Truncate;
-import br.com.objectos.dojo.cpetreanu.Superior;
+import br.com.objectos.dojo.empresa.Superior;
 
 import com.google.common.collect.ImmutableList;
 

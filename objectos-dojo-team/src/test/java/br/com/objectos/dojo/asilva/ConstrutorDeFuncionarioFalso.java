@@ -18,9 +18,9 @@ package br.com.objectos.dojo.asilva;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-import br.com.objectos.dojo.cpetreanu.Diretor;
-import br.com.objectos.dojo.cpetreanu.Funcionario;
-import br.com.objectos.dojo.cpetreanu.Superior;
+import br.com.objectos.dojo.empresa.Diretor;
+import br.com.objectos.dojo.empresa.Funcionario;
+import br.com.objectos.dojo.empresa.Superior;
 
 /**
  * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
@@ -37,7 +37,7 @@ public class ConstrutorDeFuncionarioFalso implements Funcionario.Construtor {
 
   @Override
   public Funcionario novaInstancia() {
-    return new br.com.objectos.dojo.cpetreanu.FuncionarioJdbc(this);
+    return new br.com.objectos.dojo.empresa.FuncionarioJdbc(this);
   }
 
   public ConstrutorDeFuncionarioFalso nome(String nome) {

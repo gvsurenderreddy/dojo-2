@@ -15,7 +15,7 @@
  */
 package br.com.objectos.dojo.asilva;
 
-import br.com.objectos.dojo.cpetreanu.Funcionario;
+import br.com.objectos.dojo.empresa.Funcionario;
 
 import com.google.common.base.Function;
 import com.google.common.base.Objects;

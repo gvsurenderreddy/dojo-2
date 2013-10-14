@@ -13,28 +13,38 @@
 * License for the specific language governing permissions and limitations under
 * the License.
 */
-package br.com.objectos.dojo.cpetreanu;
+package br.com.objectos.dojo.empresa;
 
-import br.com.objectos.comuns.relational.jdbc.Insert;
+import br.com.objectos.comuns.relational.jdbc.NativeSql;
+
+import com.google.inject.Provider;
 
 /**
  * @author caio.petreanu@objectos.com.br (Caio C. Petreanu)
  */
-public class DiretorVazio implements Diretor {
+class BuscarDiretorGuice implements BuscarDiretor {
 
-  @Override
-  public int getId() {
-    throw new UnsupportedOperationException();
+  private final Provider<NativeSql> sqlProvider;
+
+  public BuscarDiretorGuice(Provider<NativeSql> sqlProvider) {
+    this.sqlProvider = sqlProvider;
   }
 
   @Override
-  public String getNome() {
-    throw new UnsupportedOperationException();
+  public Diretor porId(int id) {
+    return newSelect()
+
+        .add("where DIRETOR.ID = ?").param(id)
+
+        .single();
   }
 
-  @Override
-  public Insert getInsert() {
-    throw new UnsupportedOperationException();
-  }
+  private NativeSql newSelect() {
+    return sqlProvider.get()
 
+        .add("select *")
+        .add("from DATABASE.DIRETOR as DIRETOR")
+
+        .andLoadWith(new DiretorLoader());
+  }
 }

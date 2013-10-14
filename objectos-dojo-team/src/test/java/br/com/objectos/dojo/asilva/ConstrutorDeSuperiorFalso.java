@@ -18,9 +18,9 @@ package br.com.objectos.dojo.asilva;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-import br.com.objectos.dojo.cpetreanu.Diretor;
-import br.com.objectos.dojo.cpetreanu.Superior;
-import br.com.objectos.dojo.cpetreanu.SuperiorJdbc;
+import br.com.objectos.dojo.empresa.Diretor;
+import br.com.objectos.dojo.empresa.Superior;
+import br.com.objectos.dojo.empresa.SuperiorJdbc;
 
 /**
  * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)

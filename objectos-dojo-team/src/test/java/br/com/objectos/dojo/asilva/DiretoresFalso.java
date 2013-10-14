@@ -20,7 +20,7 @@ import java.util.List;
 import br.com.objectos.comuns.testing.jdbc.EntitySet;
 import br.com.objectos.comuns.testing.jdbc.SqlUnit;
 import br.com.objectos.comuns.testing.jdbc.Truncate;
-import br.com.objectos.dojo.cpetreanu.Diretor;
+import br.com.objectos.dojo.empresa.Diretor;
 
 import com.google.common.collect.ImmutableList;
 

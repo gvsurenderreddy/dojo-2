@@ -13,21 +13,16 @@
 * License for the specific language governing permissions and limitations under
 * the License.
 */
-package br.com.objectos.dojo.cpetreanu;
+package br.com.objectos.dojo.empresa;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import br.com.objectos.comuns.relational.search.ResultSetLoader;
+import com.google.inject.ImplementedBy;
 
 /**
  * @author caio.petreanu@objectos.com.br (Caio C. Petreanu)
  */
-public class DiretorLoader implements ResultSetLoader<Diretor> {
+@ImplementedBy(BuscarSuperiorGuice.class)
+public interface BuscarSuperior {
 
-  @Override
-  public Diretor load(ResultSet resultSet) throws SQLException {
-    return null;
-  }
+  Superior porId(int id);
 
 }

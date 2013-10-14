@@ -13,16 +13,39 @@
 * License for the specific language governing permissions and limitations under
 * the License.
 */
-package br.com.objectos.dojo.cpetreanu;
+package br.com.objectos.dojo.empresa;
 
-import com.google.inject.ImplementedBy;
+import br.com.objectos.comuns.relational.jdbc.NativeSql;
+
+import com.google.inject.Provider;
 
 /**
  * @author caio.petreanu@objectos.com.br (Caio C. Petreanu)
  */
-@ImplementedBy(BuscarSuperiorGuice.class)
-public interface BuscarSuperior {
+public class BuscarSuperiorGuice implements BuscarSuperior {
 
-  Superior porId(int id);
+  private final Provider<NativeSql> sqlProvider;
+
+  public BuscarSuperiorGuice(Provider<NativeSql> sqlProvider) {
+    this.sqlProvider = sqlProvider;
+  }
+
+  @Override
+  public Superior porId(int id) {
+    return newSelect()
+
+        .add("where SUPERIOR.ID = ?").param(id)
+
+        .single();
+  }
+
+  private NativeSql newSelect() {
+    return sqlProvider.get()
+
+        .add("select *")
+        .add("from DATABASE.SUPERIOR")
+
+        .andLoadWith(new SuperiorLoader());
+  }
 
 }

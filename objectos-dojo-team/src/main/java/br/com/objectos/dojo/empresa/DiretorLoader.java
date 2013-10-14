@@ -13,7 +13,7 @@
 * License for the specific language governing permissions and limitations under
 * the License.
 */
-package br.com.objectos.dojo.cpetreanu;
+package br.com.objectos.dojo.empresa;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,10 +23,10 @@ import br.com.objectos.comuns.relational.search.ResultSetLoader;
 /**
  * @author caio.petreanu@objectos.com.br (Caio C. Petreanu)
  */
-public class SuperiorLoader implements ResultSetLoader<Superior> {
+public class DiretorLoader implements ResultSetLoader<Diretor> {
 
   @Override
-  public Superior load(ResultSet resultSet) throws SQLException {
+  public Diretor load(ResultSet resultSet) throws SQLException {
     return null;
   }
 

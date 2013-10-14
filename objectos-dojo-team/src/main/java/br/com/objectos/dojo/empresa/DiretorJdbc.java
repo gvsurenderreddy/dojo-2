@@ -13,13 +13,10 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.cpetreanu;
+package br.com.objectos.dojo.empresa;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 import br.com.objectos.comuns.relational.jdbc.GeneratedKeyCallback;
 import br.com.objectos.comuns.relational.jdbc.Insert;
@@ -27,23 +24,13 @@ import br.com.objectos.comuns.relational.jdbc.Insert;
 /**
  * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
  */
-public class SuperiorJdbc implements Superior {
+public class DiretorJdbc implements Diretor {
 
   private int id;
   private final String nome;
-  private final String matricula;
-  private final LocalDate dataNascimento;
-  private final DateTime admissao;
-  private final DateTime demissao;
-  private final Diretor diretor;
 
-  public SuperiorJdbc(Construtor construtor) {
+  public DiretorJdbc(Construtor construtor) {
     nome = construtor.getNome();
-    matricula = construtor.getMatricula();
-    dataNascimento = construtor.getDataNascimento();
-    admissao = construtor.getAdmissao();
-    demissao = construtor.getDemissao();
-    diretor = construtor.getDiretor();
   }
 
   @Override
@@ -51,11 +38,6 @@ public class SuperiorJdbc implements Superior {
     return Insert.into("DATABASE.SUPERIOR")
 
         .value("NOME", nome)
-        .value("MATRICULA", matricula)
-        .value("DATA_NASCIMENTO", dataNascimento)
-        .value("ADMISSAO", admissao)
-        .value("DEMISSAO", dataNascimento)
-        .value("DIRETOR", diretor.getId())
 
         .onGeneratedKey(new GeneratedKeyCallback() {
 
@@ -67,38 +49,13 @@ public class SuperiorJdbc implements Superior {
   }
 
   @Override
-  public Integer getId() {
+  public int getId() {
     return id;
   }
 
   @Override
   public String getNome() {
     return nome;
-  }
-
-  @Override
-  public String getMatricula() {
-    return matricula;
-  }
-
-  @Override
-  public LocalDate getDataNascimento() {
-    return dataNascimento;
-  }
-
-  @Override
-  public DateTime getAdmissao() {
-    return admissao;
-  }
-
-  @Override
-  public DateTime getDemissao() {
-    return demissao;
-  }
-
-  @Override
-  public Diretor getDiretor() {
-    return diretor;
   }
 
 }

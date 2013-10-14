@@ -28,6 +28,11 @@ import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
 import br.com.objectos.comuns.testing.dbunit.DBUnit;
+import br.com.objectos.dojo.empresa.BuscarFuncionario;
+import br.com.objectos.dojo.empresa.BuscarSuperior;
+import br.com.objectos.dojo.empresa.Diretor;
+import br.com.objectos.dojo.empresa.Funcionario;
+import br.com.objectos.dojo.empresa.Superior;
 
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;

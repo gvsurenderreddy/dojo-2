@@ -13,23 +13,52 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.cpetreanu;
+package br.com.objectos.dojo.empresa;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import br.com.objectos.comuns.relational.jdbc.Insertable;
 
 /**
  * @author caio.petreanu@objectos.com.br (Caio Petreanu)
  */
-public interface Diretor extends Insertable {
+@JsonSerialize(using = FuncionarioSerializer.class)
+public interface Funcionario extends Insertable {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<Diretor> {
+  interface Construtor extends br.com.objectos.comuns.base.Construtor<Funcionario> {
 
     String getNome();
+
+    String getMatricula();
+
+    LocalDate getDataNascimento();
+
+    DateTime getDataAdmissao();
+
+    DateTime getDataDemissao();
+
+    Superior getSuperior();
+
+    Diretor getDiretor();
 
   }
 
   int getId();
 
   String getNome();
+
+  String getMatricula();
+
+  LocalDate getDataNascimento();
+
+  DateTime getDataAdmissao();
+
+  DateTime getDataDemissao();
+
+  Superior getSuperior();
+
+  Diretor getDiretor();
 
 }

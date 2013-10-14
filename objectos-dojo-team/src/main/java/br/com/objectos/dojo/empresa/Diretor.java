@@ -13,31 +13,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.cpetreanu;
+package br.com.objectos.dojo.empresa;
 
-import java.util.Iterator;
-import java.util.List;
-
-import br.com.objectos.dojo.asilva.SuperiorKey;
-
-import com.google.inject.ImplementedBy;
+import br.com.objectos.comuns.relational.jdbc.Insertable;
 
 /**
  * @author caio.petreanu@objectos.com.br (Caio Petreanu)
  */
-@ImplementedBy(BuscarFuncionarioGuice.class)
-public interface BuscarFuncionario {
+public interface Diretor extends Insertable {
 
-  Funcionario porId(int id);
+  interface Construtor extends br.com.objectos.comuns.base.Construtor<Diretor> {
 
-  Funcionario porMatricula(String matricula);
+    String getNome();
 
-  List<Funcionario> porSuperior(Superior superior);
+  }
 
-  Iterator<Funcionario> iterarPorFuncionario(Superior superior);
+  int getId();
 
-  Funcionario porDiretor(Diretor diretor);
-
-  List<Funcionario> porSuperiorKey(SuperiorKey key);
+  String getNome();
 
 }

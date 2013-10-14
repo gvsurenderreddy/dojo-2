@@ -15,8 +15,8 @@
  */
 package br.com.objectos.dojo.asilva;
 
-import br.com.objectos.dojo.cpetreanu.Diretor;
-import br.com.objectos.dojo.cpetreanu.DiretorJdbc;
+import br.com.objectos.dojo.empresa.Diretor;
+import br.com.objectos.dojo.empresa.DiretorJdbc;
 
 /**
  * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
