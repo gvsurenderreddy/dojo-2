@@ -13,23 +13,31 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.asilva;
-
-import java.util.List;
+package br.com.objectos.dojo.empresa;
 
 import br.com.objectos.dojo.empresa.Funcionario;
 
-import com.google.common.base.Optional;
-import com.google.inject.ImplementedBy;
+import com.google.common.base.Function;
+import com.google.common.base.Objects;
 
 /**
+ * 
  * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
  */
-@ImplementedBy(CacheDeFuncionarioGuice.class)
-public interface CacheDeFuncionario {
+class FuncionarioToString implements Function<Funcionario, String> {
 
-  Optional<Funcionario> porId(int id);
-
-  List<Funcionario> porSuperiorKey(SuperiorKey superiorKey);
+  @Override
+  public String apply(Funcionario input) {
+    return Objects.toStringHelper(input)
+        .addValue(input.getId())
+        .addValue(input.getNome())
+        .addValue(input.getMatricula())
+        .addValue(input.getDataNascimento())
+        .addValue(input.getDataAdmissao())
+        .addValue(input.getDataDemissao())
+        .addValue(input.getSuperior())
+        .addValue(input.getDiretor())
+        .toString();
+  }
 
 }
