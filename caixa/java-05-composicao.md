@@ -15,45 +15,45 @@ Ao testar uma classe que use composição, também é possível criar objetos fa
 ## Exemplo
 Veja o exemplo abaixo da interface `Disciplina`:
 
-	public interface DisciplinaUI {
-
-	 interface Construtor extends br.com.objectos.comuns.base.Construtor<DisciplinaUI> {
-
-	  Professor getProfessor();
-
-	  String getNome();
-
-	 }
-
-	 int getId();
-
-	 Professor getProfessor();
-
-	 String getNome();
-
-	}
+    public interface DisciplinaUI {
+    
+      interface Construtor extends br.com.objectos.comuns.base.Construtor<DisciplinaUI> {
+    
+        Professor getProfessor();
+    
+        String getNome();
+    
+      }
+    
+      int getId();
+    
+      Professor getProfessor();
+    
+      String getNome();
+    
+    }
 
 Em determinada situação em nosso sistema tornou-se desnecessário `Disciplina` ter uma instância de `Aluno` com todos seus atributos, e sim somente o nome do aluno.
 Nesse caso não podemos simplesmente refatorar a entidade `Discplina` para que isso aconteça, então decidimos criar outra classe para representar o que precisamos, que vai ser composta
 através de uma instância de `DISCIPLINA`, então chegamos ao seguinte código:
 
-	public interface DisciplinaUI {
-
-	 interface Construtor extends br.com.objectos.comuns.base.Construtor<DisciplinaUI> {
-
-	  String getProfessor();
-
-	  String getNome();
-
-	 }
-
-	 int getId();
-
-	 String getProfessor();
-
-	 String getNome();
-
-	}
+    public interface DisciplinaUI {
+    
+      interface Construtor extends br.com.objectos.comuns.base.Construtor<DisciplinaUI> {
+    
+        String getProfessor();
+    
+        String getNome();
+    
+      }
+    
+      int getId();
+    
+      String getProfessor();
+    
+      String getNome();
+    
+    }
 
 ## Teste e objetos falsos de `DisciplinaUI`
 Ao criarmos o teste para essa classe, notaremos que vamos precisar criar a classe `DisciplinasUIFalso` para criarmos os objetos falsos necessários. 

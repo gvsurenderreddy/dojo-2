@@ -23,15 +23,15 @@ feita a implementação com a segunda opção.
 
 A ideia é o método acima chamar o método `gerarDe(Aluno aluno)`, então podemos implementá-lo assim:
 
-		public List<RelatorioDeAluno> gerarDe(List<Aluno> alunos) {
-			List<RelatorioDeAluno> relatorios = newArrayList();
-			for (Aluno aluno : alunos) {
-			RelatorioDeAluno relatorioDeAluno = gerarDe(aluno);
-			relatorios.add(relatorioDeAluno);
-			}
+	public List<RelatorioDeAluno> gerarDe(List<Aluno> alunos) {
+	  List<RelatorioDeAluno> relatorios = newArrayList();
+	  for (Aluno aluno : alunos) {
+	    RelatorioDeAluno relatorioDeAluno = gerarDe(aluno);
+	    relatorios.add(relatorioDeAluno);
+	  }
 
-			return relatorios;
-		}
+	  return relatorios;
+	}
 
 Utizando funções temos outra alternativa para implementar esse novo método. Funções entre outros usos, nos permite transformar uma coleção de objetos X,
 em objetos Y. No nosso caso, precisamos transformar uma lista de `Aluno` para uma lista de `RelatorioDeAluno`.   
@@ -41,28 +41,28 @@ para trabalhar com programação funcional em Java.
 
 Utilizando funções, podemos obter o mesmo resultado com o seguinte código:
 
-		public List<RelatorioDeAluno> gerarDe(List<Aluno> alunos) {
-			return Lists.transform(alunos, new ToRelatorioDeAluno());
-		}
+	public List<RelatorioDeAluno> gerarDe(List<Aluno> alunos) {
+	  return Lists.transform(alunos, new ToRelatorioDeAluno());
+	}
 
 Abaixo a função que estamos passamos para o método `transform()`:
 
-		private class ToRelatorioDeAluno implements Function<Aluno, RelatorioDeAluno> {
-			@Override
-			public RelatorioDeAluno apply(Aluno input) {
-				return gerarDe(input);
-			}
-		}
+	private class ToRelatorioDeAluno implements Function<Aluno, RelatorioDeAluno> {
+	  @Override
+	  public RelatorioDeAluno apply(Aluno input) {
+	    return gerarDe(input);
+	  }
+	}
 
 Na implementaçao do método usando função, chamamos o método `transform()` da classe `List`, para fazer a transformação que precisamos. Essa
 transformação ocorrerá de fato quando for necessário utilizarmos algum elemento da lista de `RelatorioDeAluno`, pois a função aplicada é
 `lazyly`. Para evitarmos o carregamento lazy da lista, é necessário copiar a lista retornada para uma nova lista, isso pode ser feito usando 
 o método `copyOf()` da classe [`ImmutableList`](http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/com/google/common/collect/ImmutableList.html).
 
-		public List<RelatorioDeAluno> gerarDe(List<Aluno> alunos) {
-			List<RelatorioDeAluno>  res = Lists.transform(alunos, new ToRelatorioDeAluno()); 
-			return ImmutableList.copyOf(res);
-		}
+	public List<RelatorioDeAluno> gerarDe(List<Aluno> alunos) {
+	  List<RelatorioDeAluno>  res = Lists.transform(alunos, new ToRelatorioDeAluno()); 
+	  return ImmutableList.copyOf(res);
+	}
 
 Com isso garantimos que quando o método `gerarDe()` for chamado a função será aplicada no mesmo instante.
 

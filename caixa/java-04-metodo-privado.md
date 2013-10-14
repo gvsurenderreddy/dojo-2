@@ -19,27 +19,27 @@ da mesma classe, que basicamente fazem a mesma tarefa.
 Imagine que devemos gerar um relatório de faturas de um determinado aluno, nesse relatório deve conter listas de faturas abertas,
 vencidas e pagas. Esse relatório poderia ser representando pela interface abaixo:
 
-	public interface RelatorioDeAluno {
+    public interface RelatorioDeAluno {
 
-		interface Construtor extends br.com.objectos.comuns.base.Construtor<RelatorioDeAluno> {
+	  interface Construtor extends br.com.objectos.comuns.base.Construtor<RelatorioDeAluno> {
 
-			String getNomeDoAluno();
+	    String getNomeDoAluno();
 
-			List<Fatura> getFaturasEmAberto();
+	    List<Fatura> getFaturasEmAberto();
 
-			List<Fatura> getFaturasVencidas();
+	    List<Fatura> getFaturasVencidas();
 
-			List<Fatura> getFaturasPagas();
+	    List<Fatura> getFaturasPagas();
 
-		}
+	  }
 
-		String getNomeDoAluno();
+	  String getNomeDoAluno();
 
-		List<Fatura> getFaturasEmAberto();
+	  List<Fatura> getFaturasEmAberto();
 
-		List<Fatura> getFaturasVencidas();
+	  List<Fatura> getFaturasVencidas();
 
-		List<Fatura> getFaturasPagas();
+	  List<Fatura> getFaturasPagas();
 
 	}
 
@@ -49,41 +49,41 @@ A modelagem acima é apenas para efeitos didádicos. Para gerar essas faturas te
 
 	private class Construtor implements RelatorioDeAluno.Construtor {
 
-		private final Aluno aluno;
-
-		public Construtor(Aluno aluno) {
-			this.aluno = aluno;
-		}
-
-		@Override
-		public RelatorioDeAluno novaInstancia() {
-			return new RelatorioDeAlunoPojo(this);
-		}
-
-		@Override
-		public String getNomeDoAluno() {
-			return aluno.getNome();
-		}
-
-		@Override
-		public List<Fatura> getFaturasEmAberto() {
-			List<Fatura> faturas = buscarFatura.porStatus(FaturaStatus.ABERTA, aluno);
-			return faturas;
-		}
-
-		@Override
-		public List<Fatura> getFaturasVencidas() {
-			List<Fatura> faturas = buscarFatura.porStatus(FaturaStatus.VENCIDA, aluno);
-			return faturas;
-		}
-
-		@Override
-		public List<Fatura> getFaturasPagas() {
-			List<Fatura> faturas = buscarFatura.porStatus(FaturaStatus.PAGA, aluno);
-			return faturas;
-		}
-
-	}
+      private final Aluno aluno;
+    
+      public Construtor(Aluno aluno) {
+        this.aluno = aluno;
+      }
+    
+      @Override
+      public RelatorioDeAluno novaInstancia() {
+        return new RelatorioDeAlunoPojo(this);
+      }
+    
+      @Override
+      public String getNomeDoAluno() {
+        return aluno.getNome();
+      }
+    
+      @Override
+      public List<Fatura> getFaturasEmAberto() {
+        List<Fatura> faturas = buscarFatura.porStatus(FaturaStatus.ABERTA, aluno);
+        return faturas;
+      }
+    
+      @Override
+      public List<Fatura> getFaturasVencidas() {
+        List<Fatura> faturas = buscarFatura.porStatus(FaturaStatus.VENCIDA, aluno);
+        return faturas;
+      }
+    
+      @Override
+      public List<Fatura> getFaturasPagas() {
+        List<Fatura> faturas = buscarFatura.porStatus(FaturaStatus.PAGA, aluno);
+        return faturas;
+      }
+    
+    }
 
 Observe que nos três métodos que retornam as faturas, repetimos praticamente o mesmo código, alterando somente o tipo do status da fatura. Essa
 repetição de código continuaria a crescer caso precisassemos obter faturas com outros status. Abaixo veremos com isolar essa parte do código em comum
@@ -99,15 +99,15 @@ uma lista de `Fatura`.
 
 
 	private List<Fatura> faturasDe(FaturaStatus status, Aluno aluno) {
-		return null;
+	  return null;
 	}
 
 Ainda não chegamos aonde desejamos, o próximo passo é extrair a implementação que foi repetida nos métodos acima e implementar no novo método:
 
 
 	private List<Fatura> faturasDe(FaturaStatus status, Aluno aluno) {
-		List<Fatura> faturas = buscarFatura.porStatus(status, aluno);
-		return faturas;
+	  List<Fatura> faturas = buscarFatura.porStatus(status, aluno);
+	  return faturas;
 	}
 
 
@@ -115,41 +115,41 @@ Dado isso, agora a implementação do consutror de `RelatorioDeAlunoGen` ficará
 
 	private class Construtor implements RelatorioDeAluno.Construtor {
 
-		private final Aluno aluno;
+	  private final Aluno aluno;
 
-		public Construtor(Aluno aluno) {
-			this.aluno = aluno;
-		}
+	  public Construtor(Aluno aluno) {
+	    this.aluno = aluno;
+	  }
 
-		@Override
-		public RelatorioDeAluno novaInstancia() {
-			return new RelatorioDeAlunoPojo(this);
-		}
+	  @Override
+	  public RelatorioDeAluno novaInstancia() {
+		return new RelatorioDeAlunoPojo(this);
+	  }
 
-		@Override
-		public String getNomeDoAluno() {
-			return aluno.getNome();
-		}
+	  @Override
+	  public String getNomeDoAluno() {
+	    return aluno.getNome();
+	  }
 
-		@Override
-		public List<Fatura> getFaturasEmAberto() {
-			return faturasDe(FaturaStatus.ABERTA, aluno);
-		}
+	  @Override
+	  public List<Fatura> getFaturasEmAberto() {
+	    return faturasDe(FaturaStatus.ABERTA, aluno);
+	  }
 
-		@Override
-		public List<Fatura> getFaturasVencidas() {
-			return faturasDe(FaturaStatus.VENCIDA, aluno);
-		}
+	  @Override
+	  public List<Fatura> getFaturasVencidas() {
+	    return faturasDe(FaturaStatus.VENCIDA, aluno);
+	  }
 
-		@Override
-		public List<Fatura> getFaturasPagas() {
-			return faturasDe(FaturaStatus.PAGA, aluno);
-		}
+	  @Override
+	  public List<Fatura> getFaturasPagas() {
+	    return faturasDe(FaturaStatus.PAGA, aluno);
+	  }
 
-		private List<Fatura> faturasDe(FaturaStatus status, Aluno aluno) {
-			List<Fatura> faturas = buscarFatura.porStatus(status, aluno);
-			return faturas;
-		}
+	  private List<Fatura> faturasDe(FaturaStatus status, Aluno aluno) {
+	    List<Fatura> faturas = buscarFatura.porStatus(status, aluno);
+	    return faturas;
+	  }
 
 	}
 
