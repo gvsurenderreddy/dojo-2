@@ -30,11 +30,7 @@ import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
 import br.com.objectos.comuns.testing.jdbc.SqlUnit;
-import br.com.objectos.dojo.cpetreanu.DeprecatedModuloDeTesteObjectosDojo;
-import br.com.objectos.dojo.empresa.BuscarFuncionario;
-import br.com.objectos.dojo.empresa.Diretor;
-import br.com.objectos.dojo.empresa.Funcionario;
-import br.com.objectos.dojo.empresa.Superior;
+import br.com.objectos.dojo.ModuloDeTesteObjectosDojo;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
@@ -43,7 +39,7 @@ import com.google.inject.Inject;
  * @author caio.petreanu@objectos.com.br (Caio Petreanu)
  */
 @Test
-@Guice(modules = { DeprecatedModuloDeTesteObjectosDojo.class })
+@Guice(modules = { ModuloDeTesteObjectosDojo.class })
 public class TesteDeBuscarFuncionario {
 
   @Inject

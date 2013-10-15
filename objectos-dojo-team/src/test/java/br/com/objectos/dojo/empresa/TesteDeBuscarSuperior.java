@@ -21,10 +21,9 @@ import static org.hamcrest.Matchers.equalTo;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
+
 import br.com.objectos.comuns.testing.jdbc.SqlUnit;
-import br.com.objectos.dojo.cpetreanu.DeprecatedModuloDeTesteObjectosDojo;
-import br.com.objectos.dojo.empresa.BuscarSuperior;
-import br.com.objectos.dojo.empresa.Superior;
+import br.com.objectos.dojo.ModuloDeTesteObjectosDojo;
 
 import com.google.inject.Inject;
 
@@ -32,7 +31,7 @@ import com.google.inject.Inject;
  * @author caio.petreanu@objectos.com.br (Caio C. Petreanu)
  */
 @Test
-@Guice(modules = { DeprecatedModuloDeTesteObjectosDojo.class })
+@Guice(modules = { ModuloDeTesteObjectosDojo.class })
 public class TesteDeBuscarSuperior {
 
   private BuscarSuperior buscarSuperior;

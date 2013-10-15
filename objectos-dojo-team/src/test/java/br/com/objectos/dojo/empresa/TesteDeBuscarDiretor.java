@@ -23,9 +23,7 @@ import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
 import br.com.objectos.comuns.testing.dbunit.DBUnit;
-import br.com.objectos.dojo.cpetreanu.DeprecatedModuloDeTesteObjectosDojo;
-import br.com.objectos.dojo.empresa.BuscarDiretor;
-import br.com.objectos.dojo.empresa.Diretor;
+import br.com.objectos.dojo.ModuloDeTesteObjectosDojo;
 
 import com.google.inject.Inject;
 
@@ -33,7 +31,7 @@ import com.google.inject.Inject;
  * @author caio.petreanu@objectos.com.br (Caio C. Petreanu)
  */
 @Test
-@Guice(modules = { DeprecatedModuloDeTesteObjectosDojo.class })
+@Guice(modules = { ModuloDeTesteObjectosDojo.class })
 public class TesteDeBuscarDiretor {
 
   private BuscarDiretor buscarDiretor;
