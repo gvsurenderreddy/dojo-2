@@ -13,23 +13,31 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.asilva;
+package br.com.objectos.dojo.empresa;
 
-import java.util.List;
-
-import br.com.objectos.dojo.empresa.Funcionario;
-
-import com.google.common.base.Optional;
-import com.google.inject.ImplementedBy;
+import br.com.objectos.dojo.empresa.Diretor;
+import br.com.objectos.dojo.empresa.DiretorJdbc;
 
 /**
  * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
  */
-@ImplementedBy(CacheDeFuncionarioGuice.class)
-public interface CacheDeFuncionario {
+public class ConstrutorDeDiretorFalso implements Diretor.Construtor {
 
-  Optional<Funcionario> porId(int id);
+  private String nome;
 
-  List<Funcionario> porSuperiorKey(SuperiorKey superiorKey);
+  @Override
+  public Diretor novaInstancia() {
+    return new DiretorJdbc(this);
+  }
+
+  public ConstrutorDeDiretorFalso nome(String nome) {
+    this.nome = nome;
+    return this;
+  }
+
+  @Override
+  public String getNome() {
+    return nome;
+  }
 
 }

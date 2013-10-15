@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 Objectos, Fábrica de Software LTDA.
+ * Copyright 2012 Objectos, Fábrica de Software LTDA.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,23 +13,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.asilva;
+package br.com.objectos.dojo.empresa;
 
-import java.util.List;
-
-import br.com.objectos.dojo.empresa.Funcionario;
-
-import com.google.common.base.Optional;
-import com.google.inject.ImplementedBy;
+import br.com.objectos.comuns.relational.jdbc.Insertable;
 
 /**
- * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
+ * @author caio.petreanu@objectos.com.br (Caio Petreanu)
  */
-@ImplementedBy(CacheDeFuncionarioGuice.class)
-public interface CacheDeFuncionario {
+public interface Diretor extends Insertable {
 
-  Optional<Funcionario> porId(int id);
+  interface Construtor extends br.com.objectos.comuns.base.Construtor<Diretor> {
 
-  List<Funcionario> porSuperiorKey(SuperiorKey superiorKey);
+    String getNome();
+
+  }
+
+  int getId();
+
+  String getNome();
 
 }

@@ -18,8 +18,8 @@ package br.com.objectos.dojo.asilva;
 import java.util.List;
 
 import br.com.objectos.comuns.base.cache.CacheBuilder;
-import br.com.objectos.dojo.cpetreanu.BuscarFuncionario;
-import br.com.objectos.dojo.cpetreanu.Funcionario;
+import br.com.objectos.dojo.empresa.BuscarFuncionario;
+import br.com.objectos.dojo.empresa.Funcionario;
 
 import com.google.common.base.Optional;
 import com.google.common.cache.CacheLoader;

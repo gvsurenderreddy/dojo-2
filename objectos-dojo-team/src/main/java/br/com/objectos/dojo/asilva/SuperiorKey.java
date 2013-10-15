@@ -15,7 +15,7 @@
  */
 package br.com.objectos.dojo.asilva;
 
-import br.com.objectos.dojo.cpetreanu.Superior;
+import br.com.objectos.dojo.empresa.Superior;
 
 import com.google.common.base.Objects;
 

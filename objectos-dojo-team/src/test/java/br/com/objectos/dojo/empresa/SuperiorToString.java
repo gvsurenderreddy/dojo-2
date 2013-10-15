@@ -13,23 +13,29 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.asilva;
+package br.com.objectos.dojo.empresa;
 
-import java.util.List;
+import br.com.objectos.dojo.empresa.Superior;
 
-import br.com.objectos.dojo.empresa.Funcionario;
-
-import com.google.common.base.Optional;
-import com.google.inject.ImplementedBy;
+import com.google.common.base.Function;
+import com.google.common.base.Objects;
 
 /**
+ * 
  * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
  */
-@ImplementedBy(CacheDeFuncionarioGuice.class)
-public interface CacheDeFuncionario {
+class SuperiorToString implements Function<Superior, String> {
+  @Override
+  public String apply(Superior input) {
+    return Objects.toStringHelper(input)
+        .addValue(input.getId())
+        .addValue(input.getNome())
+        .addValue(input.getMatricula())
+        .addValue(input.getDataNascimento())
+        .addValue(input.getAdmissao())
+        .addValue(input.getDemissao())
+        .addValue(input.getDiretor().getId())
+        .toString();
 
-  Optional<Funcionario> porId(int id);
-
-  List<Funcionario> porSuperiorKey(SuperiorKey superiorKey);
-
+  }
 }
