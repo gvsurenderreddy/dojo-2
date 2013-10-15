@@ -15,7 +15,6 @@
 */
 package br.com.objectos.dojo.empresa;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import br.com.objectos.comuns.relational.jdbc.Insertable;
@@ -33,9 +32,9 @@ public interface Superior extends Insertable {
 
     LocalDate getDataNascimento();
 
-    DateTime getAdmissao();
+    LocalDate getAdmissao();
 
-    DateTime getDemissao();
+    LocalDate getDemissao();
 
     Diretor getDiretor();
 
@@ -49,9 +48,9 @@ public interface Superior extends Insertable {
 
   LocalDate getDataNascimento();
 
-  DateTime getAdmissao();
+  LocalDate getAdmissao();
 
-  DateTime getDemissao();
+  LocalDate getDemissao();
 
   Diretor getDiretor();
 

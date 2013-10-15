@@ -15,7 +15,6 @@
 */
 package br.com.objectos.dojo.empresa;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import br.com.objectos.comuns.relational.jdbc.Insert;
@@ -45,12 +44,12 @@ public class SuperiorVazio implements Superior {
   }
 
   @Override
-  public DateTime getAdmissao() {
+  public LocalDate getAdmissao() {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public DateTime getDemissao() {
+  public LocalDate getDemissao() {
     throw new UnsupportedOperationException();
   }
 

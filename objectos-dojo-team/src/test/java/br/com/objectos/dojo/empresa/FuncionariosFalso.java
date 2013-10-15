@@ -13,23 +13,21 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.asilva;
+package br.com.objectos.dojo.empresa;
 
-import static br.com.objectos.dojo.asilva.DiretoresFalso.DIRETOR_1;
-import static br.com.objectos.dojo.asilva.DiretoresFalso.DIRETOR_2;
-import static br.com.objectos.dojo.asilva.DiretoresFalso.DIRETOR_3;
-import static br.com.objectos.dojo.asilva.SuperioresFalso.SUPERIOR_1;
-import static br.com.objectos.dojo.asilva.SuperioresFalso.SUPERIOR_2;
-import static br.com.objectos.dojo.asilva.SuperioresFalso.SUPERIOR_3;
+import static br.com.objectos.dojo.empresa.DiretoresFalso.DIRETOR_1;
+import static br.com.objectos.dojo.empresa.DiretoresFalso.DIRETOR_2;
+import static br.com.objectos.dojo.empresa.SuperioresFalso.SUPERIOR_1;
+import static br.com.objectos.dojo.empresa.SuperioresFalso.SUPERIOR_2;
 
 import java.util.List;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import br.com.objectos.comuns.testing.jdbc.EntitySet;
 import br.com.objectos.comuns.testing.jdbc.SqlUnit;
 import br.com.objectos.comuns.testing.jdbc.Truncate;
+import br.com.objectos.dojo.taguiar.Contrato;
 import br.com.objectos.dojo.empresa.Funcionario;
 
 import com.google.common.collect.ImmutableList;
@@ -40,59 +38,65 @@ import com.google.common.collect.ImmutableList;
 public class FuncionariosFalso implements EntitySet {
 
   public static final Funcionario FUNCIONARIO_1 = novo()
-      .nome("Briann Adams")
+      .nome("Funcionario 1")
       .matricula("T0033000")
       .dataNascimento(new LocalDate(1980, 6, 01))
-      .dataAdmissao(new DateTime(2004, 12, 10, 9, 0))
-      .dataDemissao(new DateTime(2012, 1, 3, 12, 30))
+      .dataAdmissao(new LocalDate(2004, 12, 10))
+      .dataDemissao(new LocalDate(2012, 1, 3))
       .superior(SUPERIOR_1)
       .diretor(DIRETOR_1)
+      .regimeDeContratacao(Contrato.ESTAGIO)
       .novaInstancia();
   public static final Funcionario FUNCIONARIO_2 = novo()
-      .nome("Teste")
+      .nome("Funcionario 2")
       .matricula("00112")
       .dataNascimento(new LocalDate(1982, 6, 01))
-      .dataAdmissao(new DateTime(2004, 10, 10, 9, 0))
-      .dataDemissao(new DateTime(2012, 3, 3, 12, 30))
-      .superior(SUPERIOR_2)
+      .dataAdmissao(new LocalDate(2004, 10, 10))
+      .dataDemissao(new LocalDate(2012, 3, 3))
+      .superior(SUPERIOR_1)
       .diretor(DIRETOR_2)
+      .regimeDeContratacao(Contrato.ESTAGIO)
       .novaInstancia();
   public static final Funcionario FUNCIONARIO_3 = novo()
-      .nome("Adão")
+      .nome("Funcionario 3")
       .matricula("T0033010")
       .dataNascimento(new LocalDate(1980, 6, 01))
-      .dataAdmissao(new DateTime(2007, 12, 10, 9, 0))
-      .dataDemissao(new DateTime(2012, 6, 3, 12, 30))
-      .superior(SUPERIOR_3)
+      .dataAdmissao(new LocalDate(2007, 12, 10))
+      .dataDemissao(new LocalDate(2012, 6, 3))
+      .superior(SUPERIOR_1)
       .diretor(DIRETOR_3)
+      .regimeDeContratacao(Contrato.CLT)
       .novaInstancia();
 
   public static final Funcionario FUNCIONARIO_4 = novo()
       .nome("Funcionario 4")
       .matricula("T00330500")
       .dataNascimento(new LocalDate(1976, 6, 01))
-      .dataAdmissao(new DateTime(2005, 12, 10, 9, 0))
-      .dataDemissao(new DateTime(2012, 12, 3, 12, 30))
-      .superior(SUPERIOR_1)
+      .dataAdmissao(new LocalDate(2005, 12, 10))
+      .dataDemissao(new LocalDate(2012, 12, 3))
+      .superior(SUPERIOR_2)
       .diretor(DIRETOR_1)
+      .regimeDeContratacao(Contrato.CLT)
       .novaInstancia();
   public static final Funcionario FUNCIONARIO_5 = novo()
       .nome("Funcionario 5")
       .matricula("001123")
       .dataNascimento(new LocalDate(1982, 6, 01))
-      .dataAdmissao(new DateTime(1999, 10, 10, 9, 0))
-      .dataDemissao(new DateTime(2012, 5, 3, 12, 30))
+      .dataAdmissao(new LocalDate(1999, 10, 10))
+      .dataDemissao(new LocalDate(2012, 5, 3))
       .superior(SUPERIOR_2)
       .diretor(DIRETOR_2)
+      .regimeDeContratacao(Contrato.ESTAGIO)
       .novaInstancia();
   public static final Funcionario FUNCIONARIO_6 = novo()
       .nome("Funcionario 6")
       .matricula("T0033011")
       .dataNascimento(new LocalDate(1980, 6, 01))
-      .dataAdmissao(new DateTime(2007, 11, 10, 9, 0))
-      .dataDemissao(new DateTime(2012, 9, 3, 12, 30))
-      .superior(SUPERIOR_3)
+      .dataAdmissao(new LocalDate(2007, 11, 10))
+      .dataDemissao(new LocalDate(2012, 9, 3))
+      .superior(SUPERIOR_2)
       .diretor(DIRETOR_3)
+      .regimeDeContratacao(Contrato.CLT)
       .novaInstancia();
 
   public static List<Funcionario> todos = ImmutableList.<Funcionario> builder()

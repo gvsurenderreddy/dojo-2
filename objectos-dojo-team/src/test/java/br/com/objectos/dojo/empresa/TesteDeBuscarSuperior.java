@@ -13,20 +13,16 @@
 * License for the specific language governing permissions and limitations under
 * the License.
 */
-package br.com.objectos.dojo.cpetreanu;
+package br.com.objectos.dojo.empresa;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
-
-import br.com.objectos.comuns.testing.dbunit.DBUnit;
+import br.com.objectos.comuns.testing.jdbc.SqlUnit;
+import br.com.objectos.dojo.cpetreanu.DeprecatedModuloDeTesteObjectosDojo;
 import br.com.objectos.dojo.empresa.BuscarSuperior;
 import br.com.objectos.dojo.empresa.Superior;
 
@@ -42,22 +38,23 @@ public class TesteDeBuscarSuperior {
   private BuscarSuperior buscarSuperior;
 
   @Inject
-  private DBUnit dbUnit;
+  private SqlUnit sqlUnit;
 
   @BeforeClass
-  public void prepararDBUnit() {
-    dbUnit.loadDefaultDataSet();
+  public void prepararSqlUnit() {
+    sqlUnit.loadEntitySet(SuperioresFalso.class);
   }
 
   public void busca_por_id() {
-    Superior res = buscarSuperior.porId(2);
+    Superior superior = SuperioresFalso.SUPERIOR_1;
+    String prova = new SuperiorToString().apply(superior);
 
-    assertThat(res.getId(), equalTo(2));
-    assertThat(res.getNome(), equalTo("Giuseppe Augusto"));
-    assertThat(res.getMatricula(), equalTo("S0100001"));
-    assertThat(res.getDataNascimento(), equalTo(new LocalDate(1969, 8, 20)));
-    assertThat(res.getAdmissao(), equalTo(new DateTime(1995, 1, 12, 8, 10)));
-    assertThat(res.getDemissao(), is(nullValue()));
-    assertThat(res.getDiretor().getId(), equalTo(1));
+    Integer id = superior.getId();
+
+    Superior pojo = buscarSuperior.porId(id);
+    String res = new SuperiorToString().apply(pojo);
+
+    assertThat(res, equalTo(prova));
   }
+
 }

@@ -13,7 +13,7 @@
 * License for the specific language governing permissions and limitations under
 * the License.
 */
-package br.com.objectos.dojo.cpetreanu;
+package br.com.objectos.dojo.empresa;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -23,6 +23,7 @@ import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
 import br.com.objectos.comuns.testing.dbunit.DBUnit;
+import br.com.objectos.dojo.cpetreanu.DeprecatedModuloDeTesteObjectosDojo;
 import br.com.objectos.dojo.empresa.BuscarDiretor;
 import br.com.objectos.dojo.empresa.Diretor;
 

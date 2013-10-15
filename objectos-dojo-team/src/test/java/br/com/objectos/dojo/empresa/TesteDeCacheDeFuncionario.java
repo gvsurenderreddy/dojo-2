@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.asilva;
+package br.com.objectos.dojo.empresa;
 
 import static com.google.common.collect.Lists.transform;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -27,6 +27,8 @@ import org.testng.annotations.Test;
 
 import br.com.objectos.comuns.testing.jdbc.SqlUnit;
 import br.com.objectos.dojo.ModuloDeTesteObjectosDojo;
+import br.com.objectos.dojo.asilva.CacheDeFuncionario;
+import br.com.objectos.dojo.asilva.SuperiorKey;
 import br.com.objectos.dojo.empresa.Funcionario;
 import br.com.objectos.dojo.empresa.Superior;
 

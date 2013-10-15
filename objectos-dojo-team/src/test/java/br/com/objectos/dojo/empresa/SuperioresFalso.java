@@ -13,15 +13,14 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.asilva;
+package br.com.objectos.dojo.empresa;
 
-import static br.com.objectos.dojo.asilva.DiretoresFalso.DIRETOR_1;
-import static br.com.objectos.dojo.asilva.DiretoresFalso.DIRETOR_2;
-import static br.com.objectos.dojo.asilva.DiretoresFalso.DIRETOR_3;
+import static br.com.objectos.dojo.empresa.DiretoresFalso.DIRETOR_1;
+import static br.com.objectos.dojo.empresa.DiretoresFalso.DIRETOR_2;
+import static br.com.objectos.dojo.empresa.DiretoresFalso.DIRETOR_3;
 
 import java.util.List;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import br.com.objectos.comuns.testing.jdbc.EntitySet;
@@ -40,24 +39,24 @@ public class SuperioresFalso implements EntitySet {
       .nome("Superior 1")
       .matricula("0001")
       .dataNascimento(new LocalDate(1960, 1, 1))
-      .dataAdmissao(new DateTime(2002, 12, 10, 9, 0))
-      .dataDemissao(new DateTime(2004, 12, 10, 9, 0))
+      .dataAdmissao(new LocalDate(2002, 12, 10))
+      .dataDemissao(new LocalDate(2004, 12, 10))
       .diretor(DIRETOR_1)
       .novaInstancia();
   public static final Superior SUPERIOR_2 = novo()
       .nome("Superior 2")
       .matricula("0002")
       .dataNascimento(new LocalDate(1959, 1, 1))
-      .dataAdmissao(new DateTime(2001, 12, 10, 9, 0))
-      .dataDemissao(new DateTime(2005, 12, 10, 9, 0))
+      .dataAdmissao(new LocalDate(2001, 12, 10))
+      .dataDemissao(new LocalDate(2005, 12, 10))
       .diretor(DIRETOR_2)
       .novaInstancia();
   public static final Superior SUPERIOR_3 = novo()
       .nome("Superior 3")
       .matricula("0003")
       .dataNascimento(new LocalDate(1958, 1, 1))
-      .dataAdmissao(new DateTime(2000, 12, 10, 9, 0))
-      .dataDemissao(new DateTime(2006, 12, 10, 9, 0))
+      .dataAdmissao(new LocalDate(2000, 12, 10))
+      .dataDemissao(new LocalDate(2006, 12, 10))
       .diretor(DIRETOR_3)
       .novaInstancia();
 

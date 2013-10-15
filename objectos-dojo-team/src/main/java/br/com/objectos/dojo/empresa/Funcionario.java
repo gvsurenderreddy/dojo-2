@@ -16,10 +16,10 @@
 package br.com.objectos.dojo.empresa;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import br.com.objectos.comuns.relational.jdbc.Insertable;
+import br.com.objectos.dojo.taguiar.Contrato;
 
 /**
  * @author caio.petreanu@objectos.com.br (Caio Petreanu)
@@ -35,13 +35,15 @@ public interface Funcionario extends Insertable {
 
     LocalDate getDataNascimento();
 
-    DateTime getDataAdmissao();
+    LocalDate getDataAdmissao();
 
-    DateTime getDataDemissao();
+    LocalDate getDataDemissao();
 
     Superior getSuperior();
 
     Diretor getDiretor();
+
+    Contrato getRegimeDeContratacao();
 
   }
 
@@ -53,12 +55,14 @@ public interface Funcionario extends Insertable {
 
   LocalDate getDataNascimento();
 
-  DateTime getDataAdmissao();
+  LocalDate getDataAdmissao();
 
-  DateTime getDataDemissao();
+  LocalDate getDataDemissao();
 
   Superior getSuperior();
 
   Diretor getDiretor();
+
+  Contrato getRegimeDeContratacao();
 
 }

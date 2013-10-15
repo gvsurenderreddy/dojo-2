@@ -18,7 +18,6 @@ package br.com.objectos.dojo.empresa;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import br.com.objectos.comuns.relational.jdbc.GeneratedKeyCallback;
@@ -33,8 +32,8 @@ public class SuperiorJdbc implements Superior {
   private final String nome;
   private final String matricula;
   private final LocalDate dataNascimento;
-  private final DateTime admissao;
-  private final DateTime demissao;
+  private final LocalDate admissao;
+  private final LocalDate demissao;
   private final Diretor diretor;
 
   public SuperiorJdbc(Construtor construtor) {
@@ -87,12 +86,12 @@ public class SuperiorJdbc implements Superior {
   }
 
   @Override
-  public DateTime getAdmissao() {
+  public LocalDate getAdmissao() {
     return admissao;
   }
 
   @Override
-  public DateTime getDemissao() {
+  public LocalDate getDemissao() {
     return demissao;
   }
 

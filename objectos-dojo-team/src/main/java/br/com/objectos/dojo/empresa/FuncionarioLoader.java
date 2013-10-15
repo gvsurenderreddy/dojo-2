@@ -17,30 +17,20 @@ package br.com.objectos.dojo.empresa;
 
 import java.sql.ResultSet;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import br.com.objectos.comuns.relational.jdbc.ResultSetWrapper;
 import br.com.objectos.comuns.relational.search.ResultSetLoader;
+import br.com.objectos.dojo.taguiar.Contrato;
 
 /**
  * @author caio.petreanu@objectos.com.br (Caio C. Petreanu)
  */
 public class FuncionarioLoader implements ResultSetLoader<Funcionario> {
 
-  private final String prefix;
-
-  public FuncionarioLoader() {
-    this("FUNCIONARIO");
-  }
-
-  public FuncionarioLoader(String prefix) {
-    this.prefix = prefix;
-  }
-
   @Override
   public Funcionario load(ResultSet resultSet) {
-    ResultSetWrapper rs = new ResultSetWrapper(prefix, resultSet);
+    ResultSetWrapper rs = new ResultSetWrapper("FUNCIONARIO", resultSet);
     return new Loader(rs).novaInstancia();
   }
 
@@ -74,13 +64,13 @@ public class FuncionarioLoader implements ResultSetLoader<Funcionario> {
     }
 
     @Override
-    public DateTime getDataAdmissao() {
-      return rs.getDateTime("ADMISSAO");
+    public LocalDate getDataAdmissao() {
+      return rs.getLocalDate("ADMISSAO");
     }
 
     @Override
-    public DateTime getDataDemissao() {
-      return rs.getDateTime("DEMISSAO");
+    public LocalDate getDataDemissao() {
+      return rs.getLocalDate("DEMISSAO");
     }
 
     @Override
@@ -93,6 +83,14 @@ public class FuncionarioLoader implements ResultSetLoader<Funcionario> {
     public Diretor getDiretor() {
       ResultSet resultSet = rs.getResultSet();
       return new FuncionarioLoaderDiretor().load(resultSet);
+    }
+
+    @Override
+    public Contrato getRegimeDeContratacao() {
+      int idx = rs.getInt("CONTRATO");
+      Contrato[] contratos = Contrato.values();
+      Contrato contrato = contratos[idx];
+      return contrato;
     }
   }
 

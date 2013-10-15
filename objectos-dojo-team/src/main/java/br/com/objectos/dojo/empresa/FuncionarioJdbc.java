@@ -18,11 +18,11 @@ package br.com.objectos.dojo.empresa;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import br.com.objectos.comuns.relational.jdbc.GeneratedKeyCallback;
 import br.com.objectos.comuns.relational.jdbc.Insert;
+import br.com.objectos.dojo.taguiar.Contrato;
 
 /**
  * @author caio.petreanu@objectos.com.br (Caio C. Petreanu)
@@ -33,19 +33,22 @@ public class FuncionarioJdbc implements Funcionario {
   private final String nome;
   private final String matricula;
   private final LocalDate dataNascimento;
-  private final DateTime dataAdmissao;
-  private final DateTime dataDemissao;
+  private final LocalDate dataAdmissao;
+  private final LocalDate dataDemissao;
   private final Superior superior;
   private final Diretor diretor;
+  private final Contrato regimeDeContratacao;
 
   public FuncionarioJdbc(Construtor construtor) {
-    this.nome = construtor.getNome();
-    this.matricula = construtor.getMatricula();
-    this.dataNascimento = construtor.getDataNascimento();
-    this.dataAdmissao = construtor.getDataAdmissao();
-    this.dataDemissao = construtor.getDataDemissao();
-    this.superior = construtor.getSuperior();
-    this.diretor = construtor.getDiretor();
+    nome = construtor.getNome();
+    matricula = construtor.getMatricula();
+    dataNascimento = construtor.getDataNascimento();
+    dataAdmissao = construtor.getDataAdmissao();
+    dataDemissao = construtor.getDataDemissao();
+    superior = construtor.getSuperior();
+    diretor = construtor.getDiretor();
+    regimeDeContratacao = construtor.getRegimeDeContratacao();
+
   }
 
   @Override
@@ -57,8 +60,9 @@ public class FuncionarioJdbc implements Funcionario {
         .value("DATA_NASCIMENTO", dataNascimento)
         .value("ADMISSAO", dataAdmissao)
         .value("DEMISSAO", dataDemissao)
-        .value("SUPERIOR", superior.getId())
-        .value("DIRETOR", diretor.getId())
+        .value("REGIME_CONTRATACAO", regimeDeContratacao.ordinal())
+        .value("SUPERIOR_ID", superior.getId())
+        .value("DIRETOR_ID", diretor.getId())
 
         .onGeneratedKey(new GeneratedKeyCallback() {
 
@@ -96,12 +100,12 @@ public class FuncionarioJdbc implements Funcionario {
   }
 
   @Override
-  public DateTime getDataAdmissao() {
+  public LocalDate getDataAdmissao() {
     return dataAdmissao;
   }
 
   @Override
-  public DateTime getDataDemissao() {
+  public LocalDate getDataDemissao() {
     return dataDemissao;
   }
 
@@ -113,6 +117,11 @@ public class FuncionarioJdbc implements Funcionario {
   @Override
   public Diretor getDiretor() {
     return diretor;
+  }
+
+  @Override
+  public Contrato getRegimeDeContratacao() {
+    return regimeDeContratacao;
   }
 
 }

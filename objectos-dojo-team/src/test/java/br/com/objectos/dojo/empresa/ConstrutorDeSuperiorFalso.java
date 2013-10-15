@@ -13,64 +13,56 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.dojo.asilva;
+package br.com.objectos.dojo.empresa;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import br.com.objectos.dojo.empresa.Diretor;
-import br.com.objectos.dojo.empresa.Funcionario;
 import br.com.objectos.dojo.empresa.Superior;
+import br.com.objectos.dojo.empresa.SuperiorJdbc;
 
 /**
  * @author anderson.silva@objectos.com.br (Anderson Amorim Silva)
  */
-public class ConstrutorDeFuncionarioFalso implements Funcionario.Construtor {
+public class ConstrutorDeSuperiorFalso implements Superior.Construtor {
 
   private String nome;
   private String matricula;
   private LocalDate dataNascimento;
-  private DateTime dataAdmissao;
-  private DateTime dataDemissao;
-  private Superior superior;
+  private LocalDate admissao;
+  private LocalDate demissao;
   private Diretor diretor;
 
   @Override
-  public Funcionario novaInstancia() {
-    return new br.com.objectos.dojo.empresa.FuncionarioJdbc(this);
+  public Superior novaInstancia() {
+    return new SuperiorJdbc(this);
   }
-
-  public ConstrutorDeFuncionarioFalso nome(String nome) {
+  public ConstrutorDeSuperiorFalso nome(String nome) {
     this.nome = nome;
     return this;
   }
 
-  public ConstrutorDeFuncionarioFalso matricula(String matricula) {
+  public ConstrutorDeSuperiorFalso matricula(String matricula) {
     this.matricula = matricula;
     return this;
   }
 
-  public ConstrutorDeFuncionarioFalso dataNascimento(LocalDate dataNascimento) {
+  public ConstrutorDeSuperiorFalso dataNascimento(LocalDate dataNascimento) {
     this.dataNascimento = dataNascimento;
     return this;
   }
 
-  public ConstrutorDeFuncionarioFalso dataAdmissao(DateTime dataAdmissao) {
-    this.dataAdmissao = dataAdmissao;
+  public ConstrutorDeSuperiorFalso dataAdmissao(LocalDate admissao) {
+    this.admissao = admissao;
     return this;
   }
 
-  public ConstrutorDeFuncionarioFalso dataDemissao(DateTime dataDemissao) {
-    this.dataDemissao = dataDemissao;
+  public ConstrutorDeSuperiorFalso dataDemissao(LocalDate demissao) {
+    this.demissao = demissao;
     return this;
   }
 
-  public ConstrutorDeFuncionarioFalso superior(Superior superior) {
-    this.superior = superior;
-    return this;
-  }
-
-  public ConstrutorDeFuncionarioFalso diretor(Diretor diretor) {
+  public ConstrutorDeSuperiorFalso diretor(Diretor diretor) {
     this.diretor = diretor;
     return this;
   }
@@ -91,18 +83,13 @@ public class ConstrutorDeFuncionarioFalso implements Funcionario.Construtor {
   }
 
   @Override
-  public DateTime getDataAdmissao() {
-    return dataAdmissao;
+  public LocalDate getAdmissao() {
+    return admissao;
   }
 
   @Override
-  public DateTime getDataDemissao() {
-    return dataDemissao;
-  }
-
-  @Override
-  public Superior getSuperior() {
-    return superior;
+  public LocalDate getDemissao() {
+    return demissao;
   }
 
   @Override
