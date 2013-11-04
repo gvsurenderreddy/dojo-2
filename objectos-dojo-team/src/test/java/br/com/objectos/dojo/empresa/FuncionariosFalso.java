@@ -17,6 +17,7 @@ package br.com.objectos.dojo.empresa;
 
 import static br.com.objectos.dojo.empresa.DiretoresFalso.DIRETOR_1;
 import static br.com.objectos.dojo.empresa.DiretoresFalso.DIRETOR_2;
+import static br.com.objectos.dojo.empresa.DiretoresFalso.DIRETOR_3;
 import static br.com.objectos.dojo.empresa.SuperioresFalso.SUPERIOR_1;
 import static br.com.objectos.dojo.empresa.SuperioresFalso.SUPERIOR_2;
 
@@ -28,7 +29,6 @@ import br.com.objectos.comuns.testing.jdbc.EntitySet;
 import br.com.objectos.comuns.testing.jdbc.SqlUnit;
 import br.com.objectos.comuns.testing.jdbc.Truncate;
 import br.com.objectos.dojo.taguiar.Contrato;
-import br.com.objectos.dojo.empresa.Funcionario;
 
 import com.google.common.collect.ImmutableList;
 
