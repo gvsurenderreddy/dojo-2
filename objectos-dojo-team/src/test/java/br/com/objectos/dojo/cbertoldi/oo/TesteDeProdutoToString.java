@@ -28,7 +28,7 @@ import org.testng.annotations.Test;
 @Test
 public class TesteDeProdutoToString {
 
-  private ProdutoToString produtoToString;
+  private final ProdutoToString produtoToString = new ProdutoToString();
 
   public void lista_produto() {
     int id = 1;

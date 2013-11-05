@@ -29,10 +29,13 @@ class ProdutoToString {
     List<String> list = newArrayList();
 
     TipoDeCategoria categoria = produto.getCategoria();
+    double valor = produto.getValor();
+    Double _valor = new Double(valor);
+
     list.add(String.format("CODIGO = %s", produto.getCodigo()));
     list.add(String.format("DESCRICAO = %s", produto.getDescricao()));
     list.add(String.format("CATEGORIA = %s", categoria.toString()));
-    list.add(String.format("VALOR = R$ %d", produto.getValor()));
+    list.add(String.format("VALOR = R$ %s", _valor.toString()));
 
     return list;
   }
