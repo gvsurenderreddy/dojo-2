@@ -15,9 +15,26 @@
  */
 package br.com.objectos.dojo.cbertoldi.oo;
 
+import static com.google.common.collect.Lists.newArrayList;
+
+import java.util.List;
+
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
 class ProdutoToString {
+
+  public List<String> listar(Produto produto) {
+
+    List<String> list = newArrayList();
+
+    TipoDeCategoria categoria = produto.getCategoria();
+    list.add(String.format("CODIGO = %s", produto.getCodigo()));
+    list.add(String.format("DESCRICAO = %s", produto.getDescricao()));
+    list.add(String.format("CATEGORIA = %s", categoria.toString()));
+    list.add(String.format("VALOR = R$ %d", produto.getValor()));
+
+    return list;
+  }
 
 }

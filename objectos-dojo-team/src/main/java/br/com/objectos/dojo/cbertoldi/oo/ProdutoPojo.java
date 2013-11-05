@@ -23,10 +23,14 @@ class ProdutoPojo implements Produto {
   private final int id;
   private final String codigo;
   private final String descricao;
-  private final Categoria categoria;
-  private double valor;
+  private final TipoDeCategoria categoria;
+  private final double valor;
 
-  private ProdutoPojo(int id, String codigo, String descricao, Categoria categoria, double valor) {
+  public ProdutoPojo(int id,
+                     String codigo,
+                     String descricao,
+                     TipoDeCategoria categoria,
+                     double valor) {
     this.id = id;
     this.codigo = codigo;
     this.descricao = descricao;
@@ -44,10 +48,6 @@ class ProdutoPojo implements Produto {
     return valor;
   }
 
-  public void setValor(double valor) {
-    this.valor = valor;
-  }
-
   @Override
   public String getCodigo() {
     return codigo;
@@ -59,7 +59,7 @@ class ProdutoPojo implements Produto {
   }
 
   @Override
-  public Categoria getCategoria() {
+  public TipoDeCategoria getCategoria() {
     return categoria;
   }
 

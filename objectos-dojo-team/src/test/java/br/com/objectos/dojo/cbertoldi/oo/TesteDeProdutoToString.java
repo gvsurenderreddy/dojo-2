@@ -15,15 +15,36 @@
  */
 package br.com.objectos.dojo.cbertoldi.oo;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
+import java.util.List;
+
+import org.testng.annotations.Test;
+
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
+@Test
 public class TesteDeProdutoToString {
 
   private ProdutoToString produtoToString;
 
   public void lista_produto() {
+    int id = 1;
+    String codigo = "PD1";
+    String descricao = "Produto1";
+    TipoDeCategoria categoria = TipoDeCategoria.CATEGORIA_1;
+    double valor = 100.99;
 
+    Produto produto = new ProdutoPojo(id, codigo, descricao, categoria, valor);
+    List<String> res = produtoToString.listar(produto);
+
+    assertThat(res.size(), equalTo(4));
+    assertThat(res.get(0), equalTo("CODIGO = PD1"));
+    assertThat(res.get(1), equalTo("DESCRICAO = Produto1"));
+    assertThat(res.get(2), equalTo("CATEGORIA = CATEGORIA_1"));
+    assertThat(res.get(3), equalTo("VALOR = R$ 100.99"));
   }
 
 }

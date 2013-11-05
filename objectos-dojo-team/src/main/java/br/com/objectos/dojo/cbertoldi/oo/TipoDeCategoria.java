@@ -18,16 +18,12 @@ package br.com.objectos.dojo.cbertoldi.oo;
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Reis Silva Bertoldi)
  */
-public interface Produto {
+public enum TipoDeCategoria {
 
-  int getId();
+  CATEGORIA_1,
 
-  String getCodigo();
+  CATEGORIA_2,
 
-  String getDescricao();
-
-  TipoDeCategoria getCategoria();
-
-  double getValor();
+  CATEGORIA_3;
 
 }
