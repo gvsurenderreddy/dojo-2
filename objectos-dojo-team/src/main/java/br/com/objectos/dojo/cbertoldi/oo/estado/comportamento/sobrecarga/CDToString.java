@@ -22,14 +22,19 @@ import java.util.List;
  */
 class CDToString extends ProdutoToString {
 
-  public List<String> listar(CD cd) {
-    List<String> list = super.listar(cd);
-
-    list.add(String.format("ALBUM = %s", cd.getAlbum()));
-    list.add(String.format("ARTISTA = %s", cd.getArtista()));
-    list.add(String.format("GENERO = %s", cd.getGenero()));
+  public List<String> listar(Livro livro) {
+    List<String> list = super.listar(livro);
 
     return list;
+  }
+
+  public CD to(CD cd) {
+    Produto _cd = super.to(cd);
+
+    Livro livro = (Livro) _cd;
+    CD __cd = (CD) livro;
+
+    return __cd;
   }
 
 }

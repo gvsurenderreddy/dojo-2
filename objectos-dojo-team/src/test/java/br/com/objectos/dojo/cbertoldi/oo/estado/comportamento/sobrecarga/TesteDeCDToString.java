@@ -28,29 +28,32 @@ import org.testng.annotations.Test;
 @Test
 public class TesteDeCDToString {
 
+  int id = 1;
+  String codigo = "CD";
+  String descricao = "CD1";
+  TipoDeCategoria categoria = TipoDeCategoria.CATEGORIA_3;
+  double valor = 25.99;
+  String album = "Album1";
+  String artista = "Artista1";
+  String genero = "Genero1";
+
+  CD cd = new CDPojo(id, codigo, descricao, categoria, valor, album, artista, genero);
   private final CDToString cdToString = new CDToString();
 
   public void lista_produto() {
-    int id = 1;
-    String codigo = "CD";
-    String descricao = "CD1";
-    TipoDeCategoria categoria = TipoDeCategoria.CATEGORIA_3;
-    double valor = 25.99;
-    String album = "Album1";
-    String artista = "Artista1";
-    String genero = "Genero1";
+    List<String> res = cdToString.listar(cd);
 
-    CD livro = new CDPojo(id, codigo, descricao, categoria, valor, album, artista, genero);
-    List<String> res = cdToString.listar(livro);
-
-    assertThat(res.size(), equalTo(7));
+    assertThat(res.size(), equalTo(4));
     assertThat(res.get(0), equalTo("CODIGO = CD"));
     assertThat(res.get(1), equalTo("DESCRICAO = CD1"));
     assertThat(res.get(2), equalTo("CATEGORIA = CATEGORIA_3"));
     assertThat(res.get(3), equalTo("VALOR = R$ 25.99"));
-    assertThat(res.get(4), equalTo("ALBUM = Album1"));
-    assertThat(res.get(5), equalTo("ARTISTA = Artista1"));
-    assertThat(res.get(6), equalTo("GENERO = Genero1"));
+  }
+
+  public void cast_exption() {
+    CD _cd = cdToString.to(cd);
+
+    assertThat(cd.toString(), equalTo(_cd.toString()));
   }
 
 }

@@ -40,4 +40,9 @@ class ProdutoToString {
     return list;
   }
 
+  public Produto to(Produto produto) {
+    Produto _produto = produto;
+    return produto;
+  }
+
 }
