@@ -25,7 +25,6 @@ import java.util.List;
 class ProdutoToString {
 
   public List<String> listar(Produto produto) {
-
     List<String> list = newArrayList();
 
     TipoDeCategoria categoria = produto.getCategoria();
@@ -42,7 +41,7 @@ class ProdutoToString {
 
   public Produto to(Produto produto) {
     Produto _produto = produto;
-    return produto;
+    return _produto;
   }
 
 }
